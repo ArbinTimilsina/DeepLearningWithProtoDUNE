@@ -1,8 +1,8 @@
 import csv
 
-max_size = 30
-max_wires = 224
-max_tdcs = 224
+max_size = 3626
+max_wires = 32
+max_tdcs = 32
 
 # Header 
 header = ["Pixel"] * (max_wires * max_tdcs)
@@ -10,10 +10,10 @@ feature =  []
 label = []
 for t in range(max_tdcs):
     for w in range(max_wires):
-        if t < 75:
+        if t < 11:
             feature.append(1)
             label.append(0)
-        elif t < 150:
+        elif t < 22:
             feature.append(10)
             label.append(1)
         else:
