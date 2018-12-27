@@ -4,7 +4,7 @@ max_size = 3626
 max_wires = 32
 max_tdcs = 32
 
-# Header 
+# Header
 header = ["Pixel"] * (max_wires * max_tdcs)
 feature =  []
 label = []

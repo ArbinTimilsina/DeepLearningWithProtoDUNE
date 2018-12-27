@@ -3,6 +3,7 @@ matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
+from keras.utils import plot_model
 
 def plot_weights_median(weights, ranges, class_names, plot_name):
     """
@@ -94,7 +95,8 @@ def plot_feature_label_prediction(feature_image, label_image, prediction_image,
 
     # Featured is scaled to be between 0 and 1
     c = ax0.imshow(feature_image, cmap='winter_r',interpolation='none', origin='lower',
-                   norm=LogNorm(vmin=1E-3, vmax=1.0))
+                   #norm=LogNorm(vmin=1E-3, vmax=1.0))
+                   norm=LogNorm(vmin=1E-5, vmax=1.0))
     fig.colorbar(c, ax=ax0)
     ax0.set_xlabel("Global wire no.", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
     ax0.set_ylabel("TDC", fontsize=15, fontname='DejaVu Sans',fontweight='bold')

@@ -28,7 +28,7 @@ def average_intersection_over_union(y_true, y_pred, class_names):
     Average over classes and batch
     """
     n_preds = y_pred.shape[0]
-    print('\nNumber of validation samples IoU evaulated on: {}'.format(n_preds))
+    print('\nNumber of validation samples IoU evaulated on: {}\n'.format(n_preds))
 
     total_iou = 0
     for c in range(len(class_names)):
@@ -36,7 +36,7 @@ def average_intersection_over_union(y_true, y_pred, class_names):
         print('IoU for {} is: {:.3f}'.format(class_names[c], iou))
         total_iou += iou
 
-    print('Average IoU is: {:.3f}'.format(total_iou/len(class_names)))
+    print('\nAverage IoU is: {:.3f}'.format(total_iou/len(class_names)))
 
 def main():
     args = argument_parser()
@@ -84,7 +84,7 @@ def main():
 
     # Get the model
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
-    model = load_model(model_path, custom_objects={"loss": focal_loss()})
+    model = load_model(model_path)
 
     # Make comparision plots
     generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)

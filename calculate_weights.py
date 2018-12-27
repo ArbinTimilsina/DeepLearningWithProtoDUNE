@@ -40,7 +40,7 @@ def main():
 
     ranges = [(0,0.04), (0,0.4), (0.8, 1.2)]
 
-    plot_path = os.path.join("plots", "weights_median.pdf")
+    plot_path = os.path.join("plots", "extra", "weights_median.pdf")
     plot_weights_median(weights, ranges, CLASS_NAMES, plot_path)
     print("\nDone! Plot with median weights for each class is saved at {}!\n".format(plot_path))
 

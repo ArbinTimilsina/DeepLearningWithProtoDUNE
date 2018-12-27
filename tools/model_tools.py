@@ -1,9 +1,59 @@
 from keras.models import Model
 from keras.layers.merge import concatenate
 from keras.layers.pooling import MaxPooling2D
-from keras.layers.convolutional import Conv2D, Conv2DTranspose
+from keras.layers.convolutional import Conv2D, SeparableConv2D, UpSampling2D, Conv2DTranspose
 from keras.layers import BatchNormalization, Activation, Dense, Dropout
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+
+def separable_conv2d_batchnorm(input_layer, filters, strides=1):
+    output_layer = SeparableConv2D(filters=filters,kernel_size=3, strides=strides,
+                                   padding='same', activation='relu')(input_layer)
+    output_layer = BatchNormalization()(output_layer)
+    return output_layer
+
+def conv2d_batchnorm(input_layer, filters, kernel_size=3, strides=1):
+    output_layer = Conv2D(filters=filters, kernel_size=kernel_size, strides=strides,
+                          padding='same', activation='relu')(input_layer)
+
+    output_layer = BatchNormalization()(output_layer)
+    return output_layer
+
+def upsample_2d(input_layer):
+    output_layer = UpSampling2D((2,2))(input_layer)
+    return output_layer
+
+def encoder_block(input_layer, filters, strides):
+    output_layer = separable_conv2d_batchnorm(input_layer, filters, strides)
+    return output_layer
+
+def decoder_block(small_ip_layer, large_ip_layer, filters):
+    upsampled_layer = upsample_2d(small_ip_layer)
+
+    concatenated_layer = concatenate([upsampled_layer, large_ip_layer])
+
+    output1_layer = separable_conv2d_batchnorm(concatenated_layer, filters)
+    output2_layer = separable_conv2d_batchnorm(output1_layer,      filters)
+
+    return output2_layer
+
+def get_fcn_model(input_tensor, num_classes, num_filters=16):
+    # With each encoder layer, the depth of FCN model (the number of filters) increases.
+    encoder1_layer = encoder_block(input_tensor, 1*num_filters, strides=2)
+    encoder2_layer = encoder_block(encoder1_layer, 2*num_filters, strides=2)
+    encoder3_layer = encoder_block(encoder2_layer, 3*num_filters, strides=2)
+
+    # Add 1x1 Convolution layer using conv2d_batchnorm().
+    conv_layer = conv2d_batchnorm(encoder3_layer, 4*num_filters, kernel_size=1, strides=1)
+
+    # Add the same number of Decoder Blocks as the number of Encoder Blocks
+    decoder1_layer = decoder_block(conv_layer, encoder2_layer, 3*num_filters)
+    decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
+    x = decoder_block(decoder2_layer, input_tensor, 1*num_filters)
+
+    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+
+    model = Model(inputs=[input_tensor], outputs=[outputs])
+    return model
 
 def make_conv2d_block(input_tensor, num_filters, kernel_size=3, batchnorm=True):
     # First layer
@@ -21,7 +71,7 @@ def make_conv2d_block(input_tensor, num_filters, kernel_size=3, batchnorm=True):
     x = Activation("relu")(x)
     return x
 
-def get_unet_model(input_tensor, num_classes, num_filters=64, dropout=0.05, batchnorm=True):
+def get_unet_model(input_tensor, num_classes, num_filters=16, dropout=0.25, batchnorm=True):
     # Vontracting path
     c1 = make_conv2d_block(input_tensor, num_filters=num_filters*1, kernel_size=3, batchnorm=batchnorm)
     p1 = MaxPooling2D((2, 2)) (c1)
@@ -72,7 +122,7 @@ def train_model(model, X, y, num_training, num_validation, model_path, num_epoch
     early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=50, verbose=1)
 
     # Reduce learning rate when a metric has stopped improving
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.25, patience=2, cooldown=0, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.25, patience=3, cooldown=0, verbose=1)
 
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_path, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
