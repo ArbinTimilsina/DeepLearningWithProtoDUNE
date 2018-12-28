@@ -9,7 +9,7 @@ from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
 from tools.plotting_tools import plot_history
 from tools.model_tools import get_unet_model, get_fcn_model, train_model
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, weighted_focal_loss
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -101,26 +101,43 @@ def main():
                                            max_index=NUM_VALIDATION,
                                            batch_size=BATCH_SIZE)
 
-    # Note: num_filters needs to be 16 or less for batch size of 5 (for 6 GB memory)
-
     # Compile the model
     input_tensor = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
     model = get_fcn_model(input_tensor=input_tensor, num_classes=len(CLASS_NAMES), num_filters=16)
 
-    #model = get_unet_model(input_tensor=input_tensor, num_classes=len(CLASS_NAMES), num_filters=16, dropout=0.25)
-
+    # Plot the model architecture 
     model_path = os.path.join("plots", "model.pdf")
     plot_model(model, to_file=model_path)
     model_path_with_shapes = os.path.join("plots", "model_with_shapes.pdf")
     plot_model(model, to_file=model_path_with_shapes, show_shapes=True)
 
-    model.compile(optimizer=SGD(lr=1e-2, momentum=0.9),
-                  loss='categorical_crossentropy',
-                  metrics=['accuracy'])
+    # Different options
+    test = 0
+    if test == 1:
+        model.compile(optimizer=SGD(), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 2:
+        model.compile(optimizer=SGD(), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 3:
+        model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 4:
+        model.compile(optimizer=Adam(), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 5:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 6:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-3), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 7:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 8:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5, momentum=0.9, nesterov=True), loss='categorical_crossentropy', metrics=['accuracy'])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
 
     model_and_weights = os.path.join("saved_models", "model_and_weights.hdf5")
+
     # If weights exist, load them before continuing training
-    continue_training = True
+    continue_training = False
     if(os.path.isfile(model_and_weights) and continue_training):
         print("Old weights found!")
         try:

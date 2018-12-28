@@ -119,7 +119,7 @@ def get_unet_model(input_tensor, num_classes, num_filters=16, dropout=0.25, batc
 
 def train_model(model, X, y, num_training, num_validation, model_path, num_epochs=1, batch_size=1):
     # Stop training when a monitored quantity has stopped improving after certain epochs
-    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=50, verbose=1)
+    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=25, verbose=1)
 
     # Reduce learning rate when a metric has stopped improving
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.25, patience=3, cooldown=0, verbose=1)

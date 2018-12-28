@@ -6,7 +6,7 @@ import configparser
 from keras.models import load_model
 from tools.plotting_tools import plot_feature_label_prediction
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, weighted_focal_loss
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
 
 def argument_parser():
     ap = argparse.ArgumentParser()
@@ -84,7 +84,7 @@ def main():
 
     # Get the model
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
-    model = load_model(model_path)
+    model = load_model(model_path, custom_objects={"loss": focal_loss()})
 
     # Make comparision plots
     generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)

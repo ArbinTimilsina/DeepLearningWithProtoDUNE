@@ -43,31 +43,6 @@ def focal_loss(alpha=0.25, gamma=2.0):
 
     return loss
 
-def weighted_focal_loss(weights, gamma=2.0):
-    """
-    weights: Median frequency weights for class balance
-    gamma: Take the power of the focal weight with gamma.
-    """
-    # Convert weights to a constant tensor
-    weights = tf.constant(weights, dtype=tf.float32)
-
-    def loss(y_true, y_pred):
-        alpha=1.0/weights
-
-        # Scale predictions so that the class probas of each sample sum to 1
-        y_pred /= tf.reduce_sum(y_pred, axis=-1, keepdims=True)
-
-        # Clip to prevent NaN's and Inf's
-        _epsilon = tf.convert_to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
-        y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
-
-        # Do the loss calculation
-        pt = tf.where(tf.equal(y_true, 1), y_pred, 1 - y_pred)
-        loss = alpha * tf.pow(1.0 - pt, gamma) * tf.log(pt)
-        return -tf.reduce_sum(loss, axis=-1)
-
-    return loss
-
 # For Keras, custom metrics can be passed at the compilation step but
 # the function would need to take (y_true, y_pred) as arguments and return a single tensor value.
 # Note: seems like this implementation is not stable; it sometimes returns 0 in standalone tests
