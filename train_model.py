@@ -8,7 +8,7 @@ from keras.utils import plot_model
 from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
 from tools.plotting_tools import plot_history
-from tools.model_tools import train_model, get_unet_model, get_fcn_model
+from tools.model_tools import train_model, get_vgg16_fcn_model, get_unet_model
 from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
 
 from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
@@ -121,22 +121,8 @@ def main():
     for layer in base_model.layers:
         layer.trainable = False
 
-    base_model_output = base_model.output
-
-    # Output of VGG16 is 7x7x512; so upsample and transpose to get 224x224x3
-    # Conv2DTranspose: new_rows = ((rows - 1) * strides[0] + kernel_size[0] - 2 * padding[0] + output_padding[0])
-    base_model_output = UpSampling2D(size=(2,2))(base_model_output)
-    base_model_output = Conv2DTranspose(filters=300, kernel_size=(3,3), padding='same')(base_model_output)
-    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #28x28x300
-    base_model_output = Conv2DTranspose(filters=150, kernel_size=(3, 3), padding='same')(base_model_output)
-    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #56x56x150
-    base_model_output = Conv2DTranspose(filters=15, kernel_size=(3, 3), padding='same')(base_model_output)
-    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #112x112x15
-    base_model_output = Conv2DTranspose(filters=3, kernel_size=(3, 3), padding='same')(base_model_output)
-    input_tensor = UpSampling2D(size=(2,2))(base_model_output) #224x224x3
-
     # Create the FCN model
-    model = get_fcn_model(base_model=base_model, input_tensor=input_tensor, num_classes=len(CLASS_NAMES), num_filters=16)
+    model = get_vgg16_fcn_model(base_model=base_model, input_tensor=input, num_classes=len(CLASS_NAMES))
 
     # Print model summary
     model.summary()
@@ -146,7 +132,7 @@ def main():
     plot_model(model, to_file=model_path, show_shapes=True)
 
     # Different options
-    test = 0
+    test = 2
     if test == 1:
         model.compile(optimizer=SGD(), loss='categorical_crossentropy', metrics=['accuracy'])
     elif test == 2:
@@ -156,13 +142,13 @@ def main():
     elif test == 4:
         model.compile(optimizer=Adam(), loss=focal_loss(), metrics=['accuracy'])
     elif test == 5:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4), loss=focal_loss(), metrics=['accuracy'])
     elif test == 6:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-3), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-4, decay=1e-3), loss=focal_loss(), metrics=['accuracy'])
     elif test == 7:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5, momentum=0.9), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
     elif test == 8:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5, momentum=0.9, nesterov=True), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4, momentum=0.9, nesterov=True), loss=focal_loss(), metrics=['accuracy'])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
@@ -183,9 +169,10 @@ def main():
                 print("Re-training some layers of base model!")
                 # Re-train some layers of base model as well
                 # block_1: 1-3; block_2: 4-6; block_3: 7-10; block_4: 11-14; block_5: 15-18;
-                for layer in base_model.layers[:15]:
+                layer_no = 15
+                for layer in base_model.layers[:layer_no]:
                     layer.trainable = False
-                for layer in base_model.layers[15:]:
+                for layer in base_model.layers[layer_no:]:
                     layer.trainable = True
         except:
             print("Old weights couldn't be loaded successfully, will continue!")

@@ -18,16 +18,16 @@ def conv2d_batchnorm(input_layer, filters, kernel_size=3, strides=1):
     output_layer = BatchNormalization()(output_layer)
     return output_layer
 
-def upsample_2d(input_layer):
-    output_layer = UpSampling2D((2,2))(input_layer)
+def upsample_2d(input_layer, size=(2,2)):
+    output_layer = UpSampling2D(size)(input_layer)
     return output_layer
 
 def encoder_block(input_layer, filters, strides):
     output_layer = separable_conv2d_batchnorm(input_layer, filters, strides)
     return output_layer
 
-def decoder_block(small_ip_layer, large_ip_layer, filters):
-    upsampled_layer = upsample_2d(small_ip_layer)
+def decoder_block(small_ip_layer, large_ip_layer, filters, upsampling_size=(2,2)):
+    upsampled_layer = upsample_2d(small_ip_layer, upsampling_size)
 
     concatenated_layer = concatenate([upsampled_layer, large_ip_layer])
 
@@ -36,7 +36,58 @@ def decoder_block(small_ip_layer, large_ip_layer, filters):
 
     return output2_layer
 
-def get_fcn_model(base_model, input_tensor, num_classes, num_filters=64):
+def get_vgg16_fcn_model(base_model, input_tensor, num_classes):
+    num_filters=64
+
+    # Start block2 of VGG16 as first encoder layer
+    encoder1_layer = base_model.get_layer('block2_pool').output
+    encoder2_layer = base_model.get_layer('block3_pool').output
+    encoder3_layer = base_model.get_layer('block4_pool').output
+    encoder4_layer = base_model.get_layer('block5_pool').output
+
+    # Make the decoder layers
+    decoder1_layer = decoder_block(encoder4_layer, encoder2_layer, 4*num_filters, upsampling_size=(4,4))
+    decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
+    decoder3_layer = decoder_block(decoder2_layer, input_tensor, 1*num_filters, upsampling_size=(4,4))
+
+    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(decoder3_layer)
+
+    model = Model(inputs=[base_model.input], outputs=[outputs])
+    return model
+
+def get_fcn_model(input_tensor, num_classes, num_filters=64):
+    # With each encoder layer, the depth of FCN model (the number of filters) increases.
+    encoder1_layer = encoder_block(input_tensor, 1*num_filters, strides=2)
+    encoder2_layer = encoder_block(encoder1_layer, 2*num_filters, strides=2)
+    encoder3_layer = encoder_block(encoder2_layer, 4*num_filters, strides=2)
+
+    # Add 1x1 Convolution layer using conv2d_batchnorm().
+    conv_layer = conv2d_batchnorm(encoder3_layer, 8*num_filters, kernel_size=1, strides=1)
+
+    # Add the same number of Decoder Blocks as the number of Encoder Blocks
+    decoder1_layer = decoder_block(conv_layer, encoder2_layer, 4*num_filters)
+    decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
+    x = decoder_block(decoder2_layer, input_tensor, 1*num_filters)
+
+    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+
+    model = Model(inputs=[input_tensor], outputs=[outputs])
+    return model
+
+def get_fcn_with_vgg16_on_top_model(base_model, input_tensor, num_classes, num_filters=64):
+    base_model_output = base_model.output
+    # Output of VGG16 is 7x7x512; so upsample and transpose to get 224x224x3
+    # Conv2DTranspose: new_rows = ((rows - 1) * strides[0] + kernel_size[0] - 2 * padding[0] + output_padding[0])
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output)
+    base_model_output = Conv2DTranspose(filters=300, kernel_size=(3,3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #28x28x300
+    base_model_output = Conv2DTranspose(filters=150, kernel_size=(3, 3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #56x56x150
+    base_model_output = Conv2DTranspose(filters=15, kernel_size=(3, 3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #112x112x15
+    base_model_output = Conv2DTranspose(filters=3, kernel_size=(3, 3), padding='same')(base_model_output)
+    input_tensor = UpSampling2D(size=(2,2))(base_model_output) #224x224x3
+
     # With each encoder layer, the depth of FCN model (the number of filters) increases.
     encoder1_layer = encoder_block(input_tensor, 1*num_filters, strides=2)
     encoder2_layer = encoder_block(encoder1_layer, 2*num_filters, strides=2)
@@ -119,10 +170,10 @@ def get_unet_model(input_tensor, num_classes, num_filters=16, dropout=0.25, batc
 
 def train_model(model, X, y, num_training, num_validation, model_path, num_epochs=1, batch_size=1):
     # Stop training when a monitored quantity has stopped improving after certain epochs
-    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=25, verbose=1)
+    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=15, verbose=1)
 
     # Reduce learning rate when a metric has stopped improving
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.25, patience=3, cooldown=0, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.1, patience=3, cooldown=3, verbose=1)
 
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_path, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
