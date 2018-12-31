@@ -24,7 +24,15 @@ def preprocess_feature(x, image_width, image_height, image_depth):
     """
     x_max = np.max(x)
     x = x/x_max
-    return x.reshape(1, image_width, image_height, image_depth)
+    x = x.reshape(image_width, image_height)
+
+    # For now convert 1 channel to 3 channel
+    x_3_channel = np.empty((image_width, image_height, image_depth))
+    x_3_channel[:, :, 0] = x
+    x_3_channel[:, :, 1] = x
+    x_3_channel[:, :, 2] = x
+
+    return x_3_channel.reshape(1, image_width, image_height, image_depth)
 
 def preprocess_label(y, image_width, image_height, num_classes):
     return np_utils.to_categorical(y, num_classes=num_classes).reshape(1, image_width, image_height, num_classes)

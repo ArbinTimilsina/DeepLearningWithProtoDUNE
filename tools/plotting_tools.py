@@ -93,10 +93,13 @@ def plot_feature_label_prediction(feature_image, label_image, prediction_image,
     """
     fig, (ax0, ax1, ax2) = plt.subplots(1, 3, figsize=(20,5), facecolor='w')
 
+    # Just pick first channel
+    feature_image = feature_image[:, :, 0]
+
     # Featured is scaled to be between 0 and 1
     c = ax0.imshow(feature_image, cmap='winter_r',interpolation='none', origin='lower',
-                   #norm=LogNorm(vmin=1E-3, vmax=1.0))
-                   norm=LogNorm(vmin=1E-5, vmax=1.0))
+                   norm=LogNorm(vmin=1E-3, vmax=1.0))
+                   #norm=LogNorm(vmin=1E-5, vmax=1.0))
     fig.colorbar(c, ax=ax0)
     ax0.set_xlabel("Global wire no.", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
     ax0.set_ylabel("TDC", fontsize=15, fontname='DejaVu Sans',fontweight='bold')

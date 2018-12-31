@@ -8,8 +8,11 @@ from keras.utils import plot_model
 from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
 from tools.plotting_tools import plot_history
-from tools.model_tools import get_unet_model, get_fcn_model, train_model
+from tools.model_tools import train_model, get_unet_model, get_fcn_model
 from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
+
+from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
+from keras.applications.vgg16 import VGG16
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -102,14 +105,45 @@ def main():
                                            batch_size=BATCH_SIZE)
 
     # Compile the model
-    input_tensor = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
-    model = get_fcn_model(input_tensor=input_tensor, num_classes=len(CLASS_NAMES), num_filters=16)
+    input = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
 
-    # Plot the model architecture 
+    base_model = VGG16(weights='imagenet', include_top=False, input_tensor=input)
+    base_model_path = os.path.join("plots", "base_model.pdf")
+    plot_model(base_model, to_file=base_model_path, show_shapes=True)
+
+    # Print the layer name
+    print_layer = False
+    if print_layer:
+        for i, layer in enumerate(base_model.layers):
+            print(i, layer.name)
+
+    # Freeze all base model's convolutional layers
+    for layer in base_model.layers:
+        layer.trainable = False
+
+    base_model_output = base_model.output
+
+    # Output of VGG16 is 7x7x512; so upsample and transpose to get 224x224x3
+    # Conv2DTranspose: new_rows = ((rows - 1) * strides[0] + kernel_size[0] - 2 * padding[0] + output_padding[0])
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output)
+    base_model_output = Conv2DTranspose(filters=300, kernel_size=(3,3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #28x28x300
+    base_model_output = Conv2DTranspose(filters=150, kernel_size=(3, 3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #56x56x150
+    base_model_output = Conv2DTranspose(filters=15, kernel_size=(3, 3), padding='same')(base_model_output)
+    base_model_output = UpSampling2D(size=(2,2))(base_model_output) #112x112x15
+    base_model_output = Conv2DTranspose(filters=3, kernel_size=(3, 3), padding='same')(base_model_output)
+    input_tensor = UpSampling2D(size=(2,2))(base_model_output) #224x224x3
+
+    # Create the FCN model
+    model = get_fcn_model(base_model=base_model, input_tensor=input_tensor, num_classes=len(CLASS_NAMES), num_filters=16)
+
+    # Print model summary
+    model.summary()
+
+    # Plot the model architecture
     model_path = os.path.join("plots", "model.pdf")
-    plot_model(model, to_file=model_path)
-    model_path_with_shapes = os.path.join("plots", "model_with_shapes.pdf")
-    plot_model(model, to_file=model_path_with_shapes, show_shapes=True)
+    plot_model(model, to_file=model_path, show_shapes=True)
 
     # Different options
     test = 0
@@ -138,11 +172,21 @@ def main():
 
     # If weights exist, load them before continuing training
     continue_training = False
+    retrain_base_model = False
     if(os.path.isfile(model_and_weights) and continue_training):
         print("Old weights found!")
         try:
             model.load_weights(model_and_weights)
             print("Old weights loaded successfully!")
+
+            if retrain_base_model:
+                print("Re-training some layers of base model!")
+                # Re-train some layers of base model as well
+                # block_1: 1-3; block_2: 4-6; block_3: 7-10; block_4: 11-14; block_5: 15-18;
+                for layer in base_model.layers[:15]:
+                    layer.trainable = False
+                for layer in base_model.layers[15:]:
+                    layer.trainable = True
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 

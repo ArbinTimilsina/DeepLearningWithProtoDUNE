@@ -32,27 +32,27 @@ def decoder_block(small_ip_layer, large_ip_layer, filters):
     concatenated_layer = concatenate([upsampled_layer, large_ip_layer])
 
     output1_layer = separable_conv2d_batchnorm(concatenated_layer, filters)
-    output2_layer = separable_conv2d_batchnorm(output1_layer,      filters)
+    output2_layer = separable_conv2d_batchnorm(output1_layer, filters)
 
     return output2_layer
 
-def get_fcn_model(input_tensor, num_classes, num_filters=16):
+def get_fcn_model(base_model, input_tensor, num_classes, num_filters=64):
     # With each encoder layer, the depth of FCN model (the number of filters) increases.
     encoder1_layer = encoder_block(input_tensor, 1*num_filters, strides=2)
     encoder2_layer = encoder_block(encoder1_layer, 2*num_filters, strides=2)
-    encoder3_layer = encoder_block(encoder2_layer, 3*num_filters, strides=2)
+    encoder3_layer = encoder_block(encoder2_layer, 4*num_filters, strides=2)
 
     # Add 1x1 Convolution layer using conv2d_batchnorm().
-    conv_layer = conv2d_batchnorm(encoder3_layer, 4*num_filters, kernel_size=1, strides=1)
+    conv_layer = conv2d_batchnorm(encoder3_layer, 8*num_filters, kernel_size=1, strides=1)
 
     # Add the same number of Decoder Blocks as the number of Encoder Blocks
-    decoder1_layer = decoder_block(conv_layer, encoder2_layer, 3*num_filters)
+    decoder1_layer = decoder_block(conv_layer, encoder2_layer, 4*num_filters)
     decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
     x = decoder_block(decoder2_layer, input_tensor, 1*num_filters)
 
     outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
 
-    model = Model(inputs=[input_tensor], outputs=[outputs])
+    model = Model(inputs=[base_model.input], outputs=[outputs])
     return model
 
 def make_conv2d_block(input_tensor, num_filters, kernel_size=3, batchnorm=True):

@@ -101,7 +101,7 @@ def main():
         prediction = model.predict_on_batch(X_preprocessed)
         prediction_max = np.argmax(prediction, axis=3)
 
-        feature_image = X_preprocessed.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)
+        feature_image = X_preprocessed.reshape(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH)
         label_image = y_preprocessed_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)
         prediction_image = prediction_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)
 
