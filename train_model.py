@@ -131,28 +131,7 @@ def main():
     model_path = os.path.join("plots", "model.pdf")
     plot_model(model, to_file=model_path, show_shapes=True)
 
-    # Different options
-    test = 2
-    if test == 1:
-        model.compile(optimizer=SGD(), loss='categorical_crossentropy', metrics=['accuracy'])
-    elif test == 2:
-        model.compile(optimizer=SGD(), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 3:
-        model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
-    elif test == 4:
-        model.compile(optimizer=Adam(), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 5:
-        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 6:
-        model.compile(optimizer=SGD(lr=1e-4, decay=1e-3), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 7:
-        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 8:
-        model.compile(optimizer=SGD(lr=1e-4, decay=1e-4, momentum=0.9, nesterov=True), loss=focal_loss(), metrics=['accuracy'])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
+    model.compile(optimizer=SGD(lr=1e-4, decay=1e-3, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
 
     model_and_weights = os.path.join("saved_models", "model_and_weights.hdf5")
 
