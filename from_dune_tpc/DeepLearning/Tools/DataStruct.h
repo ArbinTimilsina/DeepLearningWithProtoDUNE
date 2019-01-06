@@ -7,8 +7,9 @@ namespace ProtoDuneDL
     {
       	double adc;
 	unsigned int tdc;
-	unsigned int global_wire_index;
-	unsigned int global_plane_index;
+	unsigned int tpc_index;
+        unsigned int plane_index;
+        unsigned int wire_index;
 	unsigned int origin;
     };
 

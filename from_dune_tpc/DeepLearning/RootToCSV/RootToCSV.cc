@@ -19,7 +19,7 @@
 using namespace std;
 
 RootToCSV :: RootToCSV(const TString input, const TString output, const int minHits)
-    : InputFile(input), OutputDirectory(output), MinHitsBeam(minHits)
+    : InputFile(input), OutputDirectory(output), MinHits(minHits)
 {
 }
 
@@ -33,9 +33,9 @@ void RootToCSV::SetOutputDirectory(const TString output)
     OutputDirectory = output;
 }
 
-void RootToCSV::SetMinHitsBeam(const int minHits)
+void RootToCSV::SetMinHits(const int minHits)
 {
-    MinHitsBeam = minHits;
+    MinHits = minHits;
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 void RootToCSV::MakeCSV()
@@ -60,15 +60,16 @@ void RootToCSV::MakeCSV()
             cout << "Total Entries in the Tree is: " << nEntries << endl << endl;
         }
 
-    cout << "Min hits for beam is: " << MinHitsBeam << endl;
+    cout << "Min hits for beam and not-beam is: " << MinHits << endl;
 
     ofstream FileOutput[6]; // 3 planes x (Feature + Label)
     TString FileName[6] = {"feature_u.csv", "feature_v.csv", "feature_w.csv", "label_u.csv", "label_v.csv", "label_w.csv"};
 
     // Save histograms for hits
     TFile *HistogramFile = new TFile("Histograms.root", "RECREATE");
-    TH1D *hHits = new TH1D("hHits", "", 100, 0, 100000);
-    TH1D *hHitsBeam = new TH1D("hHitsBeam", "", 200, 0, 10000);
+    TH1D *hHits = new TH1D("hHits", "", 200, 0, 100000);
+    TH1D *hHitsBeam = new TH1D("hHitsBeam", "", 100, 0, 7000);
+    TH1D *hHitsNotBeam = new TH1D("hHitsNotBeam", "", 300, 0, 30000);
 
     for (unsigned int iFile = 0; iFile < 6; iFile++)
         {
@@ -96,19 +97,30 @@ void RootToCSV::MakeCSV()
             hHits->Fill(nHits);
 
             unsigned int nHitsBeam = 0;
+            unsigned int nHitsNotBeam = 0;
             for(unsigned int iHit = 0; iHit < nHits; iHit++)
                 {
                     ProtoDuneDL::HitsStruct hHitsStruct = (*pHitsStruct)[iHit];
+
+		    //Just work with TPC 1
+                    if(hHitsStruct.tpc_index != 1)
+                        {
+                            continue;
+                        }
                     if(hHitsStruct.origin == ProtoDuneDL::Labels::Beam)
                         {
                             nHitsBeam++;
                         }
+                    if(hHitsStruct.origin == ProtoDuneDL::Labels::NotBeam)
+                        {
+                            nHitsNotBeam++;
+                        }
                 }
-
             hHitsBeam->Fill(nHitsBeam);
+            hHitsNotBeam->Fill(nHitsNotBeam);
 
-            // Require minimum no. of hits from Beam
-            if(nHitsBeam < MinHitsBeam)
+            // Require minimum no. of hits
+            if(nHitsBeam < MinHits || nHitsNotBeam < MinHits)
                 {
                     continue;
                 }
@@ -117,6 +129,7 @@ void RootToCSV::MakeCSV()
             cout << "Event: " << count << endl;
             //cout << "Total hits: " << nHits << endl;
             //cout << "Beam hits: " << nHitsBeam << endl<<endl;
+            //cout << "NotBeam hits: " << nHitsNotBeam << endl<<endl;
 
             static double FeatureMap[ProtoDuneDL::MaxPlanes][ProtoDuneDL::MaxTDCs][ProtoDuneDL::MaxWires];
             static int LabelMap[ProtoDuneDL::MaxPlanes][ProtoDuneDL::MaxTDCs][ProtoDuneDL::MaxWires];
@@ -136,11 +149,18 @@ void RootToCSV::MakeCSV()
             for(unsigned int iHit = 0; iHit < nHits; iHit++)
                 {
                     ProtoDuneDL::HitsStruct hHitsStruct = (*pHitsStruct)[iHit];
-                    unsigned int plane = hHitsStruct.global_plane_index;
+
+                    //Just work with TPC 1
+                    if(hHitsStruct.tpc_index != 1)
+                        {
+                            continue;
+                        }
+
+                    unsigned int plane = hHitsStruct.plane_index;
                     unsigned int tdc = hHitsStruct.tdc;
 
                     //TO DO: Flip wire for V plane?
-                    unsigned int wire = hHitsStruct.global_wire_index;
+                    unsigned int wire = hHitsStruct.wire_index;
 
                     // TO DO: Better downsampling
                     unsigned int tdcNew = ProtoDuneDL::TransformRange(tdc, 0, ProtoDuneDL::TDCsPerPlane[plane], 0, ProtoDuneDL::MaxTDCs);
@@ -196,7 +216,7 @@ int main(int argc, char* argv[])
     RootToCSV *myRootToCSV = new RootToCSV();
     myRootToCSV->SetInputFile(argv[1]);
     myRootToCSV->SetOutputDirectory(argv[2]);
-    myRootToCSV->SetMinHitsBeam(atoi(argv[3]));
+    myRootToCSV->SetMinHits(atoi(argv[3]));
     myRootToCSV->MakeCSV();
 
     return 0;

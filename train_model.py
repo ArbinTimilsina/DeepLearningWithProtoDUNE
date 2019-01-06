@@ -7,12 +7,12 @@ from keras.layers import Input
 from keras.utils import plot_model
 from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
-from tools.plotting_tools import plot_history
-from tools.model_tools import train_model, get_vgg16_fcn_model, get_unet_model
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
-
-from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
 from keras.applications.vgg16 import VGG16
+from tools.plotting_tools import plot_history
+from tools.loss_metrics_tools import focal_loss
+from tools.model_tools import get_vgg16_fcn_model, get_unet_model
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -105,9 +105,9 @@ def main():
                                            batch_size=BATCH_SIZE)
 
     # Compile the model
-    input = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
+    input_tensor = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
 
-    base_model = VGG16(weights='imagenet', include_top=False, input_tensor=input)
+    base_model = VGG16(weights='imagenet', include_top=False, input_tensor=input_tensor)
     base_model_path = os.path.join("plots", "base_model.pdf")
     plot_model(base_model, to_file=base_model_path, show_shapes=True)
 
@@ -122,7 +122,7 @@ def main():
         layer.trainable = False
 
     # Create the FCN model
-    model = get_vgg16_fcn_model(base_model=base_model, input_tensor=input, num_classes=len(CLASS_NAMES))
+    model = get_vgg16_fcn_model(base_model=base_model, num_classes=len(CLASS_NAMES))
 
     # Print model summary
     model.summary()
@@ -131,7 +131,24 @@ def main():
     model_path = os.path.join("plots", "model.pdf")
     plot_model(model, to_file=model_path, show_shapes=True)
 
-    model.compile(optimizer=SGD(lr=1e-4, decay=1e-3, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
+    # Different options
+    test = 4
+    if test == 1:
+        model.compile(optimizer=SGD(lr=1e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+    elif test == 2:
+        model.compile(optimizer=SGD(lr=1e-5), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 3:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 4:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 5:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 6:
+        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4, momentum=0.9, nesterov=True), loss=focal_loss(), metrics=['accuracy'])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
 
     model_and_weights = os.path.join("saved_models", "model_and_weights.hdf5")
 
@@ -157,10 +174,25 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     # Traing the model
-    history = train_model(model=model,
-                          X=datasequence_training, y=datasequence_validation,
-                          num_training=NUM_TRAINING, num_validation=NUM_VALIDATION,
-                          model_path=model_and_weights, num_epochs=NUM_EPOCHS, batch_size=BATCH_SIZE)
+    # Stop training when a monitored quantity has stopped improving after certain epochs
+    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=15, verbose=1)
+
+    # Reduce learning rate when a metric has stopped improving
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.2, patience=3, cooldown=3, verbose=1)
+
+    # Save the best model after every epoch
+    check_point = ModelCheckpoint(filepath=model_and_weights, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
+
+    history = model.fit_generator(generator=datasequence_training,
+                                  steps_per_epoch = NUM_TRAINING//BATCH_SIZE,
+                                  epochs=NUM_EPOCHS,
+                                  validation_data=datasequence_validation,
+                                  validation_steps= NUM_VALIDATION//BATCH_SIZE,
+                                  verbose=2,
+                                  callbacks=[check_point, early_stop, reduce_lr],
+                                  shuffle=False,
+                                  use_multiprocessing=False,
+                                  workers=1)
 
     # Plot the history
     loss_path = os.path.join("plots", "loss_vs_epoch.pdf")

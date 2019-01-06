@@ -217,18 +217,8 @@ namespace ProtoDuneDL
 			    {
 				art::Ptr<simb::MCTruth> mcTruth(allMCTruthListHandle, mch);
 				auto truthOrigin = mcTruth->Origin();
-				unsigned int primaryOrigin = ProtoDuneDL::Labels::Undefined;
-				if (truthOrigin == simb::kCosmicRay)
-				    {
-					primaryOrigin = ProtoDuneDL::Labels::Cosmic;
-				    }
-				else if (truthOrigin == simb::kSingleParticle)
-				    {
-					primaryOrigin = ProtoDuneDL::Labels::Beam;
-				    }
 
 				unsigned int nTruthParticles = mcTruth->NParticles();
-				logFile << "MC truth origin: " << truthOrigin << endl;
 				logFile << "No. of truth particles: " << nTruthParticles << endl << endl;
 
 				for(unsigned int iParticle = 0; iParticle < nTruthParticles; iParticle++)
@@ -254,9 +244,16 @@ namespace ProtoDuneDL
 						    }
 					    }
 
+					unsigned int primaryOrigin = ProtoDuneDL::Labels::NotBeam;
+					if ((truthOrigin == simb::kSingleParticle) && (particle.Process() == "primary"))
+					    {
+						primaryOrigin = ProtoDuneDL::Labels::Beam;
+					    }
+
 					if(fDebug || (iParticle <= 5 && nEvents == 1))
 					    {
 						logFile << "Particle: " << iParticle << endl;
+						logFile << "Origin: " << truthOrigin << endl;
 						logFile << "PDG: " << pdg << endl;
 						logFile << "Energy: " << energy << endl << endl;
 						logFile << "Generator TrackId: " << genTrackId << endl << endl;
@@ -328,10 +325,10 @@ namespace ProtoDuneDL
 		// Get truth information about the hit
 		int bestTrackId = -9999;
 		double totalHitEnergy = 0.0, bestTrackIdEnergy = 0.0;
-		unsigned int hitOrigin = ProtoDuneDL::Labels::Undefined;
 		unsigned int pdg = 9999;
 		double truthEnergy = 0.0;
 
+		unsigned int hitOrigin = ProtoDuneDL::Labels::Background;
 		if(isMC)
 		    {
 			// Multiple truth can contribute to a hit; we assign hit to trackID with max energy
@@ -356,20 +353,20 @@ namespace ProtoDuneDL
 				continue;
 			    }
 
-                    // Negative ID means this is EM activity caused by track with the same but positive ID
-                    if(bestTrackId < 0)
-                        {
-                            bestTrackId = -bestTrackId;
-                        }
+			// Negative ID means this is EM activity caused by track with the same but positive ID
+			if(bestTrackId < 0)
+			    {
+				bestTrackId = -bestTrackId;
+			    }
 
-                    auto origin = particleInventory->TrackIdToMCTruth_P(bestTrackId)->Origin();
-                    if (origin == simb::kCosmicRay)
-                        {
-                            hitOrigin = ProtoDuneDL::Labels::Cosmic;
-                        }
-                    else if (origin == simb::kSingleParticle)
+			auto origin = particleInventory->TrackIdToMCTruth_P(bestTrackId)->Origin();
+                    if((origin == simb::kSingleParticle) && (particleInventory->TrackIdToParticle_P(bestTrackId)->Process() == "primary"))
                         {
                             hitOrigin = ProtoDuneDL::Labels::Beam;
+                        }
+                    else
+                        {
+                            hitOrigin = ProtoDuneDL::Labels::NotBeam;
                         }
 
                     pdg = particleInventory->TrackIdToParticle_P(bestTrackId)->PdgCode();
@@ -423,12 +420,13 @@ namespace ProtoDuneDL
                     ProtoDuneDL::HitsStruct tempHits;
                     tempHits.adc = adc;
                     tempHits.tdc = tdc;
-                    tempHits.global_wire_index = globalWireIndex;
-                    tempHits.global_plane_index = globalPlaneIndex;
+                    tempHits.tpc_index = tpcIndex;
+                    tempHits.plane_index = planeIndex;
+                    tempHits.wire_index = wireIndex;
                     tempHits.origin = hitOrigin;
                     pHitsStruct->push_back(tempHits);
                 }
-	    }
+        }
 
     tHitsTree->Fill();
 

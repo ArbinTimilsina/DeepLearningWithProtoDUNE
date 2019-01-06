@@ -4,9 +4,9 @@ import argparse
 import numpy as np
 import configparser
 from keras.models import load_model
+from tools.loss_metrics_tools import focal_loss
 from tools.plotting_tools import plot_feature_label_prediction
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
 
 def argument_parser():
     ap = argparse.ArgumentParser()

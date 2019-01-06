@@ -3,7 +3,6 @@ from keras.layers.merge import concatenate
 from keras.layers.pooling import MaxPooling2D
 from keras.layers.convolutional import Conv2D, SeparableConv2D, UpSampling2D, Conv2DTranspose
 from keras.layers import BatchNormalization, Activation, Dense, Dropout
-from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
 def separable_conv2d_batchnorm(input_layer, filters, strides=1):
     output_layer = SeparableConv2D(filters=filters,kernel_size=3, strides=strides,
@@ -36,8 +35,9 @@ def decoder_block(small_ip_layer, large_ip_layer, filters, upsampling_size=(2,2)
 
     return output2_layer
 
-def get_vgg16_fcn_model(base_model, input_tensor, num_classes):
-    num_filters=64
+def get_vgg16_fcn_model(base_model, num_classes):
+    num_filters = 64
+    input_tensor = base_model.input
 
     # Start block2 of VGG16 as first encoder layer
     encoder1_layer = base_model.get_layer('block2_pool').output
@@ -50,9 +50,9 @@ def get_vgg16_fcn_model(base_model, input_tensor, num_classes):
     decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
     decoder3_layer = decoder_block(decoder2_layer, input_tensor, 1*num_filters, upsampling_size=(4,4))
 
-    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(decoder3_layer)
+    outputs = Conv2D(num_classes, (1, 1), activation='softmax', padding='same')(decoder3_layer)
 
-    model = Model(inputs=[base_model.input], outputs=[outputs])
+    model = Model(inputs=[input_tensor], outputs=[outputs])
     return model
 
 def get_fcn_model(input_tensor, num_classes, num_filters=64):
@@ -69,12 +69,12 @@ def get_fcn_model(input_tensor, num_classes, num_filters=64):
     decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
     x = decoder_block(decoder2_layer, input_tensor, 1*num_filters)
 
-    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+    outputs = Conv2D(num_classes, (1, 1), activation='softmax', padding='same')(x)
 
     model = Model(inputs=[input_tensor], outputs=[outputs])
     return model
 
-def get_fcn_with_vgg16_on_top_model(base_model, input_tensor, num_classes, num_filters=64):
+def get_fcn_with_vgg16_on_top_model(base_model, num_classes, num_filters=64):
     base_model_output = base_model.output
     # Output of VGG16 is 7x7x512; so upsample and transpose to get 224x224x3
     # Conv2DTranspose: new_rows = ((rows - 1) * strides[0] + kernel_size[0] - 2 * padding[0] + output_padding[0])
@@ -101,7 +101,7 @@ def get_fcn_with_vgg16_on_top_model(base_model, input_tensor, num_classes, num_f
     decoder2_layer = decoder_block(decoder1_layer, encoder1_layer, 2*num_filters)
     x = decoder_block(decoder2_layer, input_tensor, 1*num_filters)
 
-    outputs = Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+    outputs = Conv2D(num_classes, (1, 1), activation='softmax', padding='same')(x)
 
     model = Model(inputs=[base_model.input], outputs=[outputs])
     return model
@@ -167,26 +167,3 @@ def get_unet_model(input_tensor, num_classes, num_filters=16, dropout=0.25, batc
 
     model = Model(inputs=[input_tensor], outputs=[outputs])
     return model
-
-def train_model(model, X, y, num_training, num_validation, model_path, num_epochs=1, batch_size=1):
-    # Stop training when a monitored quantity has stopped improving after certain epochs
-    early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=20, verbose=1)
-
-    # Reduce learning rate when a metric has stopped improving
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.2, patience=3, cooldown=3, verbose=1)
-
-    # Save the best model after every epoch
-    check_point = ModelCheckpoint(filepath=model_path, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
-
-    history = model.fit_generator(X,
-                                  steps_per_epoch = num_training//batch_size,
-                                  epochs=num_epochs,
-                                  validation_data=y,
-                                  validation_steps= num_validation//batch_size,
-                                  verbose=2,
-                                  callbacks=[check_point, early_stop, reduce_lr],
-                                  shuffle=False,
-                                  use_multiprocessing=False,
-                                  workers=1)
-
-    return history

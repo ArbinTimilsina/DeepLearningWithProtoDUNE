@@ -9,7 +9,7 @@ class RootToCSV
 
     TString InputFile;
     TString OutputDirectory;
-    unsigned int MinHitsBeam;
+    unsigned int MinHits;
 
  public :
 
@@ -19,7 +19,7 @@ class RootToCSV
     // To set values of choice
     void SetInputFile(const TString input);
     void SetOutputDirectory(const TString output);
-    void SetMinHitsBeam(const int minHits);
+    void SetMinHits(const int minHits);
 
     // To make CSV file
     void MakeCSV();
