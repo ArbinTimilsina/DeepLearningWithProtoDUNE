@@ -4,7 +4,7 @@ from keras import backend as K
 def weighted_categorical_crossentropy(weights):
     """
     Weighted version of keras.objectives.categorical_crossentropy.
-    Use this loss function with median frequency weights for class balance.
+    Use this loss function for class balance.
     """
     # Convert weights to a constant tensor
     weights = tf.constant(weights, dtype=tf.float32)

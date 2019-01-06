@@ -9,10 +9,10 @@ from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
 from keras.applications.vgg16 import VGG16
 from tools.plotting_tools import plot_history
-from tools.loss_metrics_tools import focal_loss
 from tools.model_tools import get_vgg16_fcn_model, get_unet_model
-from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+from tools.loss_metrics_tools import focal_loss, weighted_categorical_crossentropy
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -132,19 +132,19 @@ def main():
     plot_model(model, to_file=model_path, show_shapes=True)
 
     # Different options
-    test = 4
+    test = 0
     if test == 1:
-        model.compile(optimizer=SGD(lr=1e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
     elif test == 2:
-        model.compile(optimizer=SGD(lr=1e-5), loss=focal_loss(), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
     elif test == 3:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-5), loss=focal_loss(), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
     elif test == 4:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4), loss=focal_loss(), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7), loss=focal_loss(), metrics=['accuracy'])
     elif test == 5:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3), loss=focal_loss(), metrics=['accuracy'])
     elif test == 6:
-        model.compile(optimizer=SGD(lr=1e-5, decay=1e-4, momentum=0.9, nesterov=True), loss=focal_loss(), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
