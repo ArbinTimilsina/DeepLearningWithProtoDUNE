@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 from keras.utils import plot_model
 
-def plot_weights_mean(weights, ranges, class_names, plot_name):
+def plot_weights_median(weights, ranges, class_names, plot_name):
     """
-    Plot weights for each class based on the frequencies of the samples and display mean.
+    Plot weights for each class based on the frequencies of the samples and display median.
     """
     fig, axes = plt.subplots(1, len(class_names), figsize=(18,5), facecolor='w')
     for index in range(len(class_names)):
@@ -17,12 +17,11 @@ def plot_weights_mean(weights, ranges, class_names, plot_name):
         ax.set_xlabel("Weight", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
         ax.set_ylabel("Count", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
 
-        if index != 1:
-            _, max_ = ax.get_ylim()
-            mean = np.mean(weights[index])
-            ax.axvline(mean, color='k', linestyle='dashed', linewidth=2)
-            ax.text(mean + mean/5, max_ - max_/5, 'Mean: {:.2f}'.format(mean),
-                    fontsize=12, fontweight=1000, color='k')
+        _, max_ = ax.get_ylim()
+        median = np.median(weights[index])
+        ax.axvline(median, color='k', linestyle='dashed', linewidth=2)
+        ax.text(median + median/5, max_ - max_/5, 'Median: {:.1f}'.format(median),
+                fontsize=12, fontweight=1000, color='k')
 
     fig.savefig(plot_name, bbox_inches='tight')
     plt.close(fig)

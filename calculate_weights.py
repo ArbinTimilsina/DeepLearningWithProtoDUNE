@@ -3,7 +3,10 @@ import configparser
 from tqdm import tqdm
 from collections import Counter
 from tools.data_tools import get_data_generator
-from tools.plotting_tools import plot_weights_mean
+from tools.plotting_tools import plot_weights_median
+
+import numpy as np
+from sklearn.utils import class_weight
 
 def get_class_weights(y):
     """
@@ -34,15 +37,15 @@ def main():
     iter_data = get_data_generator(FEATURE_FILE_TRAINING, LABEL_FILE_TRAINING)
     weights = [[],[],[]]
     for X, y in tqdm(iter_data):
-        class_weights = get_class_weights(y)
-        for index, weight in class_weights.items():
+        # Class weights will be given by n_samples / (n_classes * np.bincount(y))
+        class_weights = class_weight.compute_class_weight('balanced', np.unique(y), y)
+        for index, weight in enumerate(class_weights):
             weights[index].append(weight)
 
-    ranges = [(20,100), (0.8, 1.2), (0, 5)]
-
-    plot_path = os.path.join("plots", "extra", "weights_mean.pdf")
-    plot_weights_mean(weights, ranges, CLASS_NAMES, plot_path)
-    print("\nDone! Plot with mean weights for each class is saved at {}!\n".format(plot_path))
+    ranges = [(-1,1), (10, 50), (10, 50)]
+    plot_path = os.path.join("plots", "extra", "weights_median.pdf")
+    plot_weights_median(weights, ranges, CLASS_NAMES, plot_path)
+    print("\nDone! Plot with median weights for each class is saved at {}!\n".format(plot_path))
 
 if __name__ == "__main__":
     main()

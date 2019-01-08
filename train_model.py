@@ -7,9 +7,9 @@ from keras.layers import Input
 from keras.utils import plot_model
 from keras.optimizers import Adam, SGD
 from tools.data_tools import DataSequence
-from keras.applications.vgg16 import VGG16
 from tools.plotting_tools import plot_history
-from tools.model_tools import get_vgg16_fcn_model, get_unet_model
+from keras.applications.densenet import DenseNet121
+from tools.model_tools import get_densenet121_fcn_model
 from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 from tools.loss_metrics_tools import focal_loss, weighted_categorical_crossentropy
@@ -107,7 +107,7 @@ def main():
     # Compile the model
     input_tensor = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
 
-    base_model = VGG16(weights='imagenet', include_top=False, input_tensor=input_tensor)
+    base_model = DenseNet121(weights='imagenet', include_top=False, input_tensor=input_tensor)
     base_model_path = os.path.join("plots", "base_model.pdf")
     plot_model(base_model, to_file=base_model_path, show_shapes=True)
 
@@ -117,44 +117,19 @@ def main():
         for i, layer in enumerate(base_model.layers):
             print(i, layer.name)
 
-    # Freeze all base model's convolutional layers
-    for layer in base_model.layers:
-        layer.trainable = False
-
-    # Create the FCN model
-    model = get_vgg16_fcn_model(base_model=base_model, num_classes=len(CLASS_NAMES))
-
-    # Print model summary
-    model.summary()
-
-    # Plot the model architecture
-    model_path = os.path.join("plots", "model.pdf")
-    plot_model(model, to_file=model_path, show_shapes=True)
-
-    # Different options
-    test = 0
-    if test == 1:
-        model.compile(optimizer=SGD(lr=1e-7), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
-    elif test == 2:
-        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
-    elif test == 3:
-        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
-    elif test == 4:
-        model.compile(optimizer=SGD(lr=1e-7), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 5:
-        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 6:
-        model.compile(optimizer=SGD(lr=1e-7, decay=1e-3, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
-
+    # Create the model
+    model = get_densenet121_fcn_model(base_model=base_model, num_classes=len(CLASS_NAMES))
     model_and_weights = os.path.join("saved_models", "model_and_weights.hdf5")
 
-    # If weights exist, load them before continuing training
     continue_training = False
     retrain_base_model = False
+    if not retrain_base_model:
+        print("Freezing all base model's convolutional layers")
+        # Freeze all base model's convolutional layers
+        for layer in base_model.layers:
+            layer.trainable = False
+
+    # If weights exist, load them before continuing training
     if(os.path.isfile(model_and_weights) and continue_training):
         print("Old weights found!")
         try:
@@ -162,16 +137,46 @@ def main():
             print("Old weights loaded successfully!")
 
             if retrain_base_model:
-                print("Re-training some layers of base model!")
                 # Re-train some layers of base model as well
-                # block_1: 1-3; block_2: 4-6; block_3: 7-10; block_4: 11-14; block_5: 15-18;
-                layer_no = 15
+                # VGG16: block_1: 1-3; block_2: 4-6; block_3: 7-10; block_4: 11-14; block_5: 15-18
+                # DenseNet121: block_1: 1-6; block_2: 7-52; block_3: 53-140; block_4: 141-312; block_5: 313-426
+                layer_no = 313
+                print("Re-training layers from layer no. {} of base model!".format(layer_no))
                 for layer in base_model.layers[:layer_no]:
                     layer.trainable = False
                 for layer in base_model.layers[layer_no:]:
                     layer.trainable = True
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
+
+    learning_rate = 1e-4;
+    decaly_rate = learning_rate/NUM_EPOCHS
+
+    # Different options
+    test = 0
+    if test == 1:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
+    elif test == 2:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
+    elif test == 3:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.99), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
+    elif test == 4:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 5:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 6:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.99), loss=focal_loss(), metrics=['accuracy'])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
+
+    # Print model summary
+    model.summary()
+
+    # Plot the model architecture
+    model_path = os.path.join("plots", "model.pdf")
+    plot_model(model, to_file=model_path, show_shapes=True)
 
     # Traing the model
     # Stop training when a monitored quantity has stopped improving after certain epochs
