@@ -13,7 +13,6 @@ def separable_conv2d_batchnorm(input_layer, filters, strides=1):
 def conv2d_batchnorm(input_layer, filters, kernel_size=3, strides=1):
     output_layer = Conv2D(filters=filters, kernel_size=kernel_size, strides=strides,
                           padding='same', activation='relu')(input_layer)
-
     output_layer = BatchNormalization()(output_layer)
     return output_layer
 

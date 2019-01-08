@@ -5,7 +5,7 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import Adam, SGD
+from keras.optimizers import SGD, RMSprop
 from tools.data_tools import DataSequence
 from tools.plotting_tools import plot_history
 from keras.applications.densenet import DenseNet121
@@ -149,23 +149,21 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
-    learning_rate = 1e-4;
+    learning_rate = 1e-6;
     decaly_rate = learning_rate/NUM_EPOCHS
 
     # Different options
     test = 0
     if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
+        model.compile(optimizer=SGD(lr=learning_rate), loss=focal_loss(), metrics=['accuracy'])
     elif test == 2:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
-    elif test == 3:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.99), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy'])
-    elif test == 4:
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 5:
+    elif test == 3:
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 6:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.99), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 4:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(), metrics=['accuracy'])
+    elif test == 5:
+        model.compile(optimizer=RMSprop(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy'])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
