@@ -24,15 +24,7 @@ def preprocess_feature(x, image_width, image_height, image_depth):
     """
     x_max = np.max(x)
     x = x/x_max
-    #x = x.reshape(image_width, image_height)
 
-    # For now convert 1 channel to 3 channel
-    #x_3_channel = np.empty((image_width, image_height, image_depth))
-    #x_3_channel[:, :, 0] = x
-    #x_3_channel[:, :, 1] = x
-    #x_3_channel[:, :, 2] = x
-
-    #return x_3_channel.reshape(1, image_width, image_height, image_depth)
     return x.reshape(1, image_width, image_height, image_depth)
 
 def preprocess_label(y, image_width, image_height, num_classes):
@@ -72,8 +64,6 @@ class DataSequence(Sequence):
             self.rows = self.max_index - full_index
         else:
             self.rows = min(self.batch_size, self.max_index)
-
-        # print("index {}; full index: {}; rows: {}".format(index, full_index, self.rows))
 
         # Generate data
         X, y = self.__data_generation(self.rows)

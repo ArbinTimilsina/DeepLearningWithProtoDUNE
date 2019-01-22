@@ -9,6 +9,9 @@
 #include <TTree.h>
 #include <TH1.h>
 
+//LArSoft includes
+#include "larcore/Geometry/Geometry.h"
+
 // DeepLearning includes
 #include "dune/Protodune/DeepLearning/Tools/DataStruct.h"
 #include "dune/Protodune/DeepLearning/Tools/ImageInformation.h"
@@ -101,12 +104,6 @@ void RootToCSV::MakeCSV()
             for(unsigned int iHit = 0; iHit < nHits; iHit++)
                 {
                     ProtoDuneDL::HitsStruct hHitsStruct = (*pHitsStruct)[iHit];
-
-		    //Just work with TPC 1
-                    if(hHitsStruct.tpc_index != 1)
-                        {
-                            continue;
-                        }
                     if(hHitsStruct.origin == ProtoDuneDL::Labels::Beam)
                         {
                             nHitsBeam++;
@@ -149,18 +146,16 @@ void RootToCSV::MakeCSV()
             for(unsigned int iHit = 0; iHit < nHits; iHit++)
                 {
                     ProtoDuneDL::HitsStruct hHitsStruct = (*pHitsStruct)[iHit];
-
-                    //Just work with TPC 1
-                    if(hHitsStruct.tpc_index != 1)
-                        {
-                            continue;
-                        }
-
-                    unsigned int plane = hHitsStruct.plane_index;
                     unsigned int tdc = hHitsStruct.tdc;
 
+                    geo::WireID wireID = {0, hHitsStruct.tpc_index, hHitsStruct.plane_index, hHitsStruct.wire_index};
+                    unsigned int globalPlaneIndex;
+                    unsigned int globalWireIndex;
+                    ProtoDuneDL::GetGlobalWire(wireID, globalWireIndex, globalPlaneIndex);
+
+                    unsigned int plane = globalPlaneIndex;
                     //TO DO: Flip wire for V plane?
-                    unsigned int wire = hHitsStruct.wire_index;
+                    unsigned int wire = globalWireIndex;
 
                     // TO DO: Better downsampling
                     unsigned int tdcNew = ProtoDuneDL::TransformRange(tdc, 0, ProtoDuneDL::TDCsPerPlane[plane], 0, ProtoDuneDL::MaxTDCs);

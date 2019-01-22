@@ -4,9 +4,9 @@ import argparse
 import numpy as np
 import configparser
 from keras.models import load_model
+from tools.loss_metrics_tools import mean_iou
 from tools.loss_metrics_tools import focal_loss
 from tools.plotting_tools import plot_feature_label_prediction
-from tools.loss_metrics_tools import focal_loss, weighted_categorical_crossentropy
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
 
 def argument_parser():
@@ -34,10 +34,10 @@ def average_intersection_over_union(y_true, y_pred, class_names):
     total_iou = 0
     for c in range(len(class_names)):
         iou = intersection_over_union(y_true[:,:,:,c], y_pred[:,:,:,c])
-        print('IoU for {} is: {:.3f}'.format(class_names[c], iou))
+        print('IoU for {} is: {:.2f}%'.format(class_names[c], iou*100))
         total_iou += iou
 
-    print('\nAverage IoU is: {:.3f}'.format(total_iou/len(class_names)))
+    print('\nMean IoU is: {:.2f}%'.format(100*total_iou/len(class_names)))
 
 def main():
     args = argument_parser()
@@ -85,8 +85,7 @@ def main():
 
     # Get the model
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
-    model = load_model(model_path, custom_objects={"loss": focal_loss(),
-                                                   "loss": weighted_categorical_crossentropy(WEIGHTS)})
+    model = load_model(model_path, custom_objects={"mean_iou": mean_iou})
 
     # Make comparision plots
     generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)

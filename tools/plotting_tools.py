@@ -2,8 +2,8 @@ import matplotlib
 matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colors import LogNorm
 from keras.utils import plot_model
+from matplotlib.colors import LogNorm
 
 def plot_weights_median(weights, ranges, class_names, plot_name):
     """

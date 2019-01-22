@@ -46,12 +46,12 @@ def focal_loss(alpha=0.25, gamma=2.0):
 # For Keras, custom metrics can be passed at the compilation step but
 # the function would need to take (y_true, y_pred) as arguments and return a single tensor value.
 # Note: seems like this implementation is not stable; it sometimes returns 0 in standalone tests
-def three_classes_mean_iou(y_true, y_pred):
+def mean_iou(y_true, y_pred):
     """
     Calculate per-step mean Intersection-Over-Union (mIOU).
     Computes the IOU for each semantic class and then computes the average over classes.
     """
-    num_classes = 3
+    num_classes = K.int_shape(y_pred)[-1]
     score, up_opt = tf.metrics.mean_iou(y_true, y_pred, num_classes)
     K.get_session().run(tf.local_variables_initializer())
     with tf.control_dependencies([up_opt]):

@@ -5,17 +5,13 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import SGD, RMSprop
+from keras.optimizers import RMSprop
 from tools.data_tools import DataSequence
-from tools.plotting_tools import plot_history
-from keras.applications.densenet import DenseNet121
-from tools.model_tools import get_densenet121_fcn_model, get_fcn_model
-from keras.layers.convolutional import UpSampling2D, Conv2DTranspose, Conv2D
+from tools.loss_metrics_tools import mean_iou
+from tools.tiramisu_model import get_tiramisu_model
+from tools.prediction_history import PredictionHistory
+from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tools.loss_metrics_tools import focal_loss, weighted_categorical_crossentropy
-
-from tools.tiramisu import create_tiramisu
-from keras.models import Model
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -110,70 +106,24 @@ def main():
     # Compile the model
     input_tensor = Input((IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
 
-    #base_model = DenseNet121(weights='imagenet', include_top=False, input_tensor=input_tensor)
-    #base_model_path = os.path.join("plots", "base_model.pdf")
-    #plot_model(base_model, to_file=base_model_path, show_shapes=True)
-
-    # Print the layer name
-    #print_layer = False
-    #if print_layer:
-    #    for i, layer in enumerate(base_model.layers):
-    #        print(i, layer.name)
-
     # Create the model
-    #model = get_fcn_model(input_tensor=input_tensor, num_classes=len(CLASS_NAMES))
-    x = create_tiramisu(len(CLASS_NAMES), input_tensor, nb_layers_per_block=[4,5,7,10,12,15], p=0.2, wd=1e-4)
-    model = Model(input_tensor, x)
+    model = get_tiramisu_model(input_tensor=input_tensor, num_classes=len(CLASS_NAMES))
 
     model_and_weights = os.path.join("saved_models", "model_and_weights.hdf5")
 
     continue_training = False
-    #retrain_base_model = False
-    #if not retrain_base_model:
-    #    print("Freezing all base model's convolutional layers")
-        # Freeze all base model's convolutional layers
-    #    for layer in base_model.layers:
-    #        layer.trainable = False
-
     # If weights exist, load them before continuing training
     if(os.path.isfile(model_and_weights) and continue_training):
         print("Old weights found!")
         try:
             model.load_weights(model_and_weights)
             print("Old weights loaded successfully!")
-
-            #if retrain_base_model:
-                # Re-train some layers of base model as well
-                # VGG16: block_1: 1-3; block_2: 4-6; block_3: 7-10; block_4: 11-14; block_5: 15-18
-                # DenseNet121: block_1: 1-6; block_2: 7-52; block_3: 53-140; block_4: 141-312; block_5: 313-426
-            #    layer_no = 313
-            #    print("Re-training layers from layer no. {} of base model!".format(layer_no))
-            #    for layer in base_model.layers[:layer_no]:
-            #        layer.trainable = False
-            #    for layer in base_model.layers[layer_no:]:
-            #        layer.trainable = True
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1e-6;
-    decaly_rate = learning_rate/NUM_EPOCHS
 
-    # Different options
-    test = 0
-    if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy'])
-    elif test == 2:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss='categorical_crossentropy', metrics=['accuracy'])
-    elif test == 3:
-        model.compile(optimizer=SGD(lr=learning_rate), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 4:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy'])
-    elif test == 5:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy'])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
+    model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
 
     # Print model summary
     model.summary()
@@ -192,13 +142,16 @@ def main():
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_and_weights, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
 
+    # To plot prediction history
+    pred_history = PredictionHistory(model)
+
     history = model.fit_generator(generator=datasequence_training,
                                   steps_per_epoch = NUM_TRAINING//BATCH_SIZE,
                                   epochs=NUM_EPOCHS,
                                   validation_data=datasequence_validation,
                                   validation_steps= NUM_VALIDATION//BATCH_SIZE,
                                   verbose=2,
-                                  callbacks=[check_point, early_stop, reduce_lr],
+                                  callbacks=[check_point, early_stop, reduce_lr, pred_history],
                                   shuffle=False,
                                   use_multiprocessing=False,
                                   workers=1)
@@ -209,6 +162,15 @@ def main():
 
     accuracy_path = os.path.join("plots", "accuracy_vs_epoch.pdf")
     plot_history(history, quantity='acc', plot_title='Accuracy', y_label='Accuracy', plot_name=accuracy_path)
+
+    mean_iou_path = os.path.join("plots", "mean_iou_vs_epoch.pdf")
+    plot_history(history, quantity='mean_iou', plot_title='Mean IoU', y_label='Mean IoU', plot_name=mean_iou_path)
+
+    # Plot the predition history
+    for epoch in range(NUM_EPOCHS):
+        plot_feature_label_prediction_path = os.path.join("plots",  "prediction_history", "prediction_epoch_{}.png".format(epoch))
+        plot_feature_label_prediction(pred_history.feature_image[epoch], pred_history.label_image[epoch],  pred_history.prediction_image[epoch],
+                                      'Feature', 'Label', 'Model prediction', CLASS_NAMES, plot_feature_label_prediction_path)
 
 if __name__ == "__main__":
     main()
