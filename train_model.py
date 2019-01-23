@@ -1,5 +1,6 @@
 import os
 import sys
+import glob
 import argparse
 import numpy as np
 import configparser
@@ -122,7 +123,6 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1e-6;
-
     model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
 
     # Print model summary
@@ -165,6 +165,12 @@ def main():
 
     mean_iou_path = os.path.join("plots", "mean_iou_vs_epoch.pdf")
     plot_history(history, quantity='mean_iou', plot_title='Mean IoU', y_label='Mean IoU', plot_name=mean_iou_path)
+
+    # First clear prediction per epoch plots
+    plot_path = os.path.join("plots",  "prediction_history", "*.png")
+    files = glob.glob(plot_path)
+    for f in files:
+        os.remove(f)
 
     # Plot the predition history
     for epoch in range(NUM_EPOCHS):
