@@ -17,10 +17,10 @@ def plot_weights_median(weights, ranges, class_names, plot_name):
         ax.set_xlabel("Weight", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
         ax.set_ylabel("Count", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
 
-        _, max_ = ax.get_ylim()
+        _, max = ax.get_ylim()
         median = np.median(weights[index])
         ax.axvline(median, color='k', linestyle='dashed', linewidth=2)
-        ax.text(median + median/5, max_ - max_/5, 'Median: {:.1f}'.format(median),
+        ax.text(median + median/50, max - max/5, 'Median: {:.1f}'.format(median),
                 fontsize=12, fontweight=1000, color='k')
 
     fig.savefig(plot_name, bbox_inches='tight')

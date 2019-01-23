@@ -65,6 +65,8 @@ class DataSequence(Sequence):
         else:
             self.rows = min(self.batch_size, self.max_index)
 
+        #print("index: {}; rows: {}".format(index, self.rows))
+        
         # Generate data
         X, y = self.__data_generation(self.rows)
 

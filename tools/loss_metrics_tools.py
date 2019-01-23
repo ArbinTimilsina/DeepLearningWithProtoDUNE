@@ -51,7 +51,7 @@ def mean_iou(y_true, y_pred):
     Calculate per-step mean Intersection-Over-Union (mIOU).
     Computes the IOU for each semantic class and then computes the average over classes.
     """
-    num_classes = K.int_shape(y_pred)[-1]
+    num_classes = 3 #K.int_shape(y_pred)[-1]
     score, up_opt = tf.metrics.mean_iou(y_true, y_pred, num_classes)
     K.get_session().run(tf.local_variables_initializer())
     with tf.control_dependencies([up_opt]):

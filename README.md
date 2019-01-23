@@ -1,5 +1,5 @@
 # Goal
-
+Develop semantic segmentation (pixel-wise classification) network to perform cosmic ray and beam particle separation in prototype DUNE detector.
 
 ## Instructions
 
@@ -11,7 +11,7 @@ cd DeepLearningWithProtoDUNE
 
 ### Download the dataset
 ```
-wget -O input_files.zip https://www.dropbox.com/sh/jnk3mp495onc3xs/AADJEnhGEzye2L37SflhaF4Wa?dl=1
+wget -O input_files.zip https://www.dropbox.com/sh/e0v3btiict2z0v8/AAA89wvb9aiFY9ROp85-BUN7a?dl=1
 unzip input_files.zip -d input_files
 rm -rf input_files.zip
 ```
