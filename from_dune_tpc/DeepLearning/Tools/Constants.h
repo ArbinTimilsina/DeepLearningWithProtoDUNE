@@ -16,7 +16,7 @@ namespace ProtoDuneDL
     const unsigned int TDCsPerPlane[3] = {6000, 6000, 6000};
 
     const unsigned int MaxPlanes = 3;
-    const unsigned int MaxWires = 448;
-    const unsigned int MaxTDCs = 448;
+    const unsigned int MaxWires = 320;
+    const unsigned int MaxTDCs = 320;
 }
 #endif
