@@ -29,7 +29,6 @@
 
 ## Go to main directory
 cd ../
-
 echo ""
 echo "*********************************************************"
 echo "This was run on:"
