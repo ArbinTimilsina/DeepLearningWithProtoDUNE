@@ -1,31 +1,13 @@
-2019-01-22 19:59:40.924876: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
-name: Tesla K20Xm major: 3 minor: 5 memoryClockRate(GHz): 0.732
-pciBusID: 0000:08:00.0
-totalMemory: 5.57GiB freeMemory: 5.49GiB
-2019-01-22 19:59:40.924945: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
-2019-01-22 19:59:41.326243: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
-2019-01-22 19:59:41.326307: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
-2019-01-22 19:59:41.326319: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
-2019-01-22 19:59:41.326611: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5278 MB memory) -> physical GPU (device: 0, name: Tesla K20Xm, pci bus id: 0000:08:00.0, compute capability: 3.5)
-2019-01-22 20:01:09.019874: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.99GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.124402: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.62GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.191456: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.13GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.304030: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.72GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.490744: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.90GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.551559: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.91GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.629638: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.72GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.672266: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.77GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.727192: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.78GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-2019-01-22 20:01:09.803287: W tensorflow/core/common_runtime/bfc_allocator.cc:219] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.62GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
-Using TensorFlow backend.
-Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f0c35ce0208>>
-Traceback (most recent call last):
-  File "/home/arbint/.conda/envs/envDeepLearningWithProtoDUNE/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 686, in __del__
-TypeError: 'NoneType' object is not callable
-2019-01-23 03:46:40.907016: E tensorflow/stream_executor/cuda/cuda_driver.cc:397] failed call to cuInit: CUDA_ERROR_NO_DEVICE
-2019-01-23 03:46:40.907248: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: node01
-2019-01-23 03:46:40.907270: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: node01
-2019-01-23 03:46:40.907948: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 384.81.0
-2019-01-23 03:46:40.908130: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 384.81.0
-2019-01-23 03:46:40.908161: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 384.81.0
-Using TensorFlow backend.
+[33mWARNING:[0m skipping mount of /lfstev: permission denied
+[33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (426) bind mounts
+2019-01-23 19:22:25.232819: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-01-23 19:22:26.230090: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
+pciBusID: 0000:06:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2019-01-23 19:22:26.230359: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-01-23 19:22:27.508204: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-01-23 19:22:27.508249: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-01-23 19:22:27.508257: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-01-23 19:22:27.508562: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15127 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+slurmstepd: error: get_exit_code task 0 died by signal

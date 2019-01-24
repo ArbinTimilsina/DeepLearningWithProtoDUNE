@@ -44,6 +44,14 @@ pip install --upgrade pip
 pip install -r requirements/cpu_requirements.txt
 ```
 
+### To run with singularity container
+```
+singularity pull --name DeepLearningWithProtoDUNE.img shub://ArbinTimilsina/Base-Singularity:deeplearningwithprotodune
+
+# If using GPUs, don't forget --nv option
+singularity exec --nv DeepLearningWithProtoDUNE.img python train_model.py -o Development -e 5
+```
+
 ### To switch Keras backend to TensorFlow
 ```
 KERAS_BACKEND=tensorflow python -c "from keras import backend"
