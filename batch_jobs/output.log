@@ -1,12 +1,12 @@
 
 *********************************************************
 This was run on:
-Wed Jan 23 23:19:02 CST 2019
+Thu Jan 24 10:59:24 CST 2019
 *********************************************************
 
 *********************************************************
 Running python train_model.py
-JOB 59871 is running on gpu3 
+JOB 59880 is running on gpu3 
 *********************************************************
 
 
@@ -16,7 +16,7 @@ Runnning in training setting!
 
 NUM_TRAINING: 2630
 NUM_VALIDATION: 240
-NUM_EPOCHS: 50
+NUM_EPOCHS: 150
 BATCH_SIZE: 2
 IMAGE_WIDTH: 320
 IMAGE_HEIGHT: 320
@@ -1148,260 +1148,760 @@ Total params: 9,422,243
 Trainable params: 9,319,171
 Non-trainable params: 103,072
 __________________________________________________________________________________________________
-Epoch 1/50
+Epoch 1/150
 CSV iteration end for feature. Calling 'break'.
- - 480s - loss: 0.7799 - acc: 0.3205 - mean_iou: 0.4992 - val_loss: 0.8098 - val_acc: 0.4924 - val_mean_iou: 0.5299
+ - 482s - loss: 0.7786 - acc: 0.3332 - mean_iou: 0.4998 - val_loss: 0.7979 - val_acc: 0.2820 - val_mean_iou: 0.5615
 
-Epoch 00001: val_loss improved from inf to 0.80977, saving model to saved_models/model_and_weights.hdf5
+Epoch 00001: val_loss improved from inf to 0.79787, saving model to saved_models/model_and_weights.hdf5
 CSV iteration end for feature. Calling 'break'.
-Epoch 2/50
- - 407s - loss: 0.7312 - acc: 0.3201 - mean_iou: 0.5223 - val_loss: 0.7624 - val_acc: 0.4753 - val_mean_iou: 0.5301
+Epoch 2/150
+ - 406s - loss: 0.7298 - acc: 0.3330 - mean_iou: 0.5452 - val_loss: 0.7500 - val_acc: 0.2781 - val_mean_iou: 0.5627
 
-Epoch 00002: val_loss improved from 0.80977 to 0.76244, saving model to saved_models/model_and_weights.hdf5
-Epoch 3/50
+Epoch 00002: val_loss improved from 0.79787 to 0.74997, saving model to saved_models/model_and_weights.hdf5
+Epoch 3/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.6852 - acc: 0.3195 - mean_iou: 0.5257 - val_loss: 0.7180 - val_acc: 0.4672 - val_mean_iou: 0.5301
+ - 438s - loss: 0.6839 - acc: 0.3328 - mean_iou: 0.5530 - val_loss: 0.7047 - val_acc: 0.2665 - val_mean_iou: 0.5638
 
-Epoch 00003: val_loss improved from 0.76244 to 0.71799, saving model to saved_models/model_and_weights.hdf5
-Epoch 4/50
+Epoch 00003: val_loss improved from 0.74997 to 0.70472, saving model to saved_models/model_and_weights.hdf5
+Epoch 4/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.6420 - acc: 0.3190 - mean_iou: 0.5270 - val_loss: 0.6763 - val_acc: 0.4606 - val_mean_iou: 0.5300
+ - 438s - loss: 0.6406 - acc: 0.3326 - mean_iou: 0.5568 - val_loss: 0.6622 - val_acc: 0.2552 - val_mean_iou: 0.5648
 
-Epoch 00004: val_loss improved from 0.71799 to 0.67627, saving model to saved_models/model_and_weights.hdf5
-Epoch 5/50
+Epoch 00004: val_loss improved from 0.70472 to 0.66221, saving model to saved_models/model_and_weights.hdf5
+Epoch 5/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.6014 - acc: 0.3186 - mean_iou: 0.5275 - val_loss: 0.6371 - val_acc: 0.4546 - val_mean_iou: 0.5298
+ - 440s - loss: 0.6000 - acc: 0.3323 - mean_iou: 0.5593 - val_loss: 0.6221 - val_acc: 0.2422 - val_mean_iou: 0.5659
 
-Epoch 00005: val_loss improved from 0.67627 to 0.63709, saving model to saved_models/model_and_weights.hdf5
-Epoch 6/50
+Epoch 00005: val_loss improved from 0.66221 to 0.62210, saving model to saved_models/model_and_weights.hdf5
+Epoch 6/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.5632 - acc: 0.3182 - mean_iou: 0.5278 - val_loss: 0.6004 - val_acc: 0.4523 - val_mean_iou: 0.5296
+ - 440s - loss: 0.5619 - acc: 0.3320 - mean_iou: 0.5613 - val_loss: 0.5844 - val_acc: 0.2256 - val_mean_iou: 0.5670
 
-Epoch 00006: val_loss improved from 0.63709 to 0.60038, saving model to saved_models/model_and_weights.hdf5
-Epoch 7/50
+Epoch 00006: val_loss improved from 0.62210 to 0.58440, saving model to saved_models/model_and_weights.hdf5
+Epoch 7/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.5275 - acc: 0.3178 - mean_iou: 0.5280 - val_loss: 0.5660 - val_acc: 0.4510 - val_mean_iou: 0.5294
+ - 439s - loss: 0.5261 - acc: 0.3317 - mean_iou: 0.5631 - val_loss: 0.5491 - val_acc: 0.2060 - val_mean_iou: 0.5682
 
-Epoch 00007: val_loss improved from 0.60038 to 0.56604, saving model to saved_models/model_and_weights.hdf5
-Epoch 8/50
+Epoch 00007: val_loss improved from 0.58440 to 0.54909, saving model to saved_models/model_and_weights.hdf5
+Epoch 8/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.4941 - acc: 0.3174 - mean_iou: 0.5280 - val_loss: 0.5339 - val_acc: 0.4498 - val_mean_iou: 0.5292
+ - 438s - loss: 0.4927 - acc: 0.3314 - mean_iou: 0.5648 - val_loss: 0.5160 - val_acc: 0.1884 - val_mean_iou: 0.5694
 
-Epoch 00008: val_loss improved from 0.56604 to 0.53390, saving model to saved_models/model_and_weights.hdf5
-Epoch 9/50
+Epoch 00008: val_loss improved from 0.54909 to 0.51596, saving model to saved_models/model_and_weights.hdf5
+Epoch 9/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.4629 - acc: 0.3172 - mean_iou: 0.5279 - val_loss: 0.5038 - val_acc: 0.4489 - val_mean_iou: 0.5290
+ - 439s - loss: 0.4615 - acc: 0.3311 - mean_iou: 0.5663 - val_loss: 0.4850 - val_acc: 0.1778 - val_mean_iou: 0.5707
 
-Epoch 00009: val_loss improved from 0.53390 to 0.50384, saving model to saved_models/model_and_weights.hdf5
-Epoch 10/50
+Epoch 00009: val_loss improved from 0.51596 to 0.48500, saving model to saved_models/model_and_weights.hdf5
+Epoch 10/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.4338 - acc: 0.3170 - mean_iou: 0.5279 - val_loss: 0.4758 - val_acc: 0.4478 - val_mean_iou: 0.5288
+ - 440s - loss: 0.4325 - acc: 0.3308 - mean_iou: 0.5679 - val_loss: 0.4561 - val_acc: 0.1619 - val_mean_iou: 0.5720
 
-Epoch 00010: val_loss improved from 0.50384 to 0.47576, saving model to saved_models/model_and_weights.hdf5
-Epoch 11/50
+Epoch 00010: val_loss improved from 0.48500 to 0.45609, saving model to saved_models/model_and_weights.hdf5
+Epoch 11/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.4067 - acc: 0.3168 - mean_iou: 0.5279 - val_loss: 0.4496 - val_acc: 0.4461 - val_mean_iou: 0.5287
+ - 440s - loss: 0.4054 - acc: 0.3304 - mean_iou: 0.5694 - val_loss: 0.4291 - val_acc: 0.1510 - val_mean_iou: 0.5733
 
-Epoch 00011: val_loss improved from 0.47576 to 0.44955, saving model to saved_models/model_and_weights.hdf5
-Epoch 12/50
+Epoch 00011: val_loss improved from 0.45609 to 0.42907, saving model to saved_models/model_and_weights.hdf5
+Epoch 12/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.3815 - acc: 0.3166 - mean_iou: 0.5279 - val_loss: 0.4252 - val_acc: 0.4426 - val_mean_iou: 0.5287
+ - 440s - loss: 0.3801 - acc: 0.3301 - mean_iou: 0.5709 - val_loss: 0.4040 - val_acc: 0.1413 - val_mean_iou: 0.5746
 
-Epoch 00012: val_loss improved from 0.44955 to 0.42517, saving model to saved_models/model_and_weights.hdf5
-Epoch 13/50
+Epoch 00012: val_loss improved from 0.42907 to 0.40397, saving model to saved_models/model_and_weights.hdf5
+Epoch 13/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.3580 - acc: 0.3164 - mean_iou: 0.5279 - val_loss: 0.4025 - val_acc: 0.4395 - val_mean_iou: 0.5286
+ - 438s - loss: 0.3567 - acc: 0.3297 - mean_iou: 0.5723 - val_loss: 0.3806 - val_acc: 0.1272 - val_mean_iou: 0.5759
 
-Epoch 00013: val_loss improved from 0.42517 to 0.40254, saving model to saved_models/model_and_weights.hdf5
-Epoch 14/50
+Epoch 00013: val_loss improved from 0.40397 to 0.38059, saving model to saved_models/model_and_weights.hdf5
+Epoch 14/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.3362 - acc: 0.3163 - mean_iou: 0.5279 - val_loss: 0.3815 - val_acc: 0.4344 - val_mean_iou: 0.5286
+ - 440s - loss: 0.3350 - acc: 0.3293 - mean_iou: 0.5738 - val_loss: 0.3589 - val_acc: 0.1170 - val_mean_iou: 0.5772
 
-Epoch 00014: val_loss improved from 0.40254 to 0.38154, saving model to saved_models/model_and_weights.hdf5
-Epoch 15/50
+Epoch 00014: val_loss improved from 0.38059 to 0.35895, saving model to saved_models/model_and_weights.hdf5
+Epoch 15/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.3160 - acc: 0.3162 - mean_iou: 0.5279 - val_loss: 0.3620 - val_acc: 0.4304 - val_mean_iou: 0.5286
+ - 440s - loss: 0.3148 - acc: 0.3290 - mean_iou: 0.5752 - val_loss: 0.3390 - val_acc: 0.1117 - val_mean_iou: 0.5785
 
-Epoch 00015: val_loss improved from 0.38154 to 0.36203, saving model to saved_models/model_and_weights.hdf5
-Epoch 16/50
+Epoch 00015: val_loss improved from 0.35895 to 0.33899, saving model to saved_models/model_and_weights.hdf5
+Epoch 16/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.2973 - acc: 0.3162 - mean_iou: 0.5279 - val_loss: 0.3439 - val_acc: 0.4205 - val_mean_iou: 0.5286
+ - 440s - loss: 0.2961 - acc: 0.3287 - mean_iou: 0.5765 - val_loss: 0.3206 - val_acc: 0.1089 - val_mean_iou: 0.5796
 
-Epoch 00016: val_loss improved from 0.36203 to 0.34388, saving model to saved_models/model_and_weights.hdf5
-Epoch 17/50
+Epoch 00016: val_loss improved from 0.33899 to 0.32056, saving model to saved_models/model_and_weights.hdf5
+Epoch 17/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.2799 - acc: 0.3163 - mean_iou: 0.5280 - val_loss: 0.3270 - val_acc: 0.4120 - val_mean_iou: 0.5286
+ - 438s - loss: 0.2787 - acc: 0.3286 - mean_iou: 0.5778 - val_loss: 0.3036 - val_acc: 0.1056 - val_mean_iou: 0.5807
 
-Epoch 00017: val_loss improved from 0.34388 to 0.32703, saving model to saved_models/model_and_weights.hdf5
-Epoch 18/50
+Epoch 00017: val_loss improved from 0.32056 to 0.30355, saving model to saved_models/model_and_weights.hdf5
+Epoch 18/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.2638 - acc: 0.3165 - mean_iou: 0.5280 - val_loss: 0.3114 - val_acc: 0.4037 - val_mean_iou: 0.5286
+ - 440s - loss: 0.2627 - acc: 0.3285 - mean_iou: 0.5789 - val_loss: 0.2879 - val_acc: 0.1078 - val_mean_iou: 0.5817
 
-Epoch 00018: val_loss improved from 0.32703 to 0.31138, saving model to saved_models/model_and_weights.hdf5
-Epoch 19/50
+Epoch 00018: val_loss improved from 0.30355 to 0.28789, saving model to saved_models/model_and_weights.hdf5
+Epoch 19/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.2488 - acc: 0.3167 - mean_iou: 0.5281 - val_loss: 0.2968 - val_acc: 0.3692 - val_mean_iou: 0.5286
+ - 440s - loss: 0.2477 - acc: 0.3284 - mean_iou: 0.5800 - val_loss: 0.2735 - val_acc: 0.1092 - val_mean_iou: 0.5825
 
-Epoch 00019: val_loss improved from 0.31138 to 0.29680, saving model to saved_models/model_and_weights.hdf5
-Epoch 20/50
+Epoch 00019: val_loss improved from 0.28789 to 0.27353, saving model to saved_models/model_and_weights.hdf5
+Epoch 20/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.2349 - acc: 0.3171 - mean_iou: 0.5281 - val_loss: 0.2831 - val_acc: 0.3643 - val_mean_iou: 0.5287
+ - 440s - loss: 0.2338 - acc: 0.3283 - mean_iou: 0.5809 - val_loss: 0.2600 - val_acc: 0.1070 - val_mean_iou: 0.5833
 
-Epoch 00020: val_loss improved from 0.29680 to 0.28312, saving model to saved_models/model_and_weights.hdf5
-Epoch 21/50
+Epoch 00020: val_loss improved from 0.27353 to 0.26003, saving model to saved_models/model_and_weights.hdf5
+Epoch 21/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.2220 - acc: 0.3176 - mean_iou: 0.5282 - val_loss: 0.2703 - val_acc: 0.3325 - val_mean_iou: 0.5287
+ - 440s - loss: 0.2209 - acc: 0.3282 - mean_iou: 0.5817 - val_loss: 0.2474 - val_acc: 0.0710 - val_mean_iou: 0.5839
 
-Epoch 00021: val_loss improved from 0.28312 to 0.27027, saving model to saved_models/model_and_weights.hdf5
-Epoch 22/50
+Epoch 00021: val_loss improved from 0.26003 to 0.24740, saving model to saved_models/model_and_weights.hdf5
+Epoch 22/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.2099 - acc: 0.3181 - mean_iou: 0.5283 - val_loss: 0.2581 - val_acc: 0.2737 - val_mean_iou: 0.5288
+ - 440s - loss: 0.2089 - acc: 0.3281 - mean_iou: 0.5824 - val_loss: 0.2353 - val_acc: 0.0699 - val_mean_iou: 0.5844
 
-Epoch 00022: val_loss improved from 0.27027 to 0.25805, saving model to saved_models/model_and_weights.hdf5
-Epoch 23/50
+Epoch 00022: val_loss improved from 0.24740 to 0.23527, saving model to saved_models/model_and_weights.hdf5
+Epoch 23/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.1985 - acc: 0.3187 - mean_iou: 0.5284 - val_loss: 0.2464 - val_acc: 0.2408 - val_mean_iou: 0.5288
+ - 440s - loss: 0.1976 - acc: 0.3280 - mean_iou: 0.5830 - val_loss: 0.2239 - val_acc: 0.0681 - val_mean_iou: 0.5848
 
-Epoch 00023: val_loss improved from 0.25805 to 0.24638, saving model to saved_models/model_and_weights.hdf5
-Epoch 24/50
+Epoch 00023: val_loss improved from 0.23527 to 0.22386, saving model to saved_models/model_and_weights.hdf5
+Epoch 24/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.1879 - acc: 0.3193 - mean_iou: 0.5284 - val_loss: 0.2348 - val_acc: 0.2503 - val_mean_iou: 0.5289
+ - 438s - loss: 0.1870 - acc: 0.3279 - mean_iou: 0.5834 - val_loss: 0.2133 - val_acc: 0.0381 - val_mean_iou: 0.5850
 
-Epoch 00024: val_loss improved from 0.24638 to 0.23480, saving model to saved_models/model_and_weights.hdf5
-Epoch 25/50
+Epoch 00024: val_loss improved from 0.22386 to 0.21334, saving model to saved_models/model_and_weights.hdf5
+Epoch 25/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.1780 - acc: 0.3200 - mean_iou: 0.5285 - val_loss: 0.2231 - val_acc: 0.1914 - val_mean_iou: 0.5290
+ - 440s - loss: 0.1771 - acc: 0.3280 - mean_iou: 0.5836 - val_loss: 0.2035 - val_acc: 0.0073 - val_mean_iou: 0.5851
 
-Epoch 00025: val_loss improved from 0.23480 to 0.22312, saving model to saved_models/model_and_weights.hdf5
-Epoch 26/50
+Epoch 00025: val_loss improved from 0.21334 to 0.20353, saving model to saved_models/model_and_weights.hdf5
+Epoch 26/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1686 - acc: 0.3209 - mean_iou: 0.5286 - val_loss: 0.2115 - val_acc: 0.1276 - val_mean_iou: 0.5292
+ - 440s - loss: 0.1678 - acc: 0.3283 - mean_iou: 0.5837 - val_loss: 0.1939 - val_acc: 0.0073 - val_mean_iou: 0.5850
 
-Epoch 00026: val_loss improved from 0.22312 to 0.21150, saving model to saved_models/model_and_weights.hdf5
-Epoch 27/50
+Epoch 00026: val_loss improved from 0.20353 to 0.19391, saving model to saved_models/model_and_weights.hdf5
+Epoch 27/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1598 - acc: 0.3219 - mean_iou: 0.5288 - val_loss: 0.2000 - val_acc: 0.0119 - val_mean_iou: 0.5295
+ - 440s - loss: 0.1590 - acc: 0.3288 - mean_iou: 0.5837 - val_loss: 0.1841 - val_acc: 0.0065 - val_mean_iou: 0.5849
 
-Epoch 00027: val_loss improved from 0.21150 to 0.19995, saving model to saved_models/model_and_weights.hdf5
-Epoch 28/50
+Epoch 00027: val_loss improved from 0.19391 to 0.18410, saving model to saved_models/model_and_weights.hdf5
+Epoch 28/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.1515 - acc: 0.3234 - mean_iou: 0.5291 - val_loss: 0.1888 - val_acc: 0.0126 - val_mean_iou: 0.5298
+ - 438s - loss: 0.1507 - acc: 0.3298 - mean_iou: 0.5837 - val_loss: 0.1743 - val_acc: 0.0057 - val_mean_iou: 0.5847
 
-Epoch 00028: val_loss improved from 0.19995 to 0.18877, saving model to saved_models/model_and_weights.hdf5
-Epoch 29/50
+Epoch 00028: val_loss improved from 0.18410 to 0.17433, saving model to saved_models/model_and_weights.hdf5
+Epoch 29/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.1436 - acc: 0.3254 - mean_iou: 0.5295 - val_loss: 0.1781 - val_acc: 0.1323 - val_mean_iou: 0.5303
+ - 440s - loss: 0.1429 - acc: 0.3312 - mean_iou: 0.5836 - val_loss: 0.1651 - val_acc: 0.0064 - val_mean_iou: 0.5845
 
-Epoch 00029: val_loss improved from 0.18877 to 0.17813, saving model to saved_models/model_and_weights.hdf5
-Epoch 30/50
+Epoch 00029: val_loss improved from 0.17433 to 0.16509, saving model to saved_models/model_and_weights.hdf5
+Epoch 30/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.1362 - acc: 0.3281 - mean_iou: 0.5299 - val_loss: 0.1682 - val_acc: 0.2456 - val_mean_iou: 0.5307
+ - 440s - loss: 0.1355 - acc: 0.3334 - mean_iou: 0.5834 - val_loss: 0.1564 - val_acc: 0.0034 - val_mean_iou: 0.5843
 
-Epoch 00030: val_loss improved from 0.17813 to 0.16816, saving model to saved_models/model_and_weights.hdf5
-Epoch 31/50
+Epoch 00030: val_loss improved from 0.16509 to 0.15636, saving model to saved_models/model_and_weights.hdf5
+Epoch 31/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1292 - acc: 0.3318 - mean_iou: 0.5304 - val_loss: 0.1586 - val_acc: 0.0137 - val_mean_iou: 0.5313
+ - 440s - loss: 0.1285 - acc: 0.3363 - mean_iou: 0.5832 - val_loss: 0.1477 - val_acc: 0.0034 - val_mean_iou: 0.5841
 
-Epoch 00031: val_loss improved from 0.16816 to 0.15865, saving model to saved_models/model_and_weights.hdf5
-Epoch 32/50
+Epoch 00031: val_loss improved from 0.15636 to 0.14766, saving model to saved_models/model_and_weights.hdf5
+Epoch 32/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.1226 - acc: 0.3365 - mean_iou: 0.5309 - val_loss: 0.1493 - val_acc: 0.0062 - val_mean_iou: 0.5319
+ - 440s - loss: 0.1220 - acc: 0.3406 - mean_iou: 0.5830 - val_loss: 0.1386 - val_acc: 0.0020 - val_mean_iou: 0.5839
 
-Epoch 00032: val_loss improved from 0.15865 to 0.14926, saving model to saved_models/model_and_weights.hdf5
-Epoch 33/50
+Epoch 00032: val_loss improved from 0.14766 to 0.13859, saving model to saved_models/model_and_weights.hdf5
+Epoch 33/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1164 - acc: 0.3426 - mean_iou: 0.5315 - val_loss: 0.1406 - val_acc: 0.0077 - val_mean_iou: 0.5323
+ - 440s - loss: 0.1158 - acc: 0.3468 - mean_iou: 0.5828 - val_loss: 0.1292 - val_acc: 0.0021 - val_mean_iou: 0.5837
 
-Epoch 00033: val_loss improved from 0.14926 to 0.14061, saving model to saved_models/model_and_weights.hdf5
-Epoch 34/50
+Epoch 00033: val_loss improved from 0.13859 to 0.12917, saving model to saved_models/model_and_weights.hdf5
+Epoch 34/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1105 - acc: 0.3510 - mean_iou: 0.5320 - val_loss: 0.1337 - val_acc: 0.0107 - val_mean_iou: 0.5324
+ - 438s - loss: 0.1099 - acc: 0.3562 - mean_iou: 0.5827 - val_loss: 0.1197 - val_acc: 0.0023 - val_mean_iou: 0.5836
 
-Epoch 00034: val_loss improved from 0.14061 to 0.13365, saving model to saved_models/model_and_weights.hdf5
-Epoch 35/50
+Epoch 00034: val_loss improved from 0.12917 to 0.11974, saving model to saved_models/model_and_weights.hdf5
+Epoch 35/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.1049 - acc: 0.3626 - mean_iou: 0.5321 - val_loss: 0.1294 - val_acc: 0.0135 - val_mean_iou: 0.5321
+ - 440s - loss: 0.1044 - acc: 0.3715 - mean_iou: 0.5826 - val_loss: 0.1113 - val_acc: 0.0024 - val_mean_iou: 0.5833
 
-Epoch 00035: val_loss improved from 0.13365 to 0.12944, saving model to saved_models/model_and_weights.hdf5
-Epoch 36/50
+Epoch 00035: val_loss improved from 0.11974 to 0.11128, saving model to saved_models/model_and_weights.hdf5
+Epoch 36/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.0997 - acc: 0.3793 - mean_iou: 0.5317 - val_loss: 0.1250 - val_acc: 0.2471 - val_mean_iou: 0.5315
+ - 440s - loss: 0.0991 - acc: 0.3951 - mean_iou: 0.5823 - val_loss: 0.1045 - val_acc: 0.0025 - val_mean_iou: 0.5827
 
-Epoch 00036: val_loss improved from 0.12944 to 0.12504, saving model to saved_models/model_and_weights.hdf5
-Epoch 37/50
+Epoch 00036: val_loss improved from 0.11128 to 0.10451, saving model to saved_models/model_and_weights.hdf5
+Epoch 37/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0947 - acc: 0.4026 - mean_iou: 0.5312 - val_loss: 0.1195 - val_acc: 0.2474 - val_mean_iou: 0.5308
+ - 440s - loss: 0.0942 - acc: 0.4290 - mean_iou: 0.5817 - val_loss: 0.0994 - val_acc: 0.0026 - val_mean_iou: 0.5816
 
-Epoch 00037: val_loss improved from 0.12504 to 0.11955, saving model to saved_models/model_and_weights.hdf5
-Epoch 38/50
+Epoch 00037: val_loss improved from 0.10451 to 0.09937, saving model to saved_models/model_and_weights.hdf5
+Epoch 38/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0900 - acc: 0.4328 - mean_iou: 0.5305 - val_loss: 0.1139 - val_acc: 0.5008 - val_mean_iou: 0.5302
+ - 438s - loss: 0.0895 - acc: 0.4724 - mean_iou: 0.5807 - val_loss: 0.0950 - val_acc: 0.0072 - val_mean_iou: 0.5803
 
-Epoch 00038: val_loss improved from 0.11955 to 0.11387, saving model to saved_models/model_and_weights.hdf5
-Epoch 39/50
+Epoch 00038: val_loss improved from 0.09937 to 0.09498, saving model to saved_models/model_and_weights.hdf5
+Epoch 39/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0855 - acc: 0.4693 - mean_iou: 0.5299 - val_loss: 0.1078 - val_acc: 0.9928 - val_mean_iou: 0.5295
+ - 440s - loss: 0.0851 - acc: 0.5242 - mean_iou: 0.5794 - val_loss: 0.0907 - val_acc: 0.0179 - val_mean_iou: 0.5787
 
-Epoch 00039: val_loss improved from 0.11387 to 0.10784, saving model to saved_models/model_and_weights.hdf5
-Epoch 40/50
+Epoch 00039: val_loss improved from 0.09498 to 0.09066, saving model to saved_models/model_and_weights.hdf5
+Epoch 40/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.0813 - acc: 0.5110 - mean_iou: 0.5292 - val_loss: 0.1015 - val_acc: 0.9946 - val_mean_iou: 0.5289
+ - 440s - loss: 0.0809 - acc: 0.5815 - mean_iou: 0.5779 - val_loss: 0.0862 - val_acc: 0.9896 - val_mean_iou: 0.5772
 
-Epoch 00040: val_loss improved from 0.10784 to 0.10145, saving model to saved_models/model_and_weights.hdf5
-Epoch 41/50
+Epoch 00040: val_loss improved from 0.09066 to 0.08621, saving model to saved_models/model_and_weights.hdf5
+Epoch 41/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0773 - acc: 0.5566 - mean_iou: 0.5287 - val_loss: 0.0948 - val_acc: 0.9977 - val_mean_iou: 0.5284
+ - 440s - loss: 0.0769 - acc: 0.6408 - mean_iou: 0.5764 - val_loss: 0.0819 - val_acc: 0.9957 - val_mean_iou: 0.5756
 
-Epoch 00041: val_loss improved from 0.10145 to 0.09483, saving model to saved_models/model_and_weights.hdf5
-Epoch 42/50
+Epoch 00041: val_loss improved from 0.08621 to 0.08186, saving model to saved_models/model_and_weights.hdf5
+Epoch 42/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0736 - acc: 0.6053 - mean_iou: 0.5281 - val_loss: 0.0882 - val_acc: 0.9978 - val_mean_iou: 0.5279
+ - 439s - loss: 0.0731 - acc: 0.6991 - mean_iou: 0.5748 - val_loss: 0.0779 - val_acc: 0.9986 - val_mean_iou: 0.5741
 
-Epoch 00042: val_loss improved from 0.09483 to 0.08817, saving model to saved_models/model_and_weights.hdf5
-Epoch 43/50
+Epoch 00042: val_loss improved from 0.08186 to 0.07794, saving model to saved_models/model_and_weights.hdf5
+Epoch 43/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0700 - acc: 0.6558 - mean_iou: 0.5276 - val_loss: 0.0818 - val_acc: 0.9978 - val_mean_iou: 0.5274
+ - 440s - loss: 0.0696 - acc: 0.7542 - mean_iou: 0.5734 - val_loss: 0.0744 - val_acc: 0.9985 - val_mean_iou: 0.5727
 
-Epoch 00043: val_loss improved from 0.08817 to 0.08177, saving model to saved_models/model_and_weights.hdf5
-Epoch 44/50
+Epoch 00043: val_loss improved from 0.07794 to 0.07443, saving model to saved_models/model_and_weights.hdf5
+Epoch 44/150
 CSV iteration end for feature. Calling 'break'.
- - 439s - loss: 0.0666 - acc: 0.7070 - mean_iou: 0.5271 - val_loss: 0.0760 - val_acc: 0.9979 - val_mean_iou: 0.5269
+ - 440s - loss: 0.0662 - acc: 0.8048 - mean_iou: 0.5719 - val_loss: 0.0711 - val_acc: 0.9983 - val_mean_iou: 0.5713
 
-Epoch 00044: val_loss improved from 0.08177 to 0.07596, saving model to saved_models/model_and_weights.hdf5
-Epoch 45/50
+Epoch 00044: val_loss improved from 0.07443 to 0.07111, saving model to saved_models/model_and_weights.hdf5
+Epoch 45/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0633 - acc: 0.7578 - mean_iou: 0.5267 - val_loss: 0.0710 - val_acc: 0.9979 - val_mean_iou: 0.5264
+ - 440s - loss: 0.0630 - acc: 0.8499 - mean_iou: 0.5706 - val_loss: 0.0678 - val_acc: 0.9982 - val_mean_iou: 0.5699
 
-Epoch 00045: val_loss improved from 0.07596 to 0.07101, saving model to saved_models/model_and_weights.hdf5
-Epoch 46/50
+Epoch 00045: val_loss improved from 0.07111 to 0.06781, saving model to saved_models/model_and_weights.hdf5
+Epoch 46/150
 CSV iteration end for feature. Calling 'break'.
- - 441s - loss: 0.0603 - acc: 0.8075 - mean_iou: 0.5262 - val_loss: 0.0667 - val_acc: 0.9980 - val_mean_iou: 0.5260
+ - 440s - loss: 0.0599 - acc: 0.8895 - mean_iou: 0.5693 - val_loss: 0.0646 - val_acc: 0.9981 - val_mean_iou: 0.5686
 
-Epoch 00046: val_loss improved from 0.07101 to 0.06672, saving model to saved_models/model_and_weights.hdf5
-Epoch 47/50
+Epoch 00046: val_loss improved from 0.06781 to 0.06459, saving model to saved_models/model_and_weights.hdf5
+Epoch 47/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0574 - acc: 0.8553 - mean_iou: 0.5258 - val_loss: 0.0629 - val_acc: 0.9981 - val_mean_iou: 0.5255
+ - 440s - loss: 0.0570 - acc: 0.9237 - mean_iou: 0.5680 - val_loss: 0.0616 - val_acc: 0.9980 - val_mean_iou: 0.5674
 
-Epoch 00047: val_loss improved from 0.06672 to 0.06292, saving model to saved_models/model_and_weights.hdf5
-Epoch 48/50
+Epoch 00047: val_loss improved from 0.06459 to 0.06155, saving model to saved_models/model_and_weights.hdf5
+Epoch 48/150
 CSV iteration end for feature. Calling 'break'.
- - 438s - loss: 0.0546 - acc: 0.8991 - mean_iou: 0.5253 - val_loss: 0.0595 - val_acc: 0.9981 - val_mean_iou: 0.5251
+ - 440s - loss: 0.0543 - acc: 0.9523 - mean_iou: 0.5668 - val_loss: 0.0587 - val_acc: 0.9979 - val_mean_iou: 0.5662
 
-Epoch 00048: val_loss improved from 0.06292 to 0.05954, saving model to saved_models/model_and_weights.hdf5
-Epoch 49/50
+Epoch 00048: val_loss improved from 0.06155 to 0.05870, saving model to saved_models/model_and_weights.hdf5
+Epoch 49/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0520 - acc: 0.9365 - mean_iou: 0.5249 - val_loss: 0.0565 - val_acc: 0.9981 - val_mean_iou: 0.5247
+ - 440s - loss: 0.0517 - acc: 0.9739 - mean_iou: 0.5656 - val_loss: 0.0560 - val_acc: 0.9979 - val_mean_iou: 0.5650
 
-Epoch 00049: val_loss improved from 0.05954 to 0.05650, saving model to saved_models/model_and_weights.hdf5
-Epoch 50/50
+Epoch 00049: val_loss improved from 0.05870 to 0.05599, saving model to saved_models/model_and_weights.hdf5
+Epoch 50/150
 CSV iteration end for feature. Calling 'break'.
- - 440s - loss: 0.0495 - acc: 0.9650 - mean_iou: 0.5245 - val_loss: 0.0537 - val_acc: 0.9981 - val_mean_iou: 0.5243
+ - 438s - loss: 0.0492 - acc: 0.9881 - mean_iou: 0.5644 - val_loss: 0.0534 - val_acc: 0.9978 - val_mean_iou: 0.5639
 
-Epoch 00050: val_loss improved from 0.05650 to 0.05374, saving model to saved_models/model_and_weights.hdf5
+Epoch 00050: val_loss improved from 0.05599 to 0.05339, saving model to saved_models/model_and_weights.hdf5
+Epoch 51/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0468 - acc: 0.9955 - mean_iou: 0.5633 - val_loss: 0.0509 - val_acc: 0.9978 - val_mean_iou: 0.5628
+
+Epoch 00051: val_loss improved from 0.05339 to 0.05093, saving model to saved_models/model_and_weights.hdf5
+Epoch 52/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0446 - acc: 0.9985 - mean_iou: 0.5623 - val_loss: 0.0486 - val_acc: 0.9978 - val_mean_iou: 0.5618
+
+Epoch 00052: val_loss improved from 0.05093 to 0.04858, saving model to saved_models/model_and_weights.hdf5
+Epoch 53/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0425 - acc: 0.9993 - mean_iou: 0.5612 - val_loss: 0.0464 - val_acc: 0.9977 - val_mean_iou: 0.5607
+
+Epoch 00053: val_loss improved from 0.04858 to 0.04636, saving model to saved_models/model_and_weights.hdf5
+Epoch 54/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0405 - acc: 0.9994 - mean_iou: 0.5602 - val_loss: 0.0443 - val_acc: 0.9977 - val_mean_iou: 0.5598
+
+Epoch 00054: val_loss improved from 0.04636 to 0.04426, saving model to saved_models/model_and_weights.hdf5
+Epoch 55/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0386 - acc: 0.9994 - mean_iou: 0.5593 - val_loss: 0.0423 - val_acc: 0.9977 - val_mean_iou: 0.5588
+
+Epoch 00055: val_loss improved from 0.04426 to 0.04229, saving model to saved_models/model_and_weights.hdf5
+Epoch 56/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0368 - acc: 0.9995 - mean_iou: 0.5583 - val_loss: 0.0404 - val_acc: 0.9978 - val_mean_iou: 0.5579
+
+Epoch 00056: val_loss improved from 0.04229 to 0.04044, saving model to saved_models/model_and_weights.hdf5
+Epoch 57/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0351 - acc: 0.9995 - mean_iou: 0.5574 - val_loss: 0.0387 - val_acc: 0.9978 - val_mean_iou: 0.5570
+
+Epoch 00057: val_loss improved from 0.04044 to 0.03871, saving model to saved_models/model_and_weights.hdf5
+Epoch 58/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0336 - acc: 0.9995 - mean_iou: 0.5566 - val_loss: 0.0371 - val_acc: 0.9979 - val_mean_iou: 0.5561
+
+Epoch 00058: val_loss improved from 0.03871 to 0.03709, saving model to saved_models/model_and_weights.hdf5
+Epoch 59/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0320 - acc: 0.9995 - mean_iou: 0.5557 - val_loss: 0.0356 - val_acc: 0.9979 - val_mean_iou: 0.5553
+
+Epoch 00059: val_loss improved from 0.03709 to 0.03558, saving model to saved_models/model_and_weights.hdf5
+Epoch 60/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0306 - acc: 0.9995 - mean_iou: 0.5549 - val_loss: 0.0342 - val_acc: 0.9981 - val_mean_iou: 0.5545
+
+Epoch 00060: val_loss improved from 0.03558 to 0.03416, saving model to saved_models/model_and_weights.hdf5
+Epoch 61/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0293 - acc: 0.9995 - mean_iou: 0.5541 - val_loss: 0.0328 - val_acc: 0.9982 - val_mean_iou: 0.5537
+
+Epoch 00061: val_loss improved from 0.03416 to 0.03283, saving model to saved_models/model_and_weights.hdf5
+Epoch 62/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0280 - acc: 0.9995 - mean_iou: 0.5533 - val_loss: 0.0316 - val_acc: 0.9984 - val_mean_iou: 0.5529
+
+Epoch 00062: val_loss improved from 0.03283 to 0.03159, saving model to saved_models/model_and_weights.hdf5
+Epoch 63/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0268 - acc: 0.9995 - mean_iou: 0.5525 - val_loss: 0.0304 - val_acc: 0.9986 - val_mean_iou: 0.5522
+
+Epoch 00063: val_loss improved from 0.03159 to 0.03042, saving model to saved_models/model_and_weights.hdf5
+Epoch 64/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0257 - acc: 0.9995 - mean_iou: 0.5518 - val_loss: 0.0293 - val_acc: 0.9989 - val_mean_iou: 0.5515
+
+Epoch 00064: val_loss improved from 0.03042 to 0.02933, saving model to saved_models/model_and_weights.hdf5
+Epoch 65/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0247 - acc: 0.9995 - mean_iou: 0.5511 - val_loss: 0.0283 - val_acc: 0.9990 - val_mean_iou: 0.5507
+
+Epoch 00065: val_loss improved from 0.02933 to 0.02830, saving model to saved_models/model_and_weights.hdf5
+Epoch 66/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0237 - acc: 0.9996 - mean_iou: 0.5504 - val_loss: 0.0273 - val_acc: 0.9992 - val_mean_iou: 0.5501
+
+Epoch 00066: val_loss improved from 0.02830 to 0.02734, saving model to saved_models/model_and_weights.hdf5
+Epoch 67/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0227 - acc: 0.9996 - mean_iou: 0.5497 - val_loss: 0.0264 - val_acc: 0.9992 - val_mean_iou: 0.5494
+
+Epoch 00067: val_loss improved from 0.02734 to 0.02643, saving model to saved_models/model_and_weights.hdf5
+Epoch 68/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0218 - acc: 0.9997 - mean_iou: 0.5491 - val_loss: 0.0256 - val_acc: 0.9993 - val_mean_iou: 0.5487
+
+Epoch 00068: val_loss improved from 0.02643 to 0.02558, saving model to saved_models/model_and_weights.hdf5
+Epoch 69/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0210 - acc: 0.9997 - mean_iou: 0.5484 - val_loss: 0.0248 - val_acc: 0.9993 - val_mean_iou: 0.5481
+
+Epoch 00069: val_loss improved from 0.02558 to 0.02478, saving model to saved_models/model_and_weights.hdf5
+Epoch 70/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0202 - acc: 0.9998 - mean_iou: 0.5478 - val_loss: 0.0240 - val_acc: 0.9993 - val_mean_iou: 0.5475
+
+Epoch 00070: val_loss improved from 0.02478 to 0.02402, saving model to saved_models/model_and_weights.hdf5
+Epoch 71/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0195 - acc: 0.9999 - mean_iou: 0.5472 - val_loss: 0.0233 - val_acc: 0.9993 - val_mean_iou: 0.5469
+
+Epoch 00071: val_loss improved from 0.02402 to 0.02331, saving model to saved_models/model_and_weights.hdf5
+Epoch 72/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0188 - acc: 0.9999 - mean_iou: 0.5466 - val_loss: 0.0226 - val_acc: 0.9993 - val_mean_iou: 0.5463
+
+Epoch 00072: val_loss improved from 0.02331 to 0.02264, saving model to saved_models/model_and_weights.hdf5
+Epoch 73/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0182 - acc: 0.9999 - mean_iou: 0.5460 - val_loss: 0.0220 - val_acc: 0.9993 - val_mean_iou: 0.5457
+
+Epoch 00073: val_loss improved from 0.02264 to 0.02200, saving model to saved_models/model_and_weights.hdf5
+Epoch 74/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0175 - acc: 0.9999 - mean_iou: 0.5454 - val_loss: 0.0214 - val_acc: 0.9994 - val_mean_iou: 0.5452
+
+Epoch 00074: val_loss improved from 0.02200 to 0.02139, saving model to saved_models/model_and_weights.hdf5
+Epoch 75/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0170 - acc: 0.9999 - mean_iou: 0.5449 - val_loss: 0.0208 - val_acc: 0.9994 - val_mean_iou: 0.5446
+
+Epoch 00075: val_loss improved from 0.02139 to 0.02082, saving model to saved_models/model_and_weights.hdf5
+Epoch 76/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0164 - acc: 0.9999 - mean_iou: 0.5444 - val_loss: 0.0203 - val_acc: 0.9994 - val_mean_iou: 0.5441
+
+Epoch 00076: val_loss improved from 0.02082 to 0.02028, saving model to saved_models/model_and_weights.hdf5
+Epoch 77/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0159 - acc: 0.9999 - mean_iou: 0.5438 - val_loss: 0.0198 - val_acc: 0.9994 - val_mean_iou: 0.5436
+
+Epoch 00077: val_loss improved from 0.02028 to 0.01976, saving model to saved_models/model_and_weights.hdf5
+Epoch 78/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0154 - acc: 0.9999 - mean_iou: 0.5433 - val_loss: 0.0193 - val_acc: 0.9994 - val_mean_iou: 0.5431
+
+Epoch 00078: val_loss improved from 0.01976 to 0.01927, saving model to saved_models/model_and_weights.hdf5
+Epoch 79/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0149 - acc: 0.9999 - mean_iou: 0.5428 - val_loss: 0.0188 - val_acc: 0.9994 - val_mean_iou: 0.5426
+
+Epoch 00079: val_loss improved from 0.01927 to 0.01880, saving model to saved_models/model_and_weights.hdf5
+Epoch 80/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0144 - acc: 0.9999 - mean_iou: 0.5423 - val_loss: 0.0184 - val_acc: 0.9994 - val_mean_iou: 0.5421
+
+Epoch 00080: val_loss improved from 0.01880 to 0.01836, saving model to saved_models/model_and_weights.hdf5
+Epoch 81/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0140 - acc: 0.9999 - mean_iou: 0.5418 - val_loss: 0.0179 - val_acc: 0.9994 - val_mean_iou: 0.5416
+
+Epoch 00081: val_loss improved from 0.01836 to 0.01794, saving model to saved_models/model_and_weights.hdf5
+Epoch 82/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0136 - acc: 0.9999 - mean_iou: 0.5414 - val_loss: 0.0175 - val_acc: 0.9994 - val_mean_iou: 0.5411
+
+Epoch 00082: val_loss improved from 0.01794 to 0.01754, saving model to saved_models/model_and_weights.hdf5
+Epoch 83/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0132 - acc: 0.9999 - mean_iou: 0.5409 - val_loss: 0.0172 - val_acc: 0.9994 - val_mean_iou: 0.5407
+
+Epoch 00083: val_loss improved from 0.01754 to 0.01716, saving model to saved_models/model_and_weights.hdf5
+Epoch 84/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0128 - acc: 0.9999 - mean_iou: 0.5405 - val_loss: 0.0168 - val_acc: 0.9994 - val_mean_iou: 0.5403
+
+Epoch 00084: val_loss improved from 0.01716 to 0.01680, saving model to saved_models/model_and_weights.hdf5
+Epoch 85/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0125 - acc: 0.9999 - mean_iou: 0.5400 - val_loss: 0.0165 - val_acc: 0.9995 - val_mean_iou: 0.5398
+
+Epoch 00085: val_loss improved from 0.01680 to 0.01646, saving model to saved_models/model_and_weights.hdf5
+Epoch 86/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0121 - acc: 0.9999 - mean_iou: 0.5396 - val_loss: 0.0161 - val_acc: 0.9995 - val_mean_iou: 0.5394
+
+Epoch 00086: val_loss improved from 0.01646 to 0.01613, saving model to saved_models/model_and_weights.hdf5
+Epoch 87/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0118 - acc: 0.9999 - mean_iou: 0.5392 - val_loss: 0.0158 - val_acc: 0.9995 - val_mean_iou: 0.5390
+
+Epoch 00087: val_loss improved from 0.01613 to 0.01582, saving model to saved_models/model_and_weights.hdf5
+Epoch 88/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0115 - acc: 0.9999 - mean_iou: 0.5388 - val_loss: 0.0155 - val_acc: 0.9995 - val_mean_iou: 0.5386
+
+Epoch 00088: val_loss improved from 0.01582 to 0.01552, saving model to saved_models/model_and_weights.hdf5
+Epoch 89/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0112 - acc: 0.9999 - mean_iou: 0.5384 - val_loss: 0.0152 - val_acc: 0.9995 - val_mean_iou: 0.5382
+
+Epoch 00089: val_loss improved from 0.01552 to 0.01523, saving model to saved_models/model_and_weights.hdf5
+Epoch 90/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0109 - acc: 0.9999 - mean_iou: 0.5380 - val_loss: 0.0150 - val_acc: 0.9995 - val_mean_iou: 0.5378
+
+Epoch 00090: val_loss improved from 0.01523 to 0.01496, saving model to saved_models/model_and_weights.hdf5
+Epoch 91/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0107 - acc: 0.9999 - mean_iou: 0.5376 - val_loss: 0.0147 - val_acc: 0.9995 - val_mean_iou: 0.5374
+
+Epoch 00091: val_loss improved from 0.01496 to 0.01470, saving model to saved_models/model_and_weights.hdf5
+Epoch 92/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0104 - acc: 0.9999 - mean_iou: 0.5372 - val_loss: 0.0144 - val_acc: 0.9995 - val_mean_iou: 0.5370
+
+Epoch 00092: val_loss improved from 0.01470 to 0.01445, saving model to saved_models/model_and_weights.hdf5
+Epoch 93/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0102 - acc: 0.9999 - mean_iou: 0.5368 - val_loss: 0.0142 - val_acc: 0.9995 - val_mean_iou: 0.5367
+
+Epoch 00093: val_loss improved from 0.01445 to 0.01421, saving model to saved_models/model_and_weights.hdf5
+Epoch 94/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0099 - acc: 1.0000 - mean_iou: 0.5365 - val_loss: 0.0140 - val_acc: 0.9995 - val_mean_iou: 0.5363
+
+Epoch 00094: val_loss improved from 0.01421 to 0.01398, saving model to saved_models/model_and_weights.hdf5
+Epoch 95/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0097 - acc: 1.0000 - mean_iou: 0.5361 - val_loss: 0.0138 - val_acc: 0.9995 - val_mean_iou: 0.5359
+
+Epoch 00095: val_loss improved from 0.01398 to 0.01376, saving model to saved_models/model_and_weights.hdf5
+Epoch 96/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0095 - acc: 1.0000 - mean_iou: 0.5358 - val_loss: 0.0136 - val_acc: 0.9995 - val_mean_iou: 0.5356
+
+Epoch 00096: val_loss improved from 0.01376 to 0.01355, saving model to saved_models/model_and_weights.hdf5
+Epoch 97/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0093 - acc: 1.0000 - mean_iou: 0.5354 - val_loss: 0.0134 - val_acc: 0.9995 - val_mean_iou: 0.5353
+
+Epoch 00097: val_loss improved from 0.01355 to 0.01335, saving model to saved_models/model_and_weights.hdf5
+Epoch 98/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0091 - acc: 1.0000 - mean_iou: 0.5351 - val_loss: 0.0132 - val_acc: 0.9995 - val_mean_iou: 0.5349
+
+Epoch 00098: val_loss improved from 0.01335 to 0.01316, saving model to saved_models/model_and_weights.hdf5
+Epoch 99/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0089 - acc: 1.0000 - mean_iou: 0.5348 - val_loss: 0.0130 - val_acc: 0.9996 - val_mean_iou: 0.5346
+
+Epoch 00099: val_loss improved from 0.01316 to 0.01298, saving model to saved_models/model_and_weights.hdf5
+Epoch 100/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0087 - acc: 1.0000 - mean_iou: 0.5344 - val_loss: 0.0128 - val_acc: 0.9996 - val_mean_iou: 0.5343
+
+Epoch 00100: val_loss improved from 0.01298 to 0.01280, saving model to saved_models/model_and_weights.hdf5
+Epoch 101/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0086 - acc: 1.0000 - mean_iou: 0.5341 - val_loss: 0.0126 - val_acc: 0.9996 - val_mean_iou: 0.5340
+
+Epoch 00101: val_loss improved from 0.01280 to 0.01264, saving model to saved_models/model_and_weights.hdf5
+Epoch 102/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0084 - acc: 1.0000 - mean_iou: 0.5338 - val_loss: 0.0125 - val_acc: 0.9996 - val_mean_iou: 0.5336
+
+Epoch 00102: val_loss improved from 0.01264 to 0.01247, saving model to saved_models/model_and_weights.hdf5
+Epoch 103/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0082 - acc: 1.0000 - mean_iou: 0.5335 - val_loss: 0.0123 - val_acc: 0.9996 - val_mean_iou: 0.5333
+
+Epoch 00103: val_loss improved from 0.01247 to 0.01232, saving model to saved_models/model_and_weights.hdf5
+Epoch 104/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0081 - acc: 1.0000 - mean_iou: 0.5332 - val_loss: 0.0122 - val_acc: 0.9996 - val_mean_iou: 0.5330
+
+Epoch 00104: val_loss improved from 0.01232 to 0.01217, saving model to saved_models/model_and_weights.hdf5
+Epoch 105/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0079 - acc: 1.0000 - mean_iou: 0.5329 - val_loss: 0.0120 - val_acc: 0.9996 - val_mean_iou: 0.5328
+
+Epoch 00105: val_loss improved from 0.01217 to 0.01203, saving model to saved_models/model_and_weights.hdf5
+Epoch 106/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0078 - acc: 1.0000 - mean_iou: 0.5326 - val_loss: 0.0119 - val_acc: 0.9996 - val_mean_iou: 0.5325
+
+Epoch 00106: val_loss improved from 0.01203 to 0.01190, saving model to saved_models/model_and_weights.hdf5
+Epoch 107/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0077 - acc: 1.0000 - mean_iou: 0.5323 - val_loss: 0.0118 - val_acc: 0.9997 - val_mean_iou: 0.5322
+
+Epoch 00107: val_loss improved from 0.01190 to 0.01177, saving model to saved_models/model_and_weights.hdf5
+Epoch 108/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0075 - acc: 1.0000 - mean_iou: 0.5320 - val_loss: 0.0116 - val_acc: 0.9997 - val_mean_iou: 0.5319
+
+Epoch 00108: val_loss improved from 0.01177 to 0.01164, saving model to saved_models/model_and_weights.hdf5
+Epoch 109/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0074 - acc: 1.0000 - mean_iou: 0.5318 - val_loss: 0.0115 - val_acc: 0.9997 - val_mean_iou: 0.5316
+
+Epoch 00109: val_loss improved from 0.01164 to 0.01152, saving model to saved_models/model_and_weights.hdf5
+Epoch 110/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0073 - acc: 1.0000 - mean_iou: 0.5315 - val_loss: 0.0114 - val_acc: 0.9997 - val_mean_iou: 0.5314
+
+Epoch 00110: val_loss improved from 0.01152 to 0.01140, saving model to saved_models/model_and_weights.hdf5
+Epoch 111/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0072 - acc: 1.0000 - mean_iou: 0.5312 - val_loss: 0.0113 - val_acc: 0.9997 - val_mean_iou: 0.5311
+
+Epoch 00111: val_loss improved from 0.01140 to 0.01129, saving model to saved_models/model_and_weights.hdf5
+Epoch 112/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0071 - acc: 1.0000 - mean_iou: 0.5310 - val_loss: 0.0112 - val_acc: 0.9997 - val_mean_iou: 0.5308
+
+Epoch 00112: val_loss improved from 0.01129 to 0.01118, saving model to saved_models/model_and_weights.hdf5
+Epoch 113/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0070 - acc: 1.0000 - mean_iou: 0.5307 - val_loss: 0.0111 - val_acc: 0.9997 - val_mean_iou: 0.5306
+
+Epoch 00113: val_loss improved from 0.01118 to 0.01108, saving model to saved_models/model_and_weights.hdf5
+Epoch 114/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0069 - acc: 1.0000 - mean_iou: 0.5305 - val_loss: 0.0110 - val_acc: 0.9997 - val_mean_iou: 0.5303
+
+Epoch 00114: val_loss improved from 0.01108 to 0.01098, saving model to saved_models/model_and_weights.hdf5
+Epoch 115/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0068 - acc: 1.0000 - mean_iou: 0.5302 - val_loss: 0.0109 - val_acc: 0.9997 - val_mean_iou: 0.5301
+
+Epoch 00115: val_loss improved from 0.01098 to 0.01088, saving model to saved_models/model_and_weights.hdf5
+Epoch 116/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0067 - acc: 1.0000 - mean_iou: 0.5300 - val_loss: 0.0108 - val_acc: 0.9997 - val_mean_iou: 0.5298
+
+Epoch 00116: val_loss improved from 0.01088 to 0.01078, saving model to saved_models/model_and_weights.hdf5
+Epoch 117/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0066 - acc: 1.0000 - mean_iou: 0.5297 - val_loss: 0.0107 - val_acc: 0.9997 - val_mean_iou: 0.5296
+
+Epoch 00117: val_loss improved from 0.01078 to 0.01069, saving model to saved_models/model_and_weights.hdf5
+Epoch 118/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0065 - acc: 1.0000 - mean_iou: 0.5295 - val_loss: 0.0106 - val_acc: 0.9997 - val_mean_iou: 0.5294
+
+Epoch 00118: val_loss improved from 0.01069 to 0.01061, saving model to saved_models/model_and_weights.hdf5
+Epoch 119/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0064 - acc: 1.0000 - mean_iou: 0.5292 - val_loss: 0.0105 - val_acc: 0.9997 - val_mean_iou: 0.5291
+
+Epoch 00119: val_loss improved from 0.01061 to 0.01052, saving model to saved_models/model_and_weights.hdf5
+Epoch 120/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0063 - acc: 1.0000 - mean_iou: 0.5290 - val_loss: 0.0104 - val_acc: 0.9997 - val_mean_iou: 0.5289
+
+Epoch 00120: val_loss improved from 0.01052 to 0.01044, saving model to saved_models/model_and_weights.hdf5
+Epoch 121/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0062 - acc: 1.0000 - mean_iou: 0.5288 - val_loss: 0.0104 - val_acc: 0.9997 - val_mean_iou: 0.5287
+
+Epoch 00121: val_loss improved from 0.01044 to 0.01036, saving model to saved_models/model_and_weights.hdf5
+Epoch 122/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0062 - acc: 1.0000 - mean_iou: 0.5286 - val_loss: 0.0103 - val_acc: 0.9997 - val_mean_iou: 0.5285
+
+Epoch 00122: val_loss improved from 0.01036 to 0.01028, saving model to saved_models/model_and_weights.hdf5
+Epoch 123/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0061 - acc: 1.0000 - mean_iou: 0.5283 - val_loss: 0.0102 - val_acc: 0.9997 - val_mean_iou: 0.5282
+
+Epoch 00123: val_loss improved from 0.01028 to 0.01021, saving model to saved_models/model_and_weights.hdf5
+Epoch 124/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0060 - acc: 1.0000 - mean_iou: 0.5281 - val_loss: 0.0101 - val_acc: 0.9997 - val_mean_iou: 0.5280
+
+Epoch 00124: val_loss improved from 0.01021 to 0.01014, saving model to saved_models/model_and_weights.hdf5
+Epoch 125/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0059 - acc: 1.0000 - mean_iou: 0.5279 - val_loss: 0.0101 - val_acc: 0.9997 - val_mean_iou: 0.5278
+
+Epoch 00125: val_loss improved from 0.01014 to 0.01007, saving model to saved_models/model_and_weights.hdf5
+Epoch 126/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0059 - acc: 1.0000 - mean_iou: 0.5277 - val_loss: 0.0100 - val_acc: 0.9997 - val_mean_iou: 0.5276
+
+Epoch 00126: val_loss improved from 0.01007 to 0.01001, saving model to saved_models/model_and_weights.hdf5
+Epoch 127/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0058 - acc: 1.0000 - mean_iou: 0.5275 - val_loss: 0.0099 - val_acc: 0.9997 - val_mean_iou: 0.5274
+
+Epoch 00127: val_loss improved from 0.01001 to 0.00994, saving model to saved_models/model_and_weights.hdf5
+Epoch 128/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0058 - acc: 1.0000 - mean_iou: 0.5273 - val_loss: 0.0099 - val_acc: 0.9997 - val_mean_iou: 0.5272
+
+Epoch 00128: val_loss improved from 0.00994 to 0.00988, saving model to saved_models/model_and_weights.hdf5
+Epoch 129/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0057 - acc: 1.0000 - mean_iou: 0.5271 - val_loss: 0.0098 - val_acc: 0.9997 - val_mean_iou: 0.5270
+
+Epoch 00129: val_loss improved from 0.00988 to 0.00982, saving model to saved_models/model_and_weights.hdf5
+Epoch 130/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0056 - acc: 1.0000 - mean_iou: 0.5269 - val_loss: 0.0098 - val_acc: 0.9997 - val_mean_iou: 0.5268
+
+Epoch 00130: val_loss improved from 0.00982 to 0.00976, saving model to saved_models/model_and_weights.hdf5
+Epoch 131/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0056 - acc: 1.0000 - mean_iou: 0.5267 - val_loss: 0.0097 - val_acc: 0.9997 - val_mean_iou: 0.5266
+
+Epoch 00131: val_loss improved from 0.00976 to 0.00971, saving model to saved_models/model_and_weights.hdf5
+Epoch 132/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0055 - acc: 1.0000 - mean_iou: 0.5265 - val_loss: 0.0097 - val_acc: 0.9997 - val_mean_iou: 0.5264
+
+Epoch 00132: val_loss improved from 0.00971 to 0.00965, saving model to saved_models/model_and_weights.hdf5
+Epoch 133/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0055 - acc: 1.0000 - mean_iou: 0.5263 - val_loss: 0.0096 - val_acc: 0.9997 - val_mean_iou: 0.5262
+
+Epoch 00133: val_loss improved from 0.00965 to 0.00960, saving model to saved_models/model_and_weights.hdf5
+Epoch 134/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0054 - acc: 1.0000 - mean_iou: 0.5261 - val_loss: 0.0096 - val_acc: 0.9997 - val_mean_iou: 0.5260
+
+Epoch 00134: val_loss improved from 0.00960 to 0.00955, saving model to saved_models/model_and_weights.hdf5
+Epoch 135/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0054 - acc: 1.0000 - mean_iou: 0.5260 - val_loss: 0.0095 - val_acc: 0.9997 - val_mean_iou: 0.5259
+
+Epoch 00135: val_loss improved from 0.00955 to 0.00950, saving model to saved_models/model_and_weights.hdf5
+Epoch 136/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0053 - acc: 1.0000 - mean_iou: 0.5258 - val_loss: 0.0095 - val_acc: 0.9997 - val_mean_iou: 0.5257
+
+Epoch 00136: val_loss improved from 0.00950 to 0.00945, saving model to saved_models/model_and_weights.hdf5
+Epoch 137/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0053 - acc: 1.0000 - mean_iou: 0.5256 - val_loss: 0.0094 - val_acc: 0.9997 - val_mean_iou: 0.5255
+
+Epoch 00137: val_loss improved from 0.00945 to 0.00940, saving model to saved_models/model_and_weights.hdf5
+Epoch 138/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0052 - acc: 1.0000 - mean_iou: 0.5254 - val_loss: 0.0094 - val_acc: 0.9997 - val_mean_iou: 0.5253
+
+Epoch 00138: val_loss improved from 0.00940 to 0.00936, saving model to saved_models/model_and_weights.hdf5
+Epoch 139/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0052 - acc: 1.0000 - mean_iou: 0.5252 - val_loss: 0.0093 - val_acc: 0.9997 - val_mean_iou: 0.5252
+
+Epoch 00139: val_loss improved from 0.00936 to 0.00931, saving model to saved_models/model_and_weights.hdf5
+Epoch 140/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0051 - acc: 1.0000 - mean_iou: 0.5251 - val_loss: 0.0093 - val_acc: 0.9997 - val_mean_iou: 0.5250
+
+Epoch 00140: val_loss improved from 0.00931 to 0.00927, saving model to saved_models/model_and_weights.hdf5
+Epoch 141/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0051 - acc: 1.0000 - mean_iou: 0.5249 - val_loss: 0.0092 - val_acc: 0.9997 - val_mean_iou: 0.5248
+
+Epoch 00141: val_loss improved from 0.00927 to 0.00922, saving model to saved_models/model_and_weights.hdf5
+Epoch 142/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0050 - acc: 1.0000 - mean_iou: 0.5247 - val_loss: 0.0092 - val_acc: 0.9997 - val_mean_iou: 0.5247
+
+Epoch 00142: val_loss improved from 0.00922 to 0.00918, saving model to saved_models/model_and_weights.hdf5
+Epoch 143/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0050 - acc: 1.0000 - mean_iou: 0.5246 - val_loss: 0.0091 - val_acc: 0.9997 - val_mean_iou: 0.5245
+
+Epoch 00143: val_loss improved from 0.00918 to 0.00914, saving model to saved_models/model_and_weights.hdf5
+Epoch 144/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0050 - acc: 1.0000 - mean_iou: 0.5244 - val_loss: 0.0091 - val_acc: 0.9997 - val_mean_iou: 0.5243
+
+Epoch 00144: val_loss improved from 0.00914 to 0.00910, saving model to saved_models/model_and_weights.hdf5
+Epoch 145/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0049 - acc: 1.0000 - mean_iou: 0.5242 - val_loss: 0.0091 - val_acc: 0.9997 - val_mean_iou: 0.5242
+
+Epoch 00145: val_loss improved from 0.00910 to 0.00906, saving model to saved_models/model_and_weights.hdf5
+Epoch 146/150
+CSV iteration end for feature. Calling 'break'.
+ - 438s - loss: 0.0049 - acc: 1.0000 - mean_iou: 0.5241 - val_loss: 0.0090 - val_acc: 0.9997 - val_mean_iou: 0.5240
+
+Epoch 00146: val_loss improved from 0.00906 to 0.00902, saving model to saved_models/model_and_weights.hdf5
+Epoch 147/150
+CSV iteration end for feature. Calling 'break'.
+ - 441s - loss: 0.0048 - acc: 1.0000 - mean_iou: 0.5239 - val_loss: 0.0090 - val_acc: 0.9997 - val_mean_iou: 0.5239
+
+Epoch 00147: val_loss improved from 0.00902 to 0.00898, saving model to saved_models/model_and_weights.hdf5
+Epoch 148/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0048 - acc: 1.0000 - mean_iou: 0.5238 - val_loss: 0.0089 - val_acc: 0.9997 - val_mean_iou: 0.5237
+
+Epoch 00148: val_loss improved from 0.00898 to 0.00894, saving model to saved_models/model_and_weights.hdf5
+Epoch 149/150
+CSV iteration end for feature. Calling 'break'.
+ - 440s - loss: 0.0048 - acc: 1.0000 - mean_iou: 0.5236 - val_loss: 0.0089 - val_acc: 0.9997 - val_mean_iou: 0.5235
+
+Epoch 00149: val_loss improved from 0.00894 to 0.00891, saving model to saved_models/model_and_weights.hdf5
+Epoch 150/150
+CSV iteration end for feature. Calling 'break'.
+ - 439s - loss: 0.0047 - acc: 1.0000 - mean_iou: 0.5235 - val_loss: 0.0089 - val_acc: 0.9997 - val_mean_iou: 0.5234
+
+Epoch 00150: val_loss improved from 0.00891 to 0.00887, saving model to saved_models/model_and_weights.hdf5
 CSV iteration end for feature. Calling 'break'.
 *********************************************************
 Running python analyze_model.py
-JOB 59871 is running on gpu3 
+JOB 59880 is running on gpu3 
 *********************************************************
 
 
@@ -1421,13 +1921,13 @@ WEIGHTS: [ 0.4 61.   5. ]
 
 Number of validation samples IoU evaulated on: 10
 
-IoU for Background is: 44.65%
-IoU for Beam is: 1.09%
-IoU for Not-Beam is: 11.62%
+IoU for Background is: 49.17%
+IoU for Beam is: 1.11%
+IoU for Not-Beam is: 10.02%
 
-Mean IoU is: 19.12%
+Mean IoU is: 20.10%
 
-Test accuracy of the model is: 57.69%
+Test accuracy of the model is: 93.54%
 
 Done!
 
