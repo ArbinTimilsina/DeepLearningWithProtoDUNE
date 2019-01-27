@@ -13,6 +13,7 @@ from tools.tiramisu_model import get_tiramisu_model
 from tools.prediction_history import PredictionHistory
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -122,8 +123,10 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
-    learning_rate = 1e-6;
+    learning_rate = 1.0e-6;
     decaly_rate = learning_rate/NUM_EPOCHS
+    print("Decay rate is set to {}.".format(decaly_rate))
+
     test = 0
     if test == 1:
         model.compile(optimizer=SGD(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
