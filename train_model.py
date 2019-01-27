@@ -136,6 +136,7 @@ def main():
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy', mean_iou])
     elif test == 4:
         # With class_weight
+        #class_weight={0:0.4, 1:61.0, 2:5.0}
         model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     elif test == 5:
         # not 1/weight in loss function
@@ -165,7 +166,19 @@ def main():
     # To plot prediction history
     pred_history = PredictionHistory(model)
 
-    #class_weight={0:0.4, 1:61.0, 2:5.0}
+    # First clear plots- these are plotted only after training is successfully finished
+    plot_path = os.path.join("plots",  "prediction_history", "*.png")
+    files = glob.glob(plot_path)
+    for f in files:
+        os.remove(f)
+
+    loss_path = os.path.join("plots", "loss_vs_epoch.pdf")
+    os.remove(loss_path)
+    accuracy_path = os.path.join("plots", "accuracy_vs_epoch.pdf")
+    os.remove(accuracy_path)
+    mean_iou_path = os.path.join("plots", "mean_iou_vs_epoch.pdf")
+    os.remove(mean_iou_path)
+
     history = model.fit_generator(generator=datasequence_training,
                                   steps_per_epoch = NUM_TRAINING//BATCH_SIZE,
                                   epochs=NUM_EPOCHS,
@@ -173,28 +186,16 @@ def main():
                                   validation_steps= NUM_VALIDATION//BATCH_SIZE,
                                   verbose=2,
                                   callbacks=[check_point, early_stop, reduce_lr, pred_history],
-                                  #class_weight=class_weight,
                                   shuffle=False,
                                   use_multiprocessing=False,
                                   workers=1)
 
     # Plot the history
-    loss_path = os.path.join("plots", "loss_vs_epoch.pdf")
     plot_history(history, quantity='loss', plot_title='Loss', y_label='Loss', plot_name=loss_path)
-
-    accuracy_path = os.path.join("plots", "accuracy_vs_epoch.pdf")
     plot_history(history, quantity='acc', plot_title='Accuracy', y_label='Accuracy', plot_name=accuracy_path)
-
-    mean_iou_path = os.path.join("plots", "mean_iou_vs_epoch.pdf")
     plot_history(history, quantity='mean_iou', plot_title='Mean IoU', y_label='Mean IoU', plot_name=mean_iou_path)
 
-    # First clear prediction per epoch plots
-    plot_path = os.path.join("plots",  "prediction_history", "*.png")
-    files = glob.glob(plot_path)
-    for f in files:
-        os.remove(f)
-
-    # Plot the predition history
+    # Plot the prediction per epoch history
     for epoch in range(NUM_EPOCHS):
         plot_feature_label_prediction_path = os.path.join("plots",  "prediction_history", "prediction_epoch_{}.png".format(epoch))
         plot_feature_label_prediction(pred_history.feature_image[epoch], pred_history.label_image[epoch],  pred_history.prediction_image[epoch],
