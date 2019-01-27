@@ -123,7 +123,18 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1e-6;
-    model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
+    decaly_rate = learning_rate/NUM_EPOCHS
+    test = 0
+    if test == 1:
+        model.compile(optimizer=SGD(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    elif test == 2:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    elif test == 3:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
 
     # Print model summary
     model.summary()

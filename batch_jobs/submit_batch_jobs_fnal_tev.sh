@@ -12,8 +12,8 @@
 ## Specify to only use GPU nodes; no. per node
 #SBATCH --gres=gpu:1
 
-## Specify gpu3: Dual NVIDIA Tesla Pascal P100 GPUs with 17GB of memory each
-#SBATCH --nodelist=gpu3
+## Specify gpu4: Eight NVIDIA Tesla Pascal P100 GPUs with 17GB of memory each
+#SBATCH --nodelist=gpu4
 
 ## Specify requested time
 ## day-hr
