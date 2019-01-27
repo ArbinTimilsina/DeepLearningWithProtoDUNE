@@ -6,7 +6,7 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import RMSprop, SGD
+from keras.optimizers import RMSprop, SGD, Adam
 from tools.data_tools import DataSequence
 from tools.loss_metrics_tools import mean_iou
 from tools.tiramisu_model import get_tiramisu_model
@@ -129,17 +129,12 @@ def main():
 
     test = 0
     if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
-    elif test == 2:
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
-    elif test == 3:
+    elif test == 2:
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    elif test == 3:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
     elif test == 4:
-        # With class_weight
-        #class_weight={0:0.4, 1:61.0, 2:5.0}
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
-    elif test == 5:
-        # not 1/weight in loss function
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")

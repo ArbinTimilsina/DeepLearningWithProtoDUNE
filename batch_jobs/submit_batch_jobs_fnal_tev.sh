@@ -40,14 +40,14 @@ echo "Running python train_model.py"
 echo "JOB $SLURM_JOB_ID is running on $SLURM_JOB_NODELIST "
 echo "*********************************************************"
 echo ""
-singularity exec --bind /data/arbint --nv /home/arbint/DeepLearningWithProtoDUNE.img python train_model.py -o Training -e Default
+singularity exec --bind /data/arbint --nv /data/arbint/DeepLearningWithProtoDUNE.img python train_model.py -o Training -e Default
 
 echo "*********************************************************"
 echo "Running python analyze_model.py"
 echo "JOB $SLURM_JOB_ID is running on $SLURM_JOB_NODELIST "
 echo "*********************************************************"
 echo ""
-singularity exec --bind /data/arbint --nv /home/arbint/DeepLearningWithProtoDUNE.img python analyze_model.py -p 5 -s Development
+singularity exec --bind /data/arbint --nv  /data/arbint/DeepLearningWithProtoDUNE.img python analyze_model.py -p 5 -s Development
 
 echo "*********************************************************"
 echo "All done. Exiting"
