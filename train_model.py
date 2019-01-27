@@ -6,7 +6,7 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, SGD
 from tools.data_tools import DataSequence
 from tools.loss_metrics_tools import mean_iou
 from tools.tiramisu_model import get_tiramisu_model
