@@ -18,7 +18,8 @@ def weighted_categorical_crossentropy(weights):
         y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
 
         # Do the loss calculation
-        loss = y_true * tf.log(y_pred) * 1/weights
+        #loss = y_true * tf.log(y_pred) * 1/weights
+        loss = y_true * tf.log(y_pred) * weights
         return -tf.reduce_sum(loss, axis=-1)
 
     return loss

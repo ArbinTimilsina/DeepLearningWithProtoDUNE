@@ -134,6 +134,12 @@ def main():
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
     elif test == 3:
         model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    elif test == 4:
+        # With class_weight
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
+    elif test == 5:
+        # not 1/weight in loss function
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
@@ -159,6 +165,7 @@ def main():
     # To plot prediction history
     pred_history = PredictionHistory(model)
 
+    #class_weight={0:0.4, 1:61.0, 2:5.0}
     history = model.fit_generator(generator=datasequence_training,
                                   steps_per_epoch = NUM_TRAINING//BATCH_SIZE,
                                   epochs=NUM_EPOCHS,
@@ -166,6 +173,7 @@ def main():
                                   validation_steps= NUM_VALIDATION//BATCH_SIZE,
                                   verbose=2,
                                   callbacks=[check_point, early_stop, reduce_lr, pred_history],
+                                  #class_weight=class_weight,
                                   shuffle=False,
                                   use_multiprocessing=False,
                                   workers=1)
