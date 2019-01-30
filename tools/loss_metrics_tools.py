@@ -1,6 +1,24 @@
 import tensorflow as tf
 from keras import backend as K
 
+def dice_coef(y_true, y_pred):
+    '''
+    A metric that accounts for precision and recall on the scale from 0 - 1.
+    The closer to 1, the better.
+    '''
+    y_true_f = K.flatten(y_true)
+    y_pred_f = K.flatten(y_pred)
+    intersection = K.sum(y_true_f * y_pred_f)
+    smooth = 1.0
+    return (2.0 * intersection + smooth)/(K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
+
+def dice_coef_loss():
+
+    def loss(y_true, y_pred):
+        return 1 - dice_coef(y_true, y_pred)
+
+    return loss
+
 def weighted_categorical_crossentropy(weights):
     """
     Weighted version of keras.objectives.categorical_crossentropy.
@@ -18,7 +36,6 @@ def weighted_categorical_crossentropy(weights):
         y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
 
         # Do the loss calculation
-        #loss = y_true * tf.log(y_pred) * 1/weights
         loss = y_true * tf.log(y_pred) * weights
         return -tf.reduce_sum(loss, axis=-1)
 
@@ -44,17 +61,27 @@ def focal_loss(alpha=0.25, gamma=2.0):
 
     return loss
 
-# For Keras, custom metrics can be passed at the compilation step but
-# the function would need to take (y_true, y_pred) as arguments and return a single tensor value.
-# Note: seems like this implementation is not stable; it sometimes returns 0 in standalone tests
+def intersection_over_union(y_true, y_pred, label):
+    """
+    Return the Intersection over Union (IoU) for a given label.
+    """
+    y_true = K.cast(K.equal(K.argmax(y_true), label), K.floatx())
+    y_pred = K.cast(K.equal(K.argmax(y_pred), label), K.floatx())
+
+    intersection = K.sum(y_true * y_pred)
+    union = K.sum(y_true) + K.sum(y_pred) - intersection
+
+    return K.switch(K.equal(union, 0), 1.0, intersection / union)
+
 def mean_iou(y_true, y_pred):
     """
-    Calculate per-step mean Intersection-Over-Union (mIOU).
-    Computes the IOU for each semantic class and then computes the average over classes.
+    Return the mean Intersection over Union (IoU) score.
     """
-    num_classes = 3 #K.int_shape(y_pred)[-1]
-    score, up_opt = tf.metrics.mean_iou(y_true, y_pred, num_classes)
-    K.get_session().run(tf.local_variables_initializer())
-    with tf.control_dependencies([up_opt]):
-        score = tf.identity(score)
-    return score
+    num_labels = K.int_shape(y_pred)[-1]
+
+    total_iou = K.variable(0)
+    for label in range(num_labels):
+        # Note: WARNING:tensorflow:Variable += will be deprecated.
+        total_iou = total_iou + intersection_over_union(y_true, y_pred, label)
+
+    return total_iou / num_labels

@@ -3,11 +3,11 @@ import sys
 import argparse
 import numpy as np
 import configparser
+from keras import backend as K
 from keras.models import load_model
-from tools.loss_metrics_tools import mean_iou
-from tools.loss_metrics_tools import focal_loss
 from tools.plotting_tools import plot_feature_label_prediction
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
+from tools.loss_metrics_tools import intersection_over_union, mean_iou
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
 
 def argument_parser():
@@ -19,22 +19,16 @@ def argument_parser():
              Options are 'Training' or 'Development'.''')
     return vars(ap.parse_args())
 
-def intersection_over_union(y_true, y_pred, epsilon=1e-6):
-    intersection = np.sum(y_true * y_pred)
-    union = np.sum(y_true + y_pred)
-
-    return (2.0 * (intersection + epsilon)/(union + epsilon))
-
-def average_intersection_over_union(y_true, y_pred, class_names):
+def mean_intersection_over_union(y_true, y_pred, class_names):
     """
-    Average over classes and batch
+    Mean Intersection over Union (IoU) over classes and batch
     """
     n_preds = y_pred.shape[0]
     print('\nNumber of validation samples IoU evaulated on: {}\n'.format(n_preds))
 
     total_iou = 0
     for c in range(len(class_names)):
-        iou = intersection_over_union(y_true[:,:,:,c], y_pred[:,:,:,c])
+        iou = K.eval(intersection_over_union(y_true, y_pred, c))
         print('IoU for {} is: {:.2f}%'.format(class_names[c], iou*100))
         total_iou += iou
 
@@ -88,6 +82,7 @@ def main():
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
     model = load_model(model_path, custom_objects={"loss": focal_loss(),
                                                    "loss": weighted_categorical_crossentropy(WEIGHTS),
+                                                   "loss": dice_coef_loss(),
                                                    "mean_iou": mean_iou})
 
     # Make comparision plots
@@ -127,7 +122,7 @@ def main():
         count += 1
 
     predictions = model.predict_on_batch(samples)
-    average_intersection_over_union(targets, predictions, CLASS_NAMES)
+    mean_intersection_over_union(targets, predictions, CLASS_NAMES)
 
     # Print the test accuracy
     score = model.evaluate(samples, targets, verbose=0)

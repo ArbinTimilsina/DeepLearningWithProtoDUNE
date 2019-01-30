@@ -6,14 +6,14 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import RMSprop, SGD, Adam
+from keras.optimizers import RMSprop, SGD
 from tools.data_tools import DataSequence
 from tools.loss_metrics_tools import mean_iou
 from tools.tiramisu_model import get_tiramisu_model
 from tools.prediction_history import PredictionHistory
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -115,7 +115,7 @@ def main():
 
     continue_training = False
     # If weights exist, load them before continuing training
-    if(os.path.isfile(model_and_weights) and continue_training):
+    if os.path.isfile(model_and_weights) and continue_training:
         print("Old weights found!")
         try:
             model.load_weights(model_and_weights)
@@ -127,19 +127,7 @@ def main():
     decaly_rate = learning_rate/NUM_EPOCHS
     print("Decay rate is set to {}.".format(decaly_rate))
 
-    test = 0
-    if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
-    elif test == 2:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=focal_loss(), metrics=['accuracy', mean_iou])
-    elif test == 3:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decaly_rate, momentum=0.9), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
-    elif test == 4:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
+    model.compile(optimizer=RMSprop(lr=learning_rate), loss=dice_coef_loss(), metrics=['accuracy', mean_iou])
 
     # Print model summary
     model.summary()
@@ -162,17 +150,21 @@ def main():
     pred_history = PredictionHistory(model)
 
     # First clear plots- these are plotted only after training is successfully finished
-    plot_path = os.path.join("plots",  "prediction_history", "*.png")
-    files = glob.glob(plot_path)
-    for f in files:
-        os.remove(f)
+    prediction_history_path = os.path.join("plots",  "prediction_history", "*.png")
+    files = glob.glob(prediction_history_path)
+    for prediction_history in files:
+        if os.path.isfile(prediction_history):
+            os.remove(prediction_history)
 
     loss_path = os.path.join("plots", "loss_vs_epoch.pdf")
-    os.remove(loss_path)
+    if os.path.isfile(loss_path):
+        os.remove(loss_path)
     accuracy_path = os.path.join("plots", "accuracy_vs_epoch.pdf")
-    os.remove(accuracy_path)
+    if os.path.isfile(accuracy_path):
+        os.remove(accuracy_path)
     mean_iou_path = os.path.join("plots", "mean_iou_vs_epoch.pdf")
-    os.remove(mean_iou_path)
+    if os.path.isfile(mean_iou_path):
+        os.remove(mean_iou_path)
 
     history = model.fit_generator(generator=datasequence_training,
                                   steps_per_epoch = NUM_TRAINING//BATCH_SIZE,
