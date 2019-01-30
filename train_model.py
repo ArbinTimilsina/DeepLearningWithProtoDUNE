@@ -186,7 +186,7 @@ def main():
     for epoch in range(NUM_EPOCHS):
         plot_feature_label_prediction_path = os.path.join("plots",  "prediction_history", "prediction_epoch_{}.png".format(epoch))
         plot_feature_label_prediction(pred_history.feature_image[epoch], pred_history.label_image[epoch],  pred_history.prediction_image[epoch],
-                                      'Feature', 'Label', 'Model prediction', CLASS_NAMES, plot_feature_label_prediction_path)
+                                      'Feature', 'Label', 'Model prediction (Epoch {})'.format(epoch), CLASS_NAMES, plot_feature_label_prediction_path)
 
 if __name__ == "__main__":
     main()
