@@ -124,8 +124,8 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1.0e-6;
-    decaly_rate = learning_rate/NUM_EPOCHS
-    print("Decay rate is set to {}.".format(decaly_rate))
+    #decaly_rate = learning_rate/NUM_EPOCHS
+    #print("Decay rate is set to {}.".format(decaly_rate))
 
     model.compile(optimizer=RMSprop(lr=learning_rate), loss=dice_coef_loss(), metrics=['accuracy', mean_iou])
 
