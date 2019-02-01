@@ -14,6 +14,7 @@ from tools.prediction_history import PredictionHistory
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
+from tools.loss_metrics_tools import dice_coef_loss, f_beta_score_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -138,6 +139,8 @@ def main():
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=5.0), metrics=['accuracy', mean_iou])
     elif test == 5:
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=10.0), metrics=['accuracy', mean_iou])
+    elif test == 6:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=10.0), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")

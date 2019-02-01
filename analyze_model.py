@@ -7,8 +7,9 @@ from keras import backend as K
 from keras.models import load_model
 from tools.plotting_tools import plot_feature_label_prediction
 from tools.loss_metrics_tools import intersection_over_union, mean_iou
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
+from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
+from tools.loss_metrics_tools import dice_coef_loss, f_beta_score_loss
 
 def argument_parser():
     ap = argparse.ArgumentParser()
@@ -83,6 +84,7 @@ def main():
     model = load_model(model_path, custom_objects={"loss": focal_loss(),
                                                    "loss": weighted_categorical_crossentropy(WEIGHTS),
                                                    "loss": dice_coef_loss(),
+                                                   "loss": f_beta_score_loss(),
                                                    "mean_iou": mean_iou})
 
     # Make comparision plots

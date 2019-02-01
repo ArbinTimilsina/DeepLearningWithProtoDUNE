@@ -1,6 +1,49 @@
 import tensorflow as tf
 from keras import backend as K
 
+def precision(y_true, y_pred):
+    '''
+    Calculates the precision: answers how many selected items are relevant.
+    '''
+    true_positives = K.sum(K.clip(y_true * y_pred, 0, 1))
+    predicted_positives = K.sum(K.clip(y_pred, 0, 1))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+
+def recall(y_true, y_pred):
+    '''
+    Calculates the recall: answers how many relevant items are selected.
+    '''
+    true_positives = K.sum(K.clip(y_true * y_pred, 0, 1))
+    possible_positives = K.sum(K.clip(y_true, 0, 1))
+    recall = true_positives / (possible_positives + K.epsilon())
+    return recall
+
+def f_beta_score(y_true, y_pred, beta=1.0):
+    '''
+    The F-beta score (ranged from 0.0 to 1.0).
+    With beta < 1, assigning correct classes becomes more important,
+    and with beta > 1 penalizing incorrect class assignments becomes more important.
+    '''
+
+    # If there are no true positives, fix the F score at 0 like sklearn.
+    if K.sum(K.round(K.clip(y_true, 0, 1))) == 0:
+        return 0
+
+    p = precision(y_true, y_pred)
+    r = recall(y_true, y_pred)
+    bb = beta ** 2
+    fbeta_score = (1 + bb) * (p * r) / (bb * p + r + K.epsilon())
+    return fbeta_score
+
+def f_beta_score_loss(beta=1.0):
+
+    def loss(y_true, y_pred):
+        return 1 - f_beta_score(y_true, y_pred, beta)
+
+    return loss
+
 def dice_coefficient(y_true, y_pred):
     '''
     Sørensen–Dice coefficient is also known as the F1 score or Dice similarity coefficient (DSC).
