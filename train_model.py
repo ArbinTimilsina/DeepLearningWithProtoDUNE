@@ -124,13 +124,27 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1.0e-6;
-    #decaly_rate = learning_rate/NUM_EPOCHS
-    #print("Decay rate is set to {}.".format(decaly_rate))
+    #decay_rate = learning_rate/NUM_EPOCHS
+    #print("Decay rate is set to {}.".format(decay_rate))
 
-    model.compile(optimizer=RMSprop(lr=learning_rate), loss=dice_coef_loss(), metrics=['accuracy', mean_iou])
+    test = 0
+    if test == 1:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.50, gamma=0.5), metrics=['accuracy', mean_iou])
+    elif test == 2:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=1.0), metrics=['accuracy', mean_iou])
+    elif test == 3:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=2.0), metrics=['accuracy', mean_iou])
+    elif test == 4:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=5.0), metrics=['accuracy', mean_iou])
+    elif test == 5:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=10.0), metrics=['accuracy', mean_iou])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
 
     # Print model summary
-    model.summary()
+    #model.summary()
 
     # Plot the model architecture
     model_path = os.path.join("plots", "model.pdf")
@@ -141,7 +155,7 @@ def main():
     early_stop = EarlyStopping(monitor='val_loss', mode='min', patience=15, verbose=1)
 
     # Reduce learning rate when a metric has stopped improving
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.2, patience=3, cooldown=3, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.75, patience=3, cooldown=0, verbose=1)
 
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_and_weights, verbose=1, save_best_only=True, monitor='val_loss', mode='min')

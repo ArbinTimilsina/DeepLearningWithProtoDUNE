@@ -1,10 +1,9 @@
 import tensorflow as tf
 from keras import backend as K
 
-def dice_coef(y_true, y_pred):
+def dice_coefficient(y_true, y_pred):
     '''
-    A metric that accounts for precision and recall on the scale from 0 - 1.
-    The closer to 1, the better.
+    Sørensen–Dice coefficient is also known as the F1 score or Dice similarity coefficient (DSC).
     '''
     y_true_f = K.flatten(y_true)
     y_pred_f = K.flatten(y_pred)
@@ -15,7 +14,7 @@ def dice_coef(y_true, y_pred):
 def dice_coef_loss():
 
     def loss(y_true, y_pred):
-        return 1 - dice_coef(y_true, y_pred)
+        return 1 - dice_coefficient(y_true, y_pred)
 
     return loss
 
@@ -54,10 +53,13 @@ def focal_loss(alpha=0.25, gamma=2.0):
         _epsilon = tf.convert_to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
         y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
 
-        # Do the loss calculation
-        pt = tf.where(tf.equal(y_true, 1), y_pred, 1 - y_pred)
-        loss = alpha * tf.pow(1.0 - pt, gamma) * tf.log(pt)
+        cross_entropy = y_true * tf.log(y_pred)
+
+        # Do the focal loss calculation
+        loss = alpha * tf.pow(1 - y_pred, gamma) * cross_entropy
+
         return -tf.reduce_sum(loss, axis=-1)
+
 
     return loss
 
