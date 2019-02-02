@@ -130,17 +130,17 @@ def main():
 
     test = 0
     if test == 1:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.50, gamma=0.5), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=2.0), metrics=['accuracy', mean_iou])
     elif test == 2:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=1.0), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=3.0), metrics=['accuracy', mean_iou])
     elif test == 3:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=2.0), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=5.0), metrics=['accuracy', mean_iou])
     elif test == 4:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=5.0), metrics=['accuracy', mean_iou])
-    elif test == 5:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(alpha=0.25, gamma=10.0), metrics=['accuracy', mean_iou])
-    elif test == 6:
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=10.0), metrics=['accuracy', mean_iou])
+    elif test == 5:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=50.0), metrics=['accuracy', mean_iou])
+    elif test == 6:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=150.0), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")

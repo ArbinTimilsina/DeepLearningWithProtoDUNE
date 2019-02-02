@@ -8,8 +8,8 @@ def precision(y_true, y_pred):
     true_positives = K.sum(K.clip(y_true * y_pred, 0, 1))
     predicted_positives = K.sum(K.clip(y_pred, 0, 1))
     precision = true_positives / (predicted_positives + K.epsilon())
-    return precision
 
+    return precision
 
 def recall(y_true, y_pred):
     '''
@@ -18,6 +18,7 @@ def recall(y_true, y_pred):
     true_positives = K.sum(K.clip(y_true * y_pred, 0, 1))
     possible_positives = K.sum(K.clip(y_true, 0, 1))
     recall = true_positives / (possible_positives + K.epsilon())
+
     return recall
 
 def f_beta_score(y_true, y_pred, beta=1.0):
@@ -35,6 +36,7 @@ def f_beta_score(y_true, y_pred, beta=1.0):
     r = recall(y_true, y_pred)
     bb = beta ** 2
     fbeta_score = (1 + bb) * (p * r) / (bb * p + r + K.epsilon())
+
     return fbeta_score
 
 def f_beta_score_loss(beta=1.0):
@@ -79,6 +81,7 @@ def weighted_categorical_crossentropy(weights):
 
         # Do the loss calculation
         loss = y_true * tf.log(y_pred) * weights
+
         return -tf.reduce_sum(loss, axis=-1)
 
     return loss
@@ -102,7 +105,6 @@ def focal_loss(alpha=0.25, gamma=2.0):
         loss = alpha * tf.pow(1 - y_pred, gamma) * cross_entropy
 
         return -tf.reduce_sum(loss, axis=-1)
-
 
     return loss
 
