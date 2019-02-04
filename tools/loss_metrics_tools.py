@@ -79,9 +79,9 @@ def weighted_categorical_crossentropy(weights):
         y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
 
         w = K.cast(K.argmax(y_true, axis=-1), K.floatx())
-	    w0 = K.ones_like(w) * weights[0]
-	    w1 = K.ones_like(w) * weights[1]
-	    w2 = K.ones_like(w) * weights[2]
+	w0 = K.ones_like(w) * weights[0]
+	w1 = K.ones_like(w) * weights[1]
+	w2 = K.ones_like(w) * weights[2]
         weight = tf.stack([w0, w1, w2], axis=-1)
 
         # Do the loss calculation
