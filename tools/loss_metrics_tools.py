@@ -27,7 +27,6 @@ def f_beta_score(y_true, y_pred, beta=1.0):
     With beta < 1, assigning correct classes becomes more important,
     and with beta > 1 penalizing incorrect class assignments becomes more important.
     '''
-
     # If there are no true positives, fix the F score at 0 like sklearn.
     if K.sum(K.round(K.clip(y_true, 0, 1))) == 0:
         return 0
@@ -79,8 +78,14 @@ def weighted_categorical_crossentropy(weights):
         _epsilon = tf.convert_to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
         y_pred = tf.clip_by_value(y_pred, _epsilon, 1.0 - _epsilon)
 
+        w = K.cast(K.argmax(y_true, axis=-1), K.floatx())
+	    w0 = K.ones_like(w) * weights[0]
+	    w1 = K.ones_like(w) * weights[1]
+	    w2 = K.ones_like(w) * weights[2]
+        weight = tf.stack([w0, w1, w2], axis=-1)
+
         # Do the loss calculation
-        loss = y_true * tf.log(y_pred) * weights
+        loss = y_true * tf.log(y_pred) * weight
 
         return -tf.reduce_sum(loss, axis=-1)
 
