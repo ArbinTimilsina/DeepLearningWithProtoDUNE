@@ -130,7 +130,7 @@ def main():
 
     test = 0
     if test == 1:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=2.0), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
     elif test == 2:
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=3.0), metrics=['accuracy', mean_iou])
     elif test == 3:
