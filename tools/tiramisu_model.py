@@ -5,9 +5,11 @@ from keras.layers.merge import concatenate
 from keras.layers.pooling import MaxPooling2D
 from keras.layers.convolutional import Conv2D, Conv2DTranspose
 from keras.layers import BatchNormalization, Activation, Dropout
+from keras.layers.advanced_activations import LeakyReLU
 
 def relu_bn(x):
     x = Activation('relu')(x)
+    #x = LeakyReLU()(x)
     return BatchNormalization()(x)
 
 def conv(x, num_filters, size, wd, dr, stride=1):
@@ -31,6 +33,9 @@ def dense_block(n, x, growth_rate, dr, wd):
 
 def transition_dn(x, dr, wd):
     # Original idea from the paper has MaxPooling2D(strides=(2, 2)) after Conv2D without stride
+    #x = conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd)
+    #return MaxPooling2D(strides=(2, 2), data_format="channels_last")(x)
+
     return conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd, stride=2)
 
 def down_path(x, num_layers, growth_rate, dr, wd):

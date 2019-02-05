@@ -128,23 +128,7 @@ def main():
     #decay_rate = learning_rate/NUM_EPOCHS
     #print("Decay rate is set to {}.".format(decay_rate))
 
-    test = 0
-    if test == 1:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
-    elif test == 2:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=3.0), metrics=['accuracy', mean_iou])
-    elif test == 3:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=5.0), metrics=['accuracy', mean_iou])
-    elif test == 4:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=10.0), metrics=['accuracy', mean_iou])
-    elif test == 5:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=50.0), metrics=['accuracy', mean_iou])
-    elif test == 6:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=f_beta_score_loss(beta=150.0), metrics=['accuracy', mean_iou])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
+    model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
 
     # Print model summary
     #model.summary()
