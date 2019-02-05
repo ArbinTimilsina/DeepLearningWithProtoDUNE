@@ -34,7 +34,7 @@ def dense_block(n, x, growth_rate, dr, wd):
 def transition_dn(x, dr, wd):
     # Original idea from the paper has MaxPooling2D(strides=(2, 2)) after Conv2D without stride
     #x = conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd)
-    #return MaxPooling2D(strides=(2, 2), data_format="channels_last")(x)
+    #return MaxPooling2D(strides=(2, 2))(x)
 
     return conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd, stride=2)
 
