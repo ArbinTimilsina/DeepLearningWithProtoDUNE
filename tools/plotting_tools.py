@@ -41,11 +41,11 @@ def get_label_image(label_image, class_names, fig, ax, title):
     """
     Setup for label image.
     """
-    minimum = np.min(label_image)
-    maximum = np.max(label_image)
-    cmap = plt.get_cmap('gist_heat_r', maximum-minimum+1)
+    minimum = 0.0
+    maximum = len(class_names)
+    cmap = plt.get_cmap('gist_heat_r', maximum-minimum)
     c= ax.imshow(label_image,cmap=cmap,interpolation='none', origin='lower',
-                   vmin=minimum, vmax=maximum)
+                   vmin=minimum, vmax=maximum-1)
     cb = fig.colorbar(c, ax=ax)
     cb.set_ticks([x for x in range(len(class_names))])
     cb.set_ticklabels(class_names)
