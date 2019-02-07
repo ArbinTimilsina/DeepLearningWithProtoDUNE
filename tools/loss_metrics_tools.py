@@ -132,8 +132,9 @@ def mean_iou(y_true, y_pred):
     num_labels = K.int_shape(y_pred)[-1]
 
     total_iou = K.variable(0)
-    for label in range(num_labels):
+    # Not count background
+    for label in range(1, num_labels):
         # Note: WARNING:tensorflow:Variable += will be deprecated.
         total_iou = total_iou + intersection_over_union(y_true, y_pred, label)
 
-    return total_iou / num_labels
+    return total_iou / (num_labels - 1)

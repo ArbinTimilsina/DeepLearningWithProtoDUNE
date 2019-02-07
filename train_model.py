@@ -6,7 +6,7 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import RMSprop, SGD
+from keras.optimizers import RMSprop, SGD, Adagrad, Adadelta, Adam
 from tools.data_tools import DataSequence
 from tools.loss_metrics_tools import mean_iou
 from tools.tiramisu_model import get_tiramisu_model
@@ -125,10 +125,24 @@ def main():
             print("Old weights couldn't be loaded successfully, will continue!")
 
     learning_rate = 1.0e-6;
-    #decay_rate = learning_rate/NUM_EPOCHS
-    #print("Decay rate is set to {}.".format(decay_rate))
+    decay_rate = learning_rate/NUM_EPOCHS
+    print("Decay rate is set to {}.".format(decay_rate))
 
-    model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
+    test = 0
+    if test == 1:
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decay_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+    elif test == 2:
+        model.compile(optimizer=RMSprop(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+    elif test == 3:
+        model.compile(optimizer=Adagrad(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+    elif test == 4:
+        model.compile(optimizer=Adadelta(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+    elif test == 5:
+        model.compile(optimizer=Adam(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+    else:
+        print("\nError: Test is not in the range.")
+        print("Exiting!\n")
+        sys.exit(1)
 
     # Print model summary
     #model.summary()
