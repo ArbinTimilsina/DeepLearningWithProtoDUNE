@@ -29,7 +29,7 @@ class PredictionsCallback(Callback):
         X, y = next(generator_testing)
         y_preprocessed = preprocess_label(y, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, len(CLASS_NAMES))
         self.y_preprocessed_max = K.argmax(y_preprocessed, axis=-1)
-        self.X_preprocessed = preprocess_feature(X, Iself.MAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH)
+        self.X_preprocessed = preprocess_feature(X, self.MAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH)
     
     def on_epoch_end(self, epoch, logs=None):
         prediction = self.model.predict_on_batch(self.X_preprocessed)
