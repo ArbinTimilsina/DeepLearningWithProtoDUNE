@@ -5,6 +5,7 @@ import argparse
 import numpy as np
 import configparser
 from keras.layers import Input
+from keras import backend as K
 from keras.utils import plot_model
 from keras.optimizers import RMSprop
 from tools.data_tools import DataSequence
