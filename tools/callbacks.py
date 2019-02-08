@@ -18,26 +18,26 @@ class PredictionsCallback(Callback):
         config_path = os.path.join("configurations", "master_configuration.ini")
         config.read(config_path)
 
-        IMAGE_WIDTH = int(config["DEFAULT"]["IMAGE_WIDTH"])
-        IMAGE_HEIGHT = int(config["DEFAULT"]["IMAGE_HEIGHT"])
-        IMAGE_DEPTH = int(config["DEFAULT"]["IMAGE_DEPTH"])
+        self.IMAGE_WIDTH = int(config["DEFAULT"]["IMAGE_WIDTH"])
+        self.IMAGE_HEIGHT = int(config["DEFAULT"]["IMAGE_HEIGHT"])
+        self.IMAGE_DEPTH = int(config["DEFAULT"]["IMAGE_DEPTH"])
         CLASS_NAMES = config["DEFAULT"]["CLASS_NAMES"].split()
         FEATURE_FILE_TESTING = config["DEFAULT"]["FEATURE_FILE_TESTING"]
         LABEL_FILE_TESTING = config["DEFAULT"]["LABEL_FILE_TESTING"]
 
         generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)
         X, y = next(generator_testing)
-        y_preprocessed = preprocess_label(y, IMAGE_WIDTH, IMAGE_HEIGHT, len(CLASS_NAMES))
+        y_preprocessed = preprocess_label(y, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, len(CLASS_NAMES))
         self.y_preprocessed_max = K.argmax(y_preprocessed, axis=-1)
-        self.X_preprocessed = preprocess_feature(X, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH)
+        self.X_preprocessed = preprocess_feature(X, Iself.MAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH)
     
     def on_epoch_end(self, epoch, logs=None):
         prediction = self.model.predict_on_batch(self.X_preprocessed)
         prediction_max = K.argmax(prediction, axis=-1)
 
-        self.feature_image.append(self.X_preprocessed.reshape(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
-        self.label_image.append(self.y_preprocessed_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT))
-        self.prediction_image.append(prediction_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT))
+        self.feature_image.append(self.X_preprocessed.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH))
+        self.label_image.append(self.y_preprocessed_max.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT))
+        self.prediction_image.append(prediction_max.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT))
 
 class WeightsCallback(Callback):
     def __init__(self, weights, max_epoch, max_weight):
