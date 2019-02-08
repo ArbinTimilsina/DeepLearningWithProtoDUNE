@@ -67,9 +67,6 @@ def weighted_categorical_crossentropy(weights):
     Weighted version of keras.objectives.categorical_crossentropy.
     Use this loss function for class balance.
     """
-    # Convert weights to a constant tensor
-    weights = tf.constant(weights, dtype=tf.float32)
-
     def loss(y_true, y_pred):
        # Scale predictions so that the class probas of each sample sum to 1
         y_pred /= tf.reduce_sum(y_pred, axis=-1, keepdims=True)
@@ -132,9 +129,8 @@ def mean_iou(y_true, y_pred):
     num_labels = K.int_shape(y_pred)[-1]
 
     total_iou = K.variable(0)
-    # Not count background
-    for label in range(1, num_labels):
+    for label in range(num_labels):
         # Note: WARNING:tensorflow:Variable += will be deprecated.
         total_iou = total_iou + intersection_over_union(y_true, y_pred, label)
 
-    return total_iou / (num_labels - 1)
+    return total_iou / num_labels

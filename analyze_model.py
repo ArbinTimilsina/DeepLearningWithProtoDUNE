@@ -6,10 +6,8 @@ import configparser
 from keras import backend as K
 from keras.models import load_model
 from tools.plotting_tools import plot_feature_label_prediction
-from tools.loss_metrics_tools import intersection_over_union, mean_iou
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
-from tools.loss_metrics_tools import dice_coef_loss, f_beta_score_loss
+from tools.loss_metrics_tools import intersection_over_union, mean_iou, weighted_categorical_crossentropy
 
 def argument_parser():
     ap = argparse.ArgumentParser()
@@ -81,10 +79,7 @@ def main():
 
     # Get the model
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
-    model = load_model(model_path, custom_objects={"loss": focal_loss(),
-                                                   "loss": weighted_categorical_crossentropy(WEIGHTS),
-                                                   "loss": dice_coef_loss(),
-                                                   "loss": f_beta_score_loss(),
+    model = load_model(model_path, custom_objects={"loss": weighted_categorical_crossentropy(WEIGHTS),
                                                    "mean_iou": mean_iou})
 
     # Make comparision plots
@@ -97,10 +92,10 @@ def main():
 
         X_preprocessed = preprocess_feature(X, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH)
         y_preprocessed = preprocess_label(y, IMAGE_WIDTH, IMAGE_HEIGHT, len(CLASS_NAMES))
-        y_preprocessed_max = np.argmax(y_preprocessed, axis=3)
+        y_preprocessed_max = np.argmax(y_preprocessed, axis=-1)
 
         prediction = model.predict_on_batch(X_preprocessed)
-        prediction_max = np.argmax(prediction, axis=3)
+        prediction_max = np.argmax(prediction, axis=-1)
 
         feature_image = X_preprocessed.reshape(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH)
         label_image = y_preprocessed_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)

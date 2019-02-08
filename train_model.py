@@ -6,15 +6,13 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras.utils import plot_model
-from keras.optimizers import RMSprop, SGD, Adagrad, Adadelta, Adam
+from keras.optimizers import RMSprop
 from tools.data_tools import DataSequence
-from tools.loss_metrics_tools import mean_iou
 from tools.tiramisu_model import get_tiramisu_model
-from tools.prediction_history import PredictionHistory
+from tools.callbacks import PredictionsCallback, WeightsCallback
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tools.loss_metrics_tools import weighted_categorical_crossentropy, focal_loss, dice_coef_loss
-from tools.loss_metrics_tools import dice_coef_loss, f_beta_score_loss
+from tools.loss_metrics_tools import mean_iou, weighted_categorical_crossentropy
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -124,21 +122,26 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
+    weights_variable = K.variable(WEIGHTS)
+
     learning_rate = 1.0e-6;
-    decay_rate = learning_rate/NUM_EPOCHS
-    print("Decay rate is set to {}.".format(decay_rate))
 
     test = 0
     if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decay_rate), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=2)
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 2:
-        model.compile(optimizer=RMSprop(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=5)
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 3:
-        model.compile(optimizer=Adagrad(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=10)
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 4:
-        model.compile(optimizer=Adadelta(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=20)
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 5:
-        model.compile(optimizer=Adam(), loss=weighted_categorical_crossentropy(WEIGHTS), metrics=['accuracy', mean_iou])
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=50)
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
@@ -161,8 +164,14 @@ def main():
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_and_weights, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
 
+    # To update weights per epoch
+    #weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=20)
+
     # To plot prediction history
-    pred_history = PredictionHistory(model)
+    predictions_callback = PredictionsCallback(model)
+
+    # All callbacks
+    total_callbacks=[check_point, early_stop, reduce_lr, weights_callback, predictions_callback]
 
     # First clear plots- these are plotted only after training is successfully finished
     prediction_history_path = os.path.join("plots",  "prediction_history", "*.png")
@@ -187,7 +196,7 @@ def main():
                                   validation_data=datasequence_validation,
                                   validation_steps= NUM_VALIDATION//BATCH_SIZE,
                                   verbose=2,
-                                  callbacks=[check_point, early_stop, reduce_lr, pred_history],
+                                  callbacks=total_callbacks,
                                   shuffle=False,
                                   use_multiprocessing=False,
                                   workers=1)
