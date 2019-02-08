@@ -11,7 +11,7 @@ class PredictionsCallback(Callback):
         self.label_image = []
         self.prediction_image = []
         self.model = model
-        init_predictions()
+        self.init_predictions()
         
     def init_predictions(self):
         config = configparser.ConfigParser()
