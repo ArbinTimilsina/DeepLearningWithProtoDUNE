@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import configparser
 from keras import backend as K
 from keras.callbacks import Callback
@@ -28,12 +29,12 @@ class PredictionsCallback(Callback):
         generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)
         X, y = next(generator_testing)
         y_preprocessed = preprocess_label(y, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, len(CLASS_NAMES))
-        self.y_preprocessed_max = K.argmax(y_preprocessed, axis=-1)
+        self.y_preprocessed_max = np.argmax(y_preprocessed, axis=-1)
         self.X_preprocessed = preprocess_feature(X, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH)
     
     def on_epoch_end(self, epoch, logs=None):
         prediction = self.model.predict_on_batch(self.X_preprocessed)
-        prediction_max = K.argmax(prediction, axis=-1)
+        prediction_max = np.argmax(prediction, axis=-1)
 
         self.feature_image.append(self.X_preprocessed.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH))
         self.label_image.append(self.y_preprocessed_max.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT))
