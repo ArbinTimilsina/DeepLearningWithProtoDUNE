@@ -1,5 +1,6 @@
 import os
 import configparser
+from keras import backend as K
 from keras.callbacks import Callback
 from tools.data_tools import get_data_generator, preprocess_feature, preprocess_label
 
