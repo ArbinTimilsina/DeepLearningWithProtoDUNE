@@ -43,6 +43,7 @@ conda create --name envDeepLearningWithProtoDUNE python=3.5
 conda activate envDeepLearningWithProtoDUNE
 pip install --upgrade pip
 pip install -r requirements/cpu_requirements.txt
+conda install pydot graphviz
 ```
 
 ### To run with singularity container
