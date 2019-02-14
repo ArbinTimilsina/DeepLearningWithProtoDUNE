@@ -127,7 +127,7 @@ def main():
 
     learning_rate = 1.0e-6;
 
-    test = 0
+    test = 1
     if test == 1:
         weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=2)
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
