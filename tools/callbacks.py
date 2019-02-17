@@ -13,7 +13,7 @@ class PredictionsCallback(Callback):
         self.prediction_image = []
         self.model = model
         self.init_predictions()
-        
+
     def init_predictions(self):
         config = configparser.ConfigParser()
         config_path = os.path.join("configurations", "master_configuration.ini")
@@ -31,7 +31,7 @@ class PredictionsCallback(Callback):
         y_preprocessed = preprocess_label(y, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, len(CLASS_NAMES))
         self.y_preprocessed_max = np.argmax(y_preprocessed, axis=-1)
         self.X_preprocessed = preprocess_feature(X, self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_DEPTH)
-    
+
     def on_epoch_end(self, epoch, logs=None):
         prediction = self.model.predict_on_batch(self.X_preprocessed)
         prediction_max = np.argmax(prediction, axis=-1)
@@ -41,20 +41,19 @@ class PredictionsCallback(Callback):
         self.prediction_image.append(prediction_max.reshape(self.IMAGE_WIDTH, self.IMAGE_HEIGHT))
 
 class WeightsCallback(Callback):
-    def __init__(self, weights, max_epoch, max_weight):
+    def __init__(self, weights, max_epoch, max_weight_1, max_weight_2):
         self.weights = weights
         self.max_epoch = max_epoch
-        self.max_weight = max_weight
+        self.max_weight_1 = max_weight_1
+        self.max_weight_2 = max_weight_2
 
     def on_epoch_end(self, epoch, logs=None):
-        growth_rate = 1/(self.max_epoch**0.6)
-
         weight_0 = K.get_value(self.weights[0])
-
         weight_1 = K.get_value(self.weights[1])
-        weight_1 = weight_1 + growth_rate * weight_1 * (1 - weight_1/self.max_weight)
-
         weight_2 = K.get_value(self.weights[2])
-        weight_2 = weight_2 + growth_rate * weight_2 * (1 - weight_2/self.max_weight)
+
+        growth_rate = 1/(0.06*self.max_epoch**1.1)
+        weight_1 = weight_1 + growth_rate * weight_1 * (1 - weight_1/self.max_weight_1)
+        weight_2 = weight_2 + growth_rate * weight_2 * (1 - weight_2/self.max_weight_2)
 
         K.set_value(self.weights, [weight_0, weight_1, weight_2])
