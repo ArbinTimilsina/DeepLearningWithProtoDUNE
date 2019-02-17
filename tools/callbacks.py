@@ -53,7 +53,8 @@ class WeightsCallback(Callback):
         weight_2 = K.get_value(self.weights[2])
 
         growth_rate = 1/(0.06*self.max_epoch**1.1)
-        weight_1 = weight_1 + growth_rate * weight_1 * (1 - weight_1/self.max_weight_1)
-        weight_2 = weight_2 + growth_rate * weight_2 * (1 - weight_2/self.max_weight_2)
+        if epoch > self.max_epoch/4.0:
+            weight_1 = weight_1 + growth_rate * weight_1 * (1 - weight_1/self.max_weight_1)
+            weight_2 = weight_2 + growth_rate * weight_2 * (1 - weight_2/self.max_weight_2)
 
         K.set_value(self.weights, [weight_0, weight_1, weight_2])

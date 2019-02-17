@@ -129,19 +129,13 @@ def main():
 
     test = 1
     if test == 1:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=25, max_weight_2=25)
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=170, max_weight_2=15)
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 2:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=30, max_weight_2=5)
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=50, max_weight_2=15)
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 3:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=50, max_weight_2=5)
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
-    elif test == 4:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=100, max_weight_2=10)
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
-    elif test == 5:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=150, max_weight_2=15)
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=30, max_weight_2=30)
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
