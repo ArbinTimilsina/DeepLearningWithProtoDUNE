@@ -12,7 +12,7 @@ def plot_weights_median(weights, ranges, class_names, plot_name):
     fig, axes = plt.subplots(1, len(class_names), figsize=(18,5), facecolor='w')
     for index in range(len(class_names)):
         ax = axes[index]
-        ax.hist(weights[index], 100, range=ranges[index], color='green', alpha=0.75)
+        ax.hist(weights[index], 50, range=ranges[index], color='green', alpha=0.75)
         ax.set_title(class_names[index], fontsize=20, fontname='DejaVu Sans',fontweight='bold')
         ax.set_xlabel("Weight", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
         ax.set_ylabel("Count", fontsize=15, fontname='DejaVu Sans',fontweight='bold')
