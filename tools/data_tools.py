@@ -26,6 +26,11 @@ def preprocess_feature(x, image_width, image_height, image_depth):
     x_max = np.max(x)
     x = x/x_max
 
+    #mean = np.mean(x)
+    #std = np.std(x)
+    #x -= mean
+    #x /= std
+
     return x.reshape(1, image_width, image_height, image_depth)
 
 def preprocess_label(y, image_width, image_height, num_classes):
@@ -59,17 +64,18 @@ class DataSequence(Sequence):
         """
         Generate one batch of data at 'index', which is the position of the batch in the Sequence.
         """
+        # Index starts from 0
+        index = index + 1
         full_index = index * self.batch_size
 
-        if full_index + self.batch_size >= self.max_index:
-            self.rows = self.max_index - full_index
-        else:
-            self.rows = min(self.batch_size, self.max_index)
+        rows = min(self.batch_size, self.max_index)
+        if full_index > self.max_index:
+            rows = self.max_index - full_index
 
         #print("index: {}; rows: {}".format(index, self.rows))
 
         # Generate data
-        X, y = self.__data_generation(self.rows)
+        X, y = self.__data_generation(rows)
 
         return X, y
 
@@ -77,8 +83,6 @@ class DataSequence(Sequence):
         """
         Update after each epoch.
         """
-        self.rows = min(self.batch_size, self.max_index)
-
         self.reader1 = csv.reader(open(self.feature_file, "r"))
         self.reader2 = csv.reader(open(self.label_file, "r"))
 
