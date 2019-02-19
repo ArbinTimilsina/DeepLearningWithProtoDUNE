@@ -12,7 +12,7 @@ cd DeepLearningWithProtoDUNE
 ### Download the dataset
 ```
 # 320x320 inputs
-wget -O input_files.zip https://www.dropbox.com/sh/mhuix9jwg48gx5l/AABCgEMZdxR2cv-Ja2wZgdC5a?dl=1
+wget -O input_files.zip https://www.dropbox.com/sh/3529klxprjgswlv/AAAuD-HN3oOzpY1-rlkaokt8a?dl=1
 unzip input_files.zip -d input_files
 rm -rf input_files.zip
 ```
