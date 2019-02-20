@@ -7,13 +7,13 @@ import configparser
 from keras.layers import Input
 from keras import backend as K
 from keras.utils import plot_model
-from keras.optimizers import RMSprop
 from tools.data_tools import DataSequence
+from tools.callbacks import PredictionsCallback
+from keras.optimizers import SGD, RMSprop, Adam
 from tools.tiramisu_model import get_tiramisu_model
-from tools.callbacks import PredictionsCallback, WeightsCallback
+from tools.loss_metrics_tools import mean_iou, focal_loss
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tools.loss_metrics_tools import mean_iou, weighted_categorical_crossentropy, focal_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -123,18 +123,21 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
-    weights_variable = K.variable(WEIGHTS)
-
     learning_rate = 1.0e-6;
+    decay_rate = learning_rate/NUM_EPOCHS
+    print("Decay rate is set to {}.".format(decay_rate))
 
     test = 1
     if test == 1:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=160, max_weight_2=15)
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=SGD(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     elif test == 2:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
+        model.compile(optimizer=SGD(lr=learning_rate, decay=decay_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     elif test == 3:
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
+    elif test == 4:
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
+    elif test == 5:
+        model.compile(optimizer=Adam(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")
@@ -157,14 +160,11 @@ def main():
     # Save the best model after every epoch
     check_point = ModelCheckpoint(filepath=model_and_weights, verbose=1, save_best_only=True, monitor='val_loss', mode='min')
 
-    # To update weights per epoch
-    #weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight=20)
-
     # To plot prediction history
     predictions_callback = PredictionsCallback(model)
 
     # All callbacks
-    total_callbacks=[check_point, early_stop, reduce_lr, weights_callback, predictions_callback]
+    total_callbacks=[check_point, early_stop, reduce_lr, predictions_callback]
 
     # First clear plots- these are plotted only after training is successfully finished
     prediction_history_path = os.path.join("plots",  "prediction_history", "*.png")

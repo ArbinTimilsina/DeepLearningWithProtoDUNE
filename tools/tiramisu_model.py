@@ -3,9 +3,9 @@ from keras.layers import Reshape
 from keras.regularizers import l2
 from keras.layers.merge import concatenate
 from keras.layers.pooling import MaxPooling2D
+from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.convolutional import Conv2D, Conv2DTranspose
 from keras.layers import BatchNormalization, Activation, Dropout
-from keras.layers.advanced_activations import LeakyReLU
 
 def relu_bn(x):
     x = Activation('relu')(x)

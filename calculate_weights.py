@@ -39,7 +39,7 @@ def main():
         for index, weight in class_weights.items():
             weights[index].append(weight)
 
-    ranges = [(0.5,1.5), (100, 225), (5, 35)]
+    ranges = [(0.5,1.5), (100, 500), (5, 35)]
     plot_path = os.path.join("plots", "extra", "weights_median.pdf")
     plot_weights_median(weights, ranges, CLASS_NAMES, plot_path)
     print("\nDone! Plot with median weights for each class is saved at {}!\n".format(plot_path))

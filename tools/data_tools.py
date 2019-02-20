@@ -8,7 +8,7 @@ def get_data_generator(feature_file, label_file):
     Allows to iterate over csv files.
     Generates one row at a time.
     """
-    with open(os.path.join(feature_file, "feature.csv"), "r") as csv1, open(os.path.join(label_file, "label.csv"), "r") as csv2:
+    with open(feature_file, "r") as csv1, open(label_file, "r") as csv2:
         reader1 = csv.reader(csv1)
         reader2 = csv.reader(csv2)
         # Skip the header row
@@ -45,8 +45,8 @@ class DataSequence(Sequence):
     def __init__(self, feature_file, label_file,
                  image_width, image_height, image_depth, num_classes,
                  max_index=1, batch_size=1):
-        self.feature_file = os.path.join(feature_file, "feature.csv")
-        self.label_file = os.path.join(label_file, "label.csv")
+        self.feature_file = feature_file
+        self.label_file = label_file
         self.image_width = image_width
         self.image_height = image_height
         self.image_depth = image_depth
