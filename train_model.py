@@ -127,7 +127,7 @@ def main():
     decay_rate = learning_rate/NUM_EPOCHS
     print("Decay rate is set to {}.".format(decay_rate))
 
-    test = 1
+    test = 2
     if test == 1:
         model.compile(optimizer=SGD(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     elif test == 2:
