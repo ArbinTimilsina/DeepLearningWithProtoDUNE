@@ -13,7 +13,7 @@ from tools.tiramisu_model import get_tiramisu_model
 from tools.callbacks import PredictionsCallback, WeightsCallback
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tools.loss_metrics_tools import mean_iou, weighted_categorical_crossentropy
+from tools.loss_metrics_tools import mean_iou, weighted_categorical_crossentropy, focal_loss
 
 # Needed when using single GPU with sbatch; else will get the following error
 # failed call to cuInit: CUDA_ERROR_NO_DEVICE
@@ -129,14 +129,12 @@ def main():
 
     test = 1
     if test == 1:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=170, max_weight_2=15)
+        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=160, max_weight_2=15)
         model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
     elif test == 2:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=50, max_weight_2=15)
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
     elif test == 3:
-        weights_callback = WeightsCallback(weights=weights_variable, max_epoch=NUM_EPOCHS, max_weight_1=30, max_weight_2=30)
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=weighted_categorical_crossentropy(weights_variable), metrics=['accuracy', mean_iou])
+        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
     else:
         print("\nError: Test is not in the range.")
         print("Exiting!\n")

@@ -19,17 +19,18 @@ def get_data_generator(feature_file, label_file):
             array_row2 = np.array(row2, dtype=np.int)
             yield array_row1, array_row2
 
-def preprocess_feature(x, image_width, image_height, image_depth):
+def preprocess_feature(x, image_width, image_height, image_depth, normalize=False):
     """
     Feature is the adc values; scale it such that each value is between 0 and 1.
     """
     x_max = np.max(x)
     x = x/x_max
 
-    #mean = np.mean(x)
-    #std = np.std(x)
-    #x -= mean
-    #x /= std
+    if normalize:
+        mean = np.mean(x)
+        std = np.std(x)
+        x -= mean
+        x /= std
 
     return x.reshape(1, image_width, image_height, image_depth)
 
@@ -70,9 +71,8 @@ class DataSequence(Sequence):
 
         rows = min(self.batch_size, self.max_index)
         if full_index > self.max_index:
-            rows = self.max_index - full_index
-
-        #print("index: {}; rows: {}".format(index, self.rows))
+            rows = self.max_index - full_index + self.batch_size
+        #print("index: {}; full_index: {}; rows: {}".format(index, full_index, rows))
 
         # Generate data
         X, y = self.__data_generation(rows)
@@ -96,24 +96,21 @@ class DataSequence(Sequence):
         """
         samples = np.zeros((rows, self.image_width, self.image_height, self.image_depth))
         targets = np.zeros((rows, self.image_width, self.image_height, self.num_classes))
-        for j in range(rows):
-            for row1, row2 in zip(self.reader1, self.reader2):
-                array_row1 = np.array(row1, dtype=np.float)
-                samples[j,:,:,:] = preprocess_feature(array_row1,
-                                                      self.image_width, self.image_height, self.image_depth)
-                try:
-                    next(self.reader1)
-                except StopIteration:
-                    print("CSV iteration end for feature. Calling 'break'.")
-                    break
 
-                array_row2 = np.array(row2, dtype=np.int)
-                targets[j,:,:,:] = preprocess_label(array_row2,
+        for j in range(rows):
+            try:
+                row1 = next(self.reader1)
+                row2 = next(self.reader2)
+            except StopIteration:
+                print("CSV iteration end; calling 'break'.")
+                break
+
+            array_row1 = np.array(row1, dtype=np.float)
+            samples[j,:,:,:] = preprocess_feature(array_row1,
+                                                      self.image_width, self.image_height, self.image_depth)
+
+            array_row2 = np.array(row2, dtype=np.int)
+            targets[j,:,:,:] = preprocess_label(array_row2,
                                                     self.image_width, self.image_height, self.num_classes)
-                try:
-                    next(self.reader2)
-                except StopIteration:
-                    print("CSV iteration end for label. Calling 'break'.")
-                    break
 
         return samples, targets
