@@ -1,34 +1,24 @@
-[33mWARNING:[0m skipping mount of /lfstev: permission denied
 [33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (454) bind mounts
-2019-01-24 10:59:27.858752: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2019-01-24 10:59:28.861753: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
-name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
-pciBusID: 0000:06:00.0
+2019-02-20 06:00:25.645745: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-20 06:00:26.277764: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:0c:00.0
 totalMemory: 15.90GiB freeMemory: 15.61GiB
-2019-01-24 10:59:28.862032: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
-2019-01-24 10:59:30.146417: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
-2019-01-24 10:59:30.146462: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
-2019-01-24 10:59:30.146471: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
-2019-01-24 10:59:30.146776: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15127 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2019-02-20 06:00:26.277836: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-02-20 06:00:28.667103: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-02-20 06:00:28.667188: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-02-20 06:00:28.667208: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-02-20 06:00:28.667767: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:0c:00.0, compute capability: 6.0)
 Using TensorFlow backend.
-Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f9cbd0719b0>>
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 707, in __del__
-TypeError: 'NoneType' object is not callable
-[33mWARNING:[0m skipping mount of /lfstev: permission denied
 [33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (454) bind mounts
-2019-01-25 05:36:01.688253: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2019-01-25 05:36:02.686237: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
-name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.4805
-pciBusID: 0000:06:00.0
+2019-02-21 00:47:12.473387: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-21 00:47:13.351999: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:0c:00.0
 totalMemory: 15.90GiB freeMemory: 15.61GiB
-2019-01-25 05:36:02.686514: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
-2019-01-25 05:36:03.972514: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
-2019-01-25 05:36:03.972557: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
-2019-01-25 05:36:03.972564: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
-2019-01-25 05:36:03.972874: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15127 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2019-02-21 00:47:13.352058: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-02-21 00:47:15.736118: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-02-21 00:47:15.736179: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-02-21 00:47:15.736192: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-02-21 00:47:15.736752: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:0c:00.0, compute capability: 6.0)
 Using TensorFlow backend.
-Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7fb6aefb5978>>
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 707, in __del__
-TypeError: 'NoneType' object is not callable
