@@ -6,7 +6,7 @@ import configparser
 from keras import backend as K
 from keras.models import load_model
 from tools.plotting_tools import plot_feature_label_prediction
-from tools.loss_metrics_tools import intersection_over_union, mean_iou, focal_loss
+from tools.loss_metrics_tools import intersection_over_union, mean_iou
 from tools.data_tools import DataSequence, get_data_generator, preprocess_feature, preprocess_label
 
 def argument_parser():
@@ -79,8 +79,7 @@ def main():
 
     # Get the model
     model_path = os.path.join("saved_models", "model_and_weights.hdf5")
-    model = load_model(model_path, custom_objects={"loss": focal_loss(),
-                                                   "mean_iou": mean_iou})
+    model = load_model(model_path, custom_objects={"mean_iou": mean_iou})
 
     # Make comparision plots
     generator_testing = get_data_generator(FEATURE_FILE_TESTING, LABEL_FILE_TESTING)

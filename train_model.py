@@ -6,12 +6,12 @@ import numpy as np
 import configparser
 from keras.layers import Input
 from keras import backend as K
+from keras.optimizers import Adam
 from keras.utils import plot_model
 from tools.data_tools import DataSequence
+from tools.loss_metrics_tools import mean_iou
 from tools.callbacks import PredictionsCallback
-from keras.optimizers import SGD, RMSprop, Adam
 from tools.tiramisu_model import get_tiramisu_model
-from tools.loss_metrics_tools import mean_iou, focal_loss
 from tools.plotting_tools import plot_history, plot_feature_label_prediction
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
@@ -123,25 +123,11 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
-    learning_rate = 1.0e-6;
-    decay_rate = learning_rate/NUM_EPOCHS
-    print("Decay rate is set to {}.".format(decay_rate))
+    learning_rate = 1.0e-8;
+    #decay_rate = learning_rate/NUM_EPOCHS
+    #print("Decay rate is set to {}.".format(decay_rate))
 
-    test = 1
-    if test == 1:
-        model.compile(optimizer=SGD(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
-    elif test == 2:
-        model.compile(optimizer=SGD(lr=learning_rate, decay=decay_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
-    elif test == 3:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
-    elif test == 4:
-        model.compile(optimizer=RMSprop(lr=learning_rate), loss=focal_loss(), metrics=['accuracy', mean_iou])
-    elif test == 5:
-        model.compile(optimizer=Adam(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
-    else:
-        print("\nError: Test is not in the range.")
-        print("Exiting!\n")
-        sys.exit(1)
+    model.compile(optimizer=Adam(lr=learning_rate), loss='categorical_crossentropy', metrics=['accuracy', mean_iou])
 
     # Print model summary
     #model.summary()

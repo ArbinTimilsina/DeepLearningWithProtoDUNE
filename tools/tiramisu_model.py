@@ -1,3 +1,15 @@
+"""
+Implementation of the One Hundred Layers Tiramisu as described in
+The One Hundred Layers Tiramisu: Fully Convolutional DenseNets for Semantic Segmentation.
+
+Tiramisu is a Fully Convolutional Networks (FCN) network based on DenseNet architecture.
+
+Papers:
+Tiramisu: https://arxiv.org/pdf/1611.09326.pdf
+FCN: https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
+DenseNet: https://arxiv.org/abs/1608.06993
+"""
+
 from keras.models import Model
 from keras.layers import Reshape
 from keras.regularizers import l2
@@ -36,6 +48,7 @@ def transition_dn(x, dr, wd):
     #x = conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd)
     #return MaxPooling2D(strides=(2, 2))(x)
 
+    # Try stride 2 1x1 convolution instead
     return conv_relu_bn(x, x.get_shape().as_list()[-1], size=1, dr=dr, wd=wd, stride=2)
 
 def down_path(x, num_layers, growth_rate, dr, wd):
@@ -58,7 +71,7 @@ def up_path(added, skips, num_layers, growth_rate, dr, wd):
         x, added = dense_block(n, x, growth_rate, dr, wd)
     return x
 
-""""
+"""
 init_num_filter: initial number of filters
 num_layers_per_block: list of number of layers in each dense block
 growth_rate: number of filters to add per dense block

@@ -47,7 +47,7 @@ echo "Running python analyze_model.py"
 echo "JOB $SLURM_JOB_ID is running on $SLURM_JOB_NODELIST "
 echo "*********************************************************"
 echo ""
-singularity exec --bind /data/arbint --nv  /data/arbint/DeepLearningWithProtoDUNE.img python analyze_model.py -p 5 -s Development
+singularity exec --bind /data/arbint --nv  /data/arbint/DeepLearningWithProtoDUNE.img python analyze_model.py -p 50 -s Development
 
 echo "*********************************************************"
 echo "All done. Exiting"
