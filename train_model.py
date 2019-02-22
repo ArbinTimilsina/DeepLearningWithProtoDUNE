@@ -123,7 +123,7 @@ def main():
         except:
             print("Old weights couldn't be loaded successfully, will continue!")
 
-    learning_rate = 1.0e-8;
+    learning_rate = 1.0e-7;
     #decay_rate = learning_rate/NUM_EPOCHS
     #print("Decay rate is set to {}.".format(decay_rate))
 
