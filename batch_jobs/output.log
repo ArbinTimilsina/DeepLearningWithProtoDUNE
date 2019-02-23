@@ -1,12 +1,12 @@
 
 *********************************************************
 This was run on:
-Thu Feb 21 19:33:28 CST 2019
+Fri Feb 22 15:30:06 CST 2019
 *********************************************************
 
 *********************************************************
 Running python train_model.py
-JOB 69708 is running on gpu4 
+JOB 69767 is running on gpu4 
 *********************************************************
 
 
@@ -28,529 +28,531 @@ FEATURE_FILE_VALIDATION: /data/arbint/input_files/validation/feature.csv
 LABEL_FILE_VALIDATION: /data/arbint/input_files/validation/label.csv
 WEIGHTS: [1. 1. 1.]
 
+Old weights found!
+Old weights loaded successfully!
 Epoch 1/130
- - 605s - loss: 2.3911 - acc: 0.3946 - mean_iou: 0.1519 - val_loss: 1.8343 - val_acc: 0.6990 - val_mean_iou: 0.2695
+ - 598s - loss: 0.5003 - acc: 0.9948 - mean_iou: 0.8246 - val_loss: 0.4926 - val_acc: 0.9963 - val_mean_iou: 0.8572
 
-Epoch 00001: val_loss improved from inf to 1.83431, saving model to saved_models/model_and_weights.hdf5
+Epoch 00001: val_loss improved from inf to 0.49258, saving model to saved_models/model_and_weights.hdf5
 Epoch 2/130
- - 550s - loss: 2.3021 - acc: 0.4375 - mean_iou: 0.1720 - val_loss: 1.7928 - val_acc: 0.7592 - val_mean_iou: 0.3051
+ - 546s - loss: 0.4987 - acc: 0.9949 - mean_iou: 0.8257 - val_loss: 0.4911 - val_acc: 0.9963 - val_mean_iou: 0.8576
 
-Epoch 00002: val_loss improved from 1.83431 to 1.79285, saving model to saved_models/model_and_weights.hdf5
+Epoch 00002: val_loss improved from 0.49258 to 0.49107, saving model to saved_models/model_and_weights.hdf5
 Epoch 3/130
- - 550s - loss: 2.2275 - acc: 0.4697 - mean_iou: 0.1886 - val_loss: 1.7771 - val_acc: 0.7747 - val_mean_iou: 0.3240
+ - 539s - loss: 0.4972 - acc: 0.9949 - mean_iou: 0.8263 - val_loss: 0.4896 - val_acc: 0.9963 - val_mean_iou: 0.8582
 
-Epoch 00003: val_loss improved from 1.79285 to 1.77710, saving model to saved_models/model_and_weights.hdf5
+Epoch 00003: val_loss improved from 0.49107 to 0.48961, saving model to saved_models/model_and_weights.hdf5
 Epoch 4/130
- - 549s - loss: 2.1618 - acc: 0.4978 - mean_iou: 0.2039 - val_loss: 1.7666 - val_acc: 0.7828 - val_mean_iou: 0.3386
+ - 537s - loss: 0.4956 - acc: 0.9949 - mean_iou: 0.8264 - val_loss: 0.4882 - val_acc: 0.9964 - val_mean_iou: 0.8587
 
-Epoch 00004: val_loss improved from 1.77710 to 1.76661, saving model to saved_models/model_and_weights.hdf5
+Epoch 00004: val_loss improved from 0.48961 to 0.48815, saving model to saved_models/model_and_weights.hdf5
 Epoch 5/130
- - 551s - loss: 2.1026 - acc: 0.5245 - mean_iou: 0.2189 - val_loss: 1.7539 - val_acc: 0.7931 - val_mean_iou: 0.3532
+ - 536s - loss: 0.4941 - acc: 0.9949 - mean_iou: 0.8271 - val_loss: 0.4867 - val_acc: 0.9964 - val_mean_iou: 0.8592
 
-Epoch 00005: val_loss improved from 1.76661 to 1.75390, saving model to saved_models/model_and_weights.hdf5
+Epoch 00005: val_loss improved from 0.48815 to 0.48671, saving model to saved_models/model_and_weights.hdf5
 Epoch 6/130
- - 550s - loss: 2.0485 - acc: 0.5512 - mean_iou: 0.2340 - val_loss: 1.7368 - val_acc: 0.8045 - val_mean_iou: 0.3671
+ - 539s - loss: 0.4926 - acc: 0.9950 - mean_iou: 0.8282 - val_loss: 0.4853 - val_acc: 0.9964 - val_mean_iou: 0.8598
 
-Epoch 00006: val_loss improved from 1.75390 to 1.73684, saving model to saved_models/model_and_weights.hdf5
+Epoch 00006: val_loss improved from 0.48671 to 0.48529, saving model to saved_models/model_and_weights.hdf5
 Epoch 7/130
- - 555s - loss: 1.9984 - acc: 0.5780 - mean_iou: 0.2491 - val_loss: 1.7141 - val_acc: 0.8157 - val_mean_iou: 0.3800
+ - 540s - loss: 0.4911 - acc: 0.9950 - mean_iou: 0.8289 - val_loss: 0.4839 - val_acc: 0.9964 - val_mean_iou: 0.8603
 
-Epoch 00007: val_loss improved from 1.73684 to 1.71407, saving model to saved_models/model_and_weights.hdf5
+Epoch 00007: val_loss improved from 0.48529 to 0.48391, saving model to saved_models/model_and_weights.hdf5
 Epoch 8/130
- - 550s - loss: 1.9513 - acc: 0.6048 - mean_iou: 0.2643 - val_loss: 1.6891 - val_acc: 0.8264 - val_mean_iou: 0.3918
+ - 544s - loss: 0.4896 - acc: 0.9950 - mean_iou: 0.8289 - val_loss: 0.4825 - val_acc: 0.9964 - val_mean_iou: 0.8607
 
-Epoch 00008: val_loss improved from 1.71407 to 1.68908, saving model to saved_models/model_and_weights.hdf5
+Epoch 00008: val_loss improved from 0.48391 to 0.48247, saving model to saved_models/model_and_weights.hdf5
 Epoch 9/130
- - 550s - loss: 1.9070 - acc: 0.6313 - mean_iou: 0.2795 - val_loss: 1.6627 - val_acc: 0.8366 - val_mean_iou: 0.4029
+ - 543s - loss: 0.4881 - acc: 0.9950 - mean_iou: 0.8296 - val_loss: 0.4810 - val_acc: 0.9964 - val_mean_iou: 0.8612
 
-Epoch 00009: val_loss improved from 1.68908 to 1.66269, saving model to saved_models/model_and_weights.hdf5
+Epoch 00009: val_loss improved from 0.48247 to 0.48104, saving model to saved_models/model_and_weights.hdf5
 Epoch 10/130
- - 549s - loss: 1.8649 - acc: 0.6574 - mean_iou: 0.2947 - val_loss: 1.6343 - val_acc: 0.8469 - val_mean_iou: 0.4139
+ - 543s - loss: 0.4866 - acc: 0.9951 - mean_iou: 0.8304 - val_loss: 0.4798 - val_acc: 0.9964 - val_mean_iou: 0.8617
 
-Epoch 00010: val_loss improved from 1.66269 to 1.63432, saving model to saved_models/model_and_weights.hdf5
+Epoch 00010: val_loss improved from 0.48104 to 0.47975, saving model to saved_models/model_and_weights.hdf5
 Epoch 11/130
- - 550s - loss: 1.8247 - acc: 0.6827 - mean_iou: 0.3097 - val_loss: 1.6048 - val_acc: 0.8571 - val_mean_iou: 0.4247
+ - 543s - loss: 0.4852 - acc: 0.9951 - mean_iou: 0.8307 - val_loss: 0.4784 - val_acc: 0.9964 - val_mean_iou: 0.8622
 
-Epoch 00011: val_loss improved from 1.63432 to 1.60479, saving model to saved_models/model_and_weights.hdf5
+Epoch 00011: val_loss improved from 0.47975 to 0.47838, saving model to saved_models/model_and_weights.hdf5
 Epoch 12/130
- - 551s - loss: 1.7861 - acc: 0.7071 - mean_iou: 0.3245 - val_loss: 1.5776 - val_acc: 0.8662 - val_mean_iou: 0.4346
+ - 542s - loss: 0.4838 - acc: 0.9951 - mean_iou: 0.8314 - val_loss: 0.4770 - val_acc: 0.9964 - val_mean_iou: 0.8626
 
-Epoch 00012: val_loss improved from 1.60479 to 1.57765, saving model to saved_models/model_and_weights.hdf5
+Epoch 00012: val_loss improved from 0.47838 to 0.47697, saving model to saved_models/model_and_weights.hdf5
 Epoch 13/130
- - 544s - loss: 1.7488 - acc: 0.7303 - mean_iou: 0.3391 - val_loss: 1.5505 - val_acc: 0.8747 - val_mean_iou: 0.4441
+ - 543s - loss: 0.4823 - acc: 0.9951 - mean_iou: 0.8317 - val_loss: 0.4757 - val_acc: 0.9964 - val_mean_iou: 0.8631
 
-Epoch 00013: val_loss improved from 1.57765 to 1.55050, saving model to saved_models/model_and_weights.hdf5
+Epoch 00013: val_loss improved from 0.47697 to 0.47568, saving model to saved_models/model_and_weights.hdf5
 Epoch 14/130
- - 538s - loss: 1.7130 - acc: 0.7523 - mean_iou: 0.3534 - val_loss: 1.5240 - val_acc: 0.8828 - val_mean_iou: 0.4533
+ - 543s - loss: 0.4809 - acc: 0.9951 - mean_iou: 0.8329 - val_loss: 0.4743 - val_acc: 0.9965 - val_mean_iou: 0.8636
 
-Epoch 00014: val_loss improved from 1.55050 to 1.52402, saving model to saved_models/model_and_weights.hdf5
+Epoch 00014: val_loss improved from 0.47568 to 0.47432, saving model to saved_models/model_and_weights.hdf5
 Epoch 15/130
- - 536s - loss: 1.6782 - acc: 0.7728 - mean_iou: 0.3673 - val_loss: 1.4972 - val_acc: 0.8906 - val_mean_iou: 0.4624
+ - 543s - loss: 0.4796 - acc: 0.9952 - mean_iou: 0.8328 - val_loss: 0.4729 - val_acc: 0.9965 - val_mean_iou: 0.8639
 
-Epoch 00015: val_loss improved from 1.52402 to 1.49723, saving model to saved_models/model_and_weights.hdf5
+Epoch 00015: val_loss improved from 0.47432 to 0.47295, saving model to saved_models/model_and_weights.hdf5
 Epoch 16/130
- - 536s - loss: 1.6444 - acc: 0.7918 - mean_iou: 0.3807 - val_loss: 1.4706 - val_acc: 0.8980 - val_mean_iou: 0.4713
+ - 539s - loss: 0.4781 - acc: 0.9952 - mean_iou: 0.8333 - val_loss: 0.4716 - val_acc: 0.9965 - val_mean_iou: 0.8644
 
-Epoch 00016: val_loss improved from 1.49723 to 1.47057, saving model to saved_models/model_and_weights.hdf5
+Epoch 00016: val_loss improved from 0.47295 to 0.47163, saving model to saved_models/model_and_weights.hdf5
 Epoch 17/130
- - 536s - loss: 1.6115 - acc: 0.8090 - mean_iou: 0.3934 - val_loss: 1.4433 - val_acc: 0.9054 - val_mean_iou: 0.4804
+ - 539s - loss: 0.4768 - acc: 0.9952 - mean_iou: 0.8341 - val_loss: 0.4703 - val_acc: 0.9965 - val_mean_iou: 0.8647
 
-Epoch 00017: val_loss improved from 1.47057 to 1.44332, saving model to saved_models/model_and_weights.hdf5
+Epoch 00017: val_loss improved from 0.47163 to 0.47034, saving model to saved_models/model_and_weights.hdf5
 Epoch 18/130
- - 536s - loss: 1.5796 - acc: 0.8247 - mean_iou: 0.4056 - val_loss: 1.4163 - val_acc: 0.9124 - val_mean_iou: 0.4893
+ - 539s - loss: 0.4754 - acc: 0.9952 - mean_iou: 0.8345 - val_loss: 0.4691 - val_acc: 0.9965 - val_mean_iou: 0.8650
 
-Epoch 00018: val_loss improved from 1.44332 to 1.41632, saving model to saved_models/model_and_weights.hdf5
+Epoch 00018: val_loss improved from 0.47034 to 0.46910, saving model to saved_models/model_and_weights.hdf5
 Epoch 19/130
- - 535s - loss: 1.5486 - acc: 0.8386 - mean_iou: 0.4170 - val_loss: 1.3900 - val_acc: 0.9188 - val_mean_iou: 0.4979
+ - 542s - loss: 0.4740 - acc: 0.9952 - mean_iou: 0.8353 - val_loss: 0.4679 - val_acc: 0.9965 - val_mean_iou: 0.8654
 
-Epoch 00019: val_loss improved from 1.41632 to 1.38999, saving model to saved_models/model_and_weights.hdf5
+Epoch 00019: val_loss improved from 0.46910 to 0.46788, saving model to saved_models/model_and_weights.hdf5
 Epoch 20/130
- - 536s - loss: 1.5183 - acc: 0.8510 - mean_iou: 0.4277 - val_loss: 1.3651 - val_acc: 0.9245 - val_mean_iou: 0.5060
+ - 543s - loss: 0.4727 - acc: 0.9953 - mean_iou: 0.8354 - val_loss: 0.4666 - val_acc: 0.9965 - val_mean_iou: 0.8658
 
-Epoch 00020: val_loss improved from 1.38999 to 1.36506, saving model to saved_models/model_and_weights.hdf5
+Epoch 00020: val_loss improved from 0.46788 to 0.46656, saving model to saved_models/model_and_weights.hdf5
 Epoch 21/130
- - 534s - loss: 1.4888 - acc: 0.8620 - mean_iou: 0.4378 - val_loss: 1.3404 - val_acc: 0.9300 - val_mean_iou: 0.5140
+ - 544s - loss: 0.4713 - acc: 0.9953 - mean_iou: 0.8361 - val_loss: 0.4653 - val_acc: 0.9965 - val_mean_iou: 0.8661
 
-Epoch 00021: val_loss improved from 1.36506 to 1.34039, saving model to saved_models/model_and_weights.hdf5
+Epoch 00021: val_loss improved from 0.46656 to 0.46527, saving model to saved_models/model_and_weights.hdf5
 Epoch 22/130
- - 534s - loss: 1.4599 - acc: 0.8718 - mean_iou: 0.4472 - val_loss: 1.3146 - val_acc: 0.9355 - val_mean_iou: 0.5223
+ - 539s - loss: 0.4700 - acc: 0.9953 - mean_iou: 0.8362 - val_loss: 0.4640 - val_acc: 0.9965 - val_mean_iou: 0.8663
 
-Epoch 00022: val_loss improved from 1.34039 to 1.31462, saving model to saved_models/model_and_weights.hdf5
+Epoch 00022: val_loss improved from 0.46527 to 0.46399, saving model to saved_models/model_and_weights.hdf5
 Epoch 23/130
- - 534s - loss: 1.4319 - acc: 0.8805 - mean_iou: 0.4561 - val_loss: 1.2897 - val_acc: 0.9403 - val_mean_iou: 0.5301
+ - 540s - loss: 0.4687 - acc: 0.9953 - mean_iou: 0.8372 - val_loss: 0.4627 - val_acc: 0.9965 - val_mean_iou: 0.8666
 
-Epoch 00023: val_loss improved from 1.31462 to 1.28972, saving model to saved_models/model_and_weights.hdf5
+Epoch 00023: val_loss improved from 0.46399 to 0.46271, saving model to saved_models/model_and_weights.hdf5
 Epoch 24/130
- - 533s - loss: 1.4044 - acc: 0.8882 - mean_iou: 0.4644 - val_loss: 1.2653 - val_acc: 0.9448 - val_mean_iou: 0.5377
+ - 540s - loss: 0.4674 - acc: 0.9953 - mean_iou: 0.8370 - val_loss: 0.4614 - val_acc: 0.9965 - val_mean_iou: 0.8668
 
-Epoch 00024: val_loss improved from 1.28972 to 1.26529, saving model to saved_models/model_and_weights.hdf5
+Epoch 00024: val_loss improved from 0.46271 to 0.46138, saving model to saved_models/model_and_weights.hdf5
 Epoch 25/130
- - 536s - loss: 1.3778 - acc: 0.8951 - mean_iou: 0.4722 - val_loss: 1.2414 - val_acc: 0.9488 - val_mean_iou: 0.5449
+ - 543s - loss: 0.4661 - acc: 0.9953 - mean_iou: 0.8378 - val_loss: 0.4602 - val_acc: 0.9965 - val_mean_iou: 0.8670
 
-Epoch 00025: val_loss improved from 1.26529 to 1.24139, saving model to saved_models/model_and_weights.hdf5
+Epoch 00025: val_loss improved from 0.46138 to 0.46019, saving model to saved_models/model_and_weights.hdf5
 Epoch 26/130
- - 534s - loss: 1.3518 - acc: 0.9014 - mean_iou: 0.4796 - val_loss: 1.2179 - val_acc: 0.9525 - val_mean_iou: 0.5518
+ - 543s - loss: 0.4648 - acc: 0.9954 - mean_iou: 0.8380 - val_loss: 0.4589 - val_acc: 0.9965 - val_mean_iou: 0.8672
 
-Epoch 00026: val_loss improved from 1.24139 to 1.21793, saving model to saved_models/model_and_weights.hdf5
+Epoch 00026: val_loss improved from 0.46019 to 0.45894, saving model to saved_models/model_and_weights.hdf5
 Epoch 27/130
- - 533s - loss: 1.3263 - acc: 0.9071 - mean_iou: 0.4866 - val_loss: 1.1947 - val_acc: 0.9559 - val_mean_iou: 0.5584
+ - 541s - loss: 0.4635 - acc: 0.9954 - mean_iou: 0.8385 - val_loss: 0.4577 - val_acc: 0.9966 - val_mean_iou: 0.8675
 
-Epoch 00027: val_loss improved from 1.21793 to 1.19466, saving model to saved_models/model_and_weights.hdf5
+Epoch 00027: val_loss improved from 0.45894 to 0.45767, saving model to saved_models/model_and_weights.hdf5
 Epoch 28/130
- - 533s - loss: 1.3016 - acc: 0.9124 - mean_iou: 0.4934 - val_loss: 1.1724 - val_acc: 0.9589 - val_mean_iou: 0.5646
+ - 542s - loss: 0.4622 - acc: 0.9954 - mean_iou: 0.8389 - val_loss: 0.4565 - val_acc: 0.9965 - val_mean_iou: 0.8676
 
-Epoch 00028: val_loss improved from 1.19466 to 1.17241, saving model to saved_models/model_and_weights.hdf5
+Epoch 00028: val_loss improved from 0.45767 to 0.45652, saving model to saved_models/model_and_weights.hdf5
 Epoch 29/130
- - 536s - loss: 1.2775 - acc: 0.9172 - mean_iou: 0.4998 - val_loss: 1.1511 - val_acc: 0.9616 - val_mean_iou: 0.5705
+ - 540s - loss: 0.4610 - acc: 0.9954 - mean_iou: 0.8394 - val_loss: 0.4552 - val_acc: 0.9966 - val_mean_iou: 0.8679
 
-Epoch 00029: val_loss improved from 1.17241 to 1.15113, saving model to saved_models/model_and_weights.hdf5
+Epoch 00029: val_loss improved from 0.45652 to 0.45525, saving model to saved_models/model_and_weights.hdf5
 Epoch 30/130
- - 537s - loss: 1.2540 - acc: 0.9217 - mean_iou: 0.5061 - val_loss: 1.1305 - val_acc: 0.9640 - val_mean_iou: 0.5760
+ - 543s - loss: 0.4597 - acc: 0.9954 - mean_iou: 0.8399 - val_loss: 0.4541 - val_acc: 0.9966 - val_mean_iou: 0.8681
 
-Epoch 00030: val_loss improved from 1.15113 to 1.13045, saving model to saved_models/model_and_weights.hdf5
+Epoch 00030: val_loss improved from 0.45525 to 0.45405, saving model to saved_models/model_and_weights.hdf5
 Epoch 31/130
- - 537s - loss: 1.2311 - acc: 0.9259 - mean_iou: 0.5121 - val_loss: 1.1112 - val_acc: 0.9661 - val_mean_iou: 0.5811
+ - 543s - loss: 0.4584 - acc: 0.9954 - mean_iou: 0.8399 - val_loss: 0.4529 - val_acc: 0.9966 - val_mean_iou: 0.8684
 
-Epoch 00031: val_loss improved from 1.13045 to 1.11117, saving model to saved_models/model_and_weights.hdf5
+Epoch 00031: val_loss improved from 0.45405 to 0.45287, saving model to saved_models/model_and_weights.hdf5
 Epoch 32/130
- - 537s - loss: 1.2087 - acc: 0.9298 - mean_iou: 0.5179 - val_loss: 1.0922 - val_acc: 0.9680 - val_mean_iou: 0.5860
+ - 543s - loss: 0.4572 - acc: 0.9954 - mean_iou: 0.8404 - val_loss: 0.4517 - val_acc: 0.9966 - val_mean_iou: 0.8688
 
-Epoch 00032: val_loss improved from 1.11117 to 1.09219, saving model to saved_models/model_and_weights.hdf5
+Epoch 00032: val_loss improved from 0.45287 to 0.45165, saving model to saved_models/model_and_weights.hdf5
 Epoch 33/130
- - 538s - loss: 1.1871 - acc: 0.9334 - mean_iou: 0.5234 - val_loss: 1.0733 - val_acc: 0.9699 - val_mean_iou: 0.5909
+ - 549s - loss: 0.4560 - acc: 0.9955 - mean_iou: 0.8415 - val_loss: 0.4505 - val_acc: 0.9966 - val_mean_iou: 0.8689
 
-Epoch 00033: val_loss improved from 1.09219 to 1.07327, saving model to saved_models/model_and_weights.hdf5
+Epoch 00033: val_loss improved from 0.45165 to 0.45053, saving model to saved_models/model_and_weights.hdf5
 Epoch 34/130
- - 539s - loss: 1.1658 - acc: 0.9367 - mean_iou: 0.5289 - val_loss: 1.0551 - val_acc: 0.9717 - val_mean_iou: 0.5956
+ - 542s - loss: 0.4548 - acc: 0.9955 - mean_iou: 0.8413 - val_loss: 0.4493 - val_acc: 0.9966 - val_mean_iou: 0.8692
 
-Epoch 00034: val_loss improved from 1.07327 to 1.05507, saving model to saved_models/model_and_weights.hdf5
+Epoch 00034: val_loss improved from 0.45053 to 0.44934, saving model to saved_models/model_and_weights.hdf5
 Epoch 35/130
- - 539s - loss: 1.1452 - acc: 0.9399 - mean_iou: 0.5342 - val_loss: 1.0381 - val_acc: 0.9732 - val_mean_iou: 0.6000
+ - 543s - loss: 0.4535 - acc: 0.9955 - mean_iou: 0.8417 - val_loss: 0.4481 - val_acc: 0.9966 - val_mean_iou: 0.8695
 
-Epoch 00035: val_loss improved from 1.05507 to 1.03814, saving model to saved_models/model_and_weights.hdf5
+Epoch 00035: val_loss improved from 0.44934 to 0.44814, saving model to saved_models/model_and_weights.hdf5
 Epoch 36/130
- - 538s - loss: 1.1250 - acc: 0.9430 - mean_iou: 0.5394 - val_loss: 1.0205 - val_acc: 0.9747 - val_mean_iou: 0.6047
+ - 543s - loss: 0.4523 - acc: 0.9955 - mean_iou: 0.8423 - val_loss: 0.4470 - val_acc: 0.9966 - val_mean_iou: 0.8698
 
-Epoch 00036: val_loss improved from 1.03814 to 1.02053, saving model to saved_models/model_and_weights.hdf5
+Epoch 00036: val_loss improved from 0.44814 to 0.44704, saving model to saved_models/model_and_weights.hdf5
 Epoch 37/130
- - 536s - loss: 1.1054 - acc: 0.9458 - mean_iou: 0.5445 - val_loss: 1.0037 - val_acc: 0.9761 - val_mean_iou: 0.6092
+ - 541s - loss: 0.4511 - acc: 0.9955 - mean_iou: 0.8425 - val_loss: 0.4458 - val_acc: 0.9966 - val_mean_iou: 0.8700
 
-Epoch 00037: val_loss improved from 1.02053 to 1.00367, saving model to saved_models/model_and_weights.hdf5
+Epoch 00037: val_loss improved from 0.44704 to 0.44582, saving model to saved_models/model_and_weights.hdf5
 Epoch 38/130
- - 533s - loss: 1.0862 - acc: 0.9484 - mean_iou: 0.5494 - val_loss: 0.9872 - val_acc: 0.9775 - val_mean_iou: 0.6137
+ - 543s - loss: 0.4499 - acc: 0.9955 - mean_iou: 0.8426 - val_loss: 0.4447 - val_acc: 0.9966 - val_mean_iou: 0.8702
 
-Epoch 00038: val_loss improved from 1.00367 to 0.98725, saving model to saved_models/model_and_weights.hdf5
+Epoch 00038: val_loss improved from 0.44582 to 0.44465, saving model to saved_models/model_and_weights.hdf5
 Epoch 39/130
- - 533s - loss: 1.0676 - acc: 0.9510 - mean_iou: 0.5543 - val_loss: 0.9716 - val_acc: 0.9788 - val_mean_iou: 0.6182
+ - 544s - loss: 0.4488 - acc: 0.9955 - mean_iou: 0.8431 - val_loss: 0.4435 - val_acc: 0.9966 - val_mean_iou: 0.8705
 
-Epoch 00039: val_loss improved from 0.98725 to 0.97157, saving model to saved_models/model_and_weights.hdf5
+Epoch 00039: val_loss improved from 0.44465 to 0.44353, saving model to saved_models/model_and_weights.hdf5
 Epoch 40/130
- - 534s - loss: 1.0494 - acc: 0.9533 - mean_iou: 0.5590 - val_loss: 0.9557 - val_acc: 0.9800 - val_mean_iou: 0.6227
+ - 542s - loss: 0.4476 - acc: 0.9956 - mean_iou: 0.8437 - val_loss: 0.4424 - val_acc: 0.9967 - val_mean_iou: 0.8707
 
-Epoch 00040: val_loss improved from 0.97157 to 0.95569, saving model to saved_models/model_and_weights.hdf5
+Epoch 00040: val_loss improved from 0.44353 to 0.44236, saving model to saved_models/model_and_weights.hdf5
 Epoch 41/130
- - 534s - loss: 1.0318 - acc: 0.9556 - mean_iou: 0.5637 - val_loss: 0.9408 - val_acc: 0.9811 - val_mean_iou: 0.6270
+ - 543s - loss: 0.4464 - acc: 0.9956 - mean_iou: 0.8440 - val_loss: 0.4412 - val_acc: 0.9967 - val_mean_iou: 0.8710
 
-Epoch 00041: val_loss improved from 0.95569 to 0.94077, saving model to saved_models/model_and_weights.hdf5
+Epoch 00041: val_loss improved from 0.44236 to 0.44124, saving model to saved_models/model_and_weights.hdf5
 Epoch 42/130
- - 537s - loss: 1.0145 - acc: 0.9577 - mean_iou: 0.5682 - val_loss: 0.9262 - val_acc: 0.9821 - val_mean_iou: 0.6313
+ - 543s - loss: 0.4452 - acc: 0.9956 - mean_iou: 0.8442 - val_loss: 0.4402 - val_acc: 0.9967 - val_mean_iou: 0.8711
 
-Epoch 00042: val_loss improved from 0.94077 to 0.92619, saving model to saved_models/model_and_weights.hdf5
+Epoch 00042: val_loss improved from 0.44124 to 0.44018, saving model to saved_models/model_and_weights.hdf5
 Epoch 43/130
- - 540s - loss: 0.9978 - acc: 0.9597 - mean_iou: 0.5727 - val_loss: 0.9123 - val_acc: 0.9831 - val_mean_iou: 0.6354
+ - 542s - loss: 0.4441 - acc: 0.9956 - mean_iou: 0.8449 - val_loss: 0.4390 - val_acc: 0.9967 - val_mean_iou: 0.8714
 
-Epoch 00043: val_loss improved from 0.92619 to 0.91226, saving model to saved_models/model_and_weights.hdf5
+Epoch 00043: val_loss improved from 0.44018 to 0.43901, saving model to saved_models/model_and_weights.hdf5
 Epoch 44/130
- - 536s - loss: 0.9815 - acc: 0.9616 - mean_iou: 0.5771 - val_loss: 0.8992 - val_acc: 0.9839 - val_mean_iou: 0.6391
+ - 544s - loss: 0.4429 - acc: 0.9956 - mean_iou: 0.8449 - val_loss: 0.4378 - val_acc: 0.9967 - val_mean_iou: 0.8718
 
-Epoch 00044: val_loss improved from 0.91226 to 0.89925, saving model to saved_models/model_and_weights.hdf5
+Epoch 00044: val_loss improved from 0.43901 to 0.43785, saving model to saved_models/model_and_weights.hdf5
 Epoch 45/130
- - 536s - loss: 0.9657 - acc: 0.9634 - mean_iou: 0.5814 - val_loss: 0.8859 - val_acc: 0.9847 - val_mean_iou: 0.6432
+ - 544s - loss: 0.4417 - acc: 0.9956 - mean_iou: 0.8457 - val_loss: 0.4367 - val_acc: 0.9967 - val_mean_iou: 0.8720
 
-Epoch 00045: val_loss improved from 0.89925 to 0.88592, saving model to saved_models/model_and_weights.hdf5
+Epoch 00045: val_loss improved from 0.43785 to 0.43674, saving model to saved_models/model_and_weights.hdf5
 Epoch 46/130
- - 536s - loss: 0.9502 - acc: 0.9651 - mean_iou: 0.5857 - val_loss: 0.8730 - val_acc: 0.9855 - val_mean_iou: 0.6472
+ - 543s - loss: 0.4406 - acc: 0.9957 - mean_iou: 0.8458 - val_loss: 0.4356 - val_acc: 0.9967 - val_mean_iou: 0.8722
 
-Epoch 00046: val_loss improved from 0.88592 to 0.87297, saving model to saved_models/model_and_weights.hdf5
+Epoch 00046: val_loss improved from 0.43674 to 0.43564, saving model to saved_models/model_and_weights.hdf5
 Epoch 47/130
- - 533s - loss: 0.9352 - acc: 0.9668 - mean_iou: 0.5900 - val_loss: 0.8607 - val_acc: 0.9862 - val_mean_iou: 0.6509
+ - 543s - loss: 0.4395 - acc: 0.9957 - mean_iou: 0.8461 - val_loss: 0.4346 - val_acc: 0.9967 - val_mean_iou: 0.8724
 
-Epoch 00047: val_loss improved from 0.87297 to 0.86073, saving model to saved_models/model_and_weights.hdf5
+Epoch 00047: val_loss improved from 0.43564 to 0.43461, saving model to saved_models/model_and_weights.hdf5
 Epoch 48/130
- - 537s - loss: 0.9207 - acc: 0.9683 - mean_iou: 0.5941 - val_loss: 0.8488 - val_acc: 0.9869 - val_mean_iou: 0.6547
+ - 543s - loss: 0.4383 - acc: 0.9957 - mean_iou: 0.8467 - val_loss: 0.4335 - val_acc: 0.9967 - val_mean_iou: 0.8726
 
-Epoch 00048: val_loss improved from 0.86073 to 0.84882, saving model to saved_models/model_and_weights.hdf5
+Epoch 00048: val_loss improved from 0.43461 to 0.43350, saving model to saved_models/model_and_weights.hdf5
 Epoch 49/130
- - 537s - loss: 0.9065 - acc: 0.9698 - mean_iou: 0.5982 - val_loss: 0.8374 - val_acc: 0.9874 - val_mean_iou: 0.6582
+ - 541s - loss: 0.4372 - acc: 0.9957 - mean_iou: 0.8470 - val_loss: 0.4324 - val_acc: 0.9967 - val_mean_iou: 0.8729
 
-Epoch 00049: val_loss improved from 0.84882 to 0.83738, saving model to saved_models/model_and_weights.hdf5
+Epoch 00049: val_loss improved from 0.43350 to 0.43239, saving model to saved_models/model_and_weights.hdf5
 Epoch 50/130
- - 536s - loss: 0.8927 - acc: 0.9712 - mean_iou: 0.6023 - val_loss: 0.8260 - val_acc: 0.9880 - val_mean_iou: 0.6618
+ - 543s - loss: 0.4361 - acc: 0.9957 - mean_iou: 0.8471 - val_loss: 0.4313 - val_acc: 0.9967 - val_mean_iou: 0.8732
 
-Epoch 00050: val_loss improved from 0.83738 to 0.82604, saving model to saved_models/model_and_weights.hdf5
+Epoch 00050: val_loss improved from 0.43239 to 0.43128, saving model to saved_models/model_and_weights.hdf5
 Epoch 51/130
- - 534s - loss: 0.8794 - acc: 0.9725 - mean_iou: 0.6063 - val_loss: 0.8149 - val_acc: 0.9886 - val_mean_iou: 0.6652
+ - 543s - loss: 0.4350 - acc: 0.9957 - mean_iou: 0.8474 - val_loss: 0.4302 - val_acc: 0.9967 - val_mean_iou: 0.8734
 
-Epoch 00051: val_loss improved from 0.82604 to 0.81486, saving model to saved_models/model_and_weights.hdf5
+Epoch 00051: val_loss improved from 0.43128 to 0.43019, saving model to saved_models/model_and_weights.hdf5
 Epoch 52/130
- - 536s - loss: 0.8665 - acc: 0.9737 - mean_iou: 0.6102 - val_loss: 0.8043 - val_acc: 0.9890 - val_mean_iou: 0.6687
+ - 544s - loss: 0.4339 - acc: 0.9957 - mean_iou: 0.8479 - val_loss: 0.4291 - val_acc: 0.9968 - val_mean_iou: 0.8736
 
-Epoch 00052: val_loss improved from 0.81486 to 0.80428, saving model to saved_models/model_and_weights.hdf5
+Epoch 00052: val_loss improved from 0.43019 to 0.42909, saving model to saved_models/model_and_weights.hdf5
 Epoch 53/130
- - 537s - loss: 0.8539 - acc: 0.9749 - mean_iou: 0.6143 - val_loss: 0.7938 - val_acc: 0.9895 - val_mean_iou: 0.6720
+ - 544s - loss: 0.4328 - acc: 0.9957 - mean_iou: 0.8480 - val_loss: 0.4281 - val_acc: 0.9968 - val_mean_iou: 0.8736
 
-Epoch 00053: val_loss improved from 0.80428 to 0.79379, saving model to saved_models/model_and_weights.hdf5
+Epoch 00053: val_loss improved from 0.42909 to 0.42807, saving model to saved_models/model_and_weights.hdf5
 Epoch 54/130
- - 537s - loss: 0.8418 - acc: 0.9760 - mean_iou: 0.6182 - val_loss: 0.7837 - val_acc: 0.9899 - val_mean_iou: 0.6754
+ - 543s - loss: 0.4317 - acc: 0.9957 - mean_iou: 0.8479 - val_loss: 0.4270 - val_acc: 0.9968 - val_mean_iou: 0.8739
 
-Epoch 00054: val_loss improved from 0.79379 to 0.78366, saving model to saved_models/model_and_weights.hdf5
+Epoch 00054: val_loss improved from 0.42807 to 0.42699, saving model to saved_models/model_and_weights.hdf5
 Epoch 55/130
- - 533s - loss: 0.8300 - acc: 0.9770 - mean_iou: 0.6221 - val_loss: 0.7738 - val_acc: 0.9903 - val_mean_iou: 0.6785
+ - 544s - loss: 0.4306 - acc: 0.9958 - mean_iou: 0.8488 - val_loss: 0.4259 - val_acc: 0.9968 - val_mean_iou: 0.8740
 
-Epoch 00055: val_loss improved from 0.78366 to 0.77382, saving model to saved_models/model_and_weights.hdf5
+Epoch 00055: val_loss improved from 0.42699 to 0.42592, saving model to saved_models/model_and_weights.hdf5
 Epoch 56/130
- - 537s - loss: 0.8186 - acc: 0.9780 - mean_iou: 0.6259 - val_loss: 0.7645 - val_acc: 0.9907 - val_mean_iou: 0.6815
+ - 543s - loss: 0.4295 - acc: 0.9958 - mean_iou: 0.8490 - val_loss: 0.4249 - val_acc: 0.9968 - val_mean_iou: 0.8741
 
-Epoch 00056: val_loss improved from 0.77382 to 0.76445, saving model to saved_models/model_and_weights.hdf5
+Epoch 00056: val_loss improved from 0.42592 to 0.42492, saving model to saved_models/model_and_weights.hdf5
 Epoch 57/130
- - 537s - loss: 0.8075 - acc: 0.9789 - mean_iou: 0.6298 - val_loss: 0.7554 - val_acc: 0.9910 - val_mean_iou: 0.6843
+ - 542s - loss: 0.4285 - acc: 0.9958 - mean_iou: 0.8488 - val_loss: 0.4239 - val_acc: 0.9968 - val_mean_iou: 0.8742
 
-Epoch 00057: val_loss improved from 0.76445 to 0.75541, saving model to saved_models/model_and_weights.hdf5
+Epoch 00057: val_loss improved from 0.42492 to 0.42388, saving model to saved_models/model_and_weights.hdf5
 Epoch 58/130
- - 537s - loss: 0.7968 - acc: 0.9798 - mean_iou: 0.6337 - val_loss: 0.7465 - val_acc: 0.9913 - val_mean_iou: 0.6870
+ - 544s - loss: 0.4274 - acc: 0.9958 - mean_iou: 0.8500 - val_loss: 0.4228 - val_acc: 0.9968 - val_mean_iou: 0.8746
 
-Epoch 00058: val_loss improved from 0.75541 to 0.74651, saving model to saved_models/model_and_weights.hdf5
+Epoch 00058: val_loss improved from 0.42388 to 0.42276, saving model to saved_models/model_and_weights.hdf5
 Epoch 59/130
- - 537s - loss: 0.7865 - acc: 0.9806 - mean_iou: 0.6374 - val_loss: 0.7382 - val_acc: 0.9915 - val_mean_iou: 0.6900
+ - 542s - loss: 0.4263 - acc: 0.9958 - mean_iou: 0.8497 - val_loss: 0.4217 - val_acc: 0.9968 - val_mean_iou: 0.8748
 
-Epoch 00059: val_loss improved from 0.74651 to 0.73818, saving model to saved_models/model_and_weights.hdf5
+Epoch 00059: val_loss improved from 0.42276 to 0.42169, saving model to saved_models/model_and_weights.hdf5
 Epoch 60/130
- - 537s - loss: 0.7765 - acc: 0.9814 - mean_iou: 0.6412 - val_loss: 0.7299 - val_acc: 0.9918 - val_mean_iou: 0.6926
+ - 543s - loss: 0.4252 - acc: 0.9958 - mean_iou: 0.8501 - val_loss: 0.4207 - val_acc: 0.9968 - val_mean_iou: 0.8749
 
-Epoch 00060: val_loss improved from 0.73818 to 0.72994, saving model to saved_models/model_and_weights.hdf5
+Epoch 00060: val_loss improved from 0.42169 to 0.42068, saving model to saved_models/model_and_weights.hdf5
 Epoch 61/130
- - 537s - loss: 0.7667 - acc: 0.9822 - mean_iou: 0.6451 - val_loss: 0.7218 - val_acc: 0.9920 - val_mean_iou: 0.6952
+ - 543s - loss: 0.4241 - acc: 0.9958 - mean_iou: 0.8505 - val_loss: 0.4196 - val_acc: 0.9968 - val_mean_iou: 0.8751
 
-Epoch 00061: val_loss improved from 0.72994 to 0.72182, saving model to saved_models/model_and_weights.hdf5
+Epoch 00061: val_loss improved from 0.42068 to 0.41964, saving model to saved_models/model_and_weights.hdf5
 Epoch 62/130
- - 534s - loss: 0.7574 - acc: 0.9829 - mean_iou: 0.6489 - val_loss: 0.7143 - val_acc: 0.9922 - val_mean_iou: 0.6978
+ - 543s - loss: 0.4231 - acc: 0.9958 - mean_iou: 0.8507 - val_loss: 0.4186 - val_acc: 0.9968 - val_mean_iou: 0.8753
 
-Epoch 00062: val_loss improved from 0.72182 to 0.71434, saving model to saved_models/model_and_weights.hdf5
+Epoch 00062: val_loss improved from 0.41964 to 0.41861, saving model to saved_models/model_and_weights.hdf5
 Epoch 63/130
- - 537s - loss: 0.7482 - acc: 0.9835 - mean_iou: 0.6529 - val_loss: 0.7069 - val_acc: 0.9924 - val_mean_iou: 0.7005
+ - 543s - loss: 0.4220 - acc: 0.9959 - mean_iou: 0.8511 - val_loss: 0.4176 - val_acc: 0.9968 - val_mean_iou: 0.8755
 
-Epoch 00063: val_loss improved from 0.71434 to 0.70688, saving model to saved_models/model_and_weights.hdf5
+Epoch 00063: val_loss improved from 0.41861 to 0.41758, saving model to saved_models/model_and_weights.hdf5
 Epoch 64/130
- - 535s - loss: 0.7395 - acc: 0.9841 - mean_iou: 0.6566 - val_loss: 0.6999 - val_acc: 0.9926 - val_mean_iou: 0.7032
+ - 543s - loss: 0.4209 - acc: 0.9959 - mean_iou: 0.8514 - val_loss: 0.4166 - val_acc: 0.9968 - val_mean_iou: 0.8757
 
-Epoch 00064: val_loss improved from 0.70688 to 0.69989, saving model to saved_models/model_and_weights.hdf5
+Epoch 00064: val_loss improved from 0.41758 to 0.41657, saving model to saved_models/model_and_weights.hdf5
 Epoch 65/130
- - 536s - loss: 0.7310 - acc: 0.9847 - mean_iou: 0.6605 - val_loss: 0.6930 - val_acc: 0.9927 - val_mean_iou: 0.7057
+ - 539s - loss: 0.4199 - acc: 0.9959 - mean_iou: 0.8517 - val_loss: 0.4155 - val_acc: 0.9968 - val_mean_iou: 0.8759
 
-Epoch 00065: val_loss improved from 0.69989 to 0.69297, saving model to saved_models/model_and_weights.hdf5
+Epoch 00065: val_loss improved from 0.41657 to 0.41555, saving model to saved_models/model_and_weights.hdf5
 Epoch 66/130
- - 536s - loss: 0.7227 - acc: 0.9853 - mean_iou: 0.6646 - val_loss: 0.6863 - val_acc: 0.9929 - val_mean_iou: 0.7081
+ - 542s - loss: 0.4189 - acc: 0.9959 - mean_iou: 0.8518 - val_loss: 0.4145 - val_acc: 0.9968 - val_mean_iou: 0.8761
 
-Epoch 00066: val_loss improved from 0.69297 to 0.68633, saving model to saved_models/model_and_weights.hdf5
+Epoch 00066: val_loss improved from 0.41555 to 0.41450, saving model to saved_models/model_and_weights.hdf5
 Epoch 67/130
- - 532s - loss: 0.7148 - acc: 0.9858 - mean_iou: 0.6686 - val_loss: 0.6798 - val_acc: 0.9930 - val_mean_iou: 0.7105
+ - 539s - loss: 0.4179 - acc: 0.9959 - mean_iou: 0.8522 - val_loss: 0.4134 - val_acc: 0.9969 - val_mean_iou: 0.8763
 
-Epoch 00067: val_loss improved from 0.68633 to 0.67979, saving model to saved_models/model_and_weights.hdf5
+Epoch 00067: val_loss improved from 0.41450 to 0.41344, saving model to saved_models/model_and_weights.hdf5
 Epoch 68/130
- - 536s - loss: 0.7070 - acc: 0.9863 - mean_iou: 0.6726 - val_loss: 0.6735 - val_acc: 0.9931 - val_mean_iou: 0.7130
+ - 540s - loss: 0.4168 - acc: 0.9959 - mean_iou: 0.8524 - val_loss: 0.4125 - val_acc: 0.9968 - val_mean_iou: 0.8764
 
-Epoch 00068: val_loss improved from 0.67979 to 0.67350, saving model to saved_models/model_and_weights.hdf5
+Epoch 00068: val_loss improved from 0.41344 to 0.41250, saving model to saved_models/model_and_weights.hdf5
 Epoch 69/130
- - 536s - loss: 0.6996 - acc: 0.9868 - mean_iou: 0.6766 - val_loss: 0.6674 - val_acc: 0.9933 - val_mean_iou: 0.7156
+ - 543s - loss: 0.4158 - acc: 0.9959 - mean_iou: 0.8526 - val_loss: 0.4115 - val_acc: 0.9969 - val_mean_iou: 0.8766
 
-Epoch 00069: val_loss improved from 0.67350 to 0.66744, saving model to saved_models/model_and_weights.hdf5
+Epoch 00069: val_loss improved from 0.41250 to 0.41146, saving model to saved_models/model_and_weights.hdf5
 Epoch 70/130
- - 536s - loss: 0.6923 - acc: 0.9872 - mean_iou: 0.6810 - val_loss: 0.6614 - val_acc: 0.9934 - val_mean_iou: 0.7181
+ - 543s - loss: 0.4148 - acc: 0.9959 - mean_iou: 0.8527 - val_loss: 0.4105 - val_acc: 0.9969 - val_mean_iou: 0.8768
 
-Epoch 00070: val_loss improved from 0.66744 to 0.66140, saving model to saved_models/model_and_weights.hdf5
+Epoch 00070: val_loss improved from 0.41146 to 0.41051, saving model to saved_models/model_and_weights.hdf5
 Epoch 71/130
- - 536s - loss: 0.6853 - acc: 0.9876 - mean_iou: 0.6851 - val_loss: 0.6555 - val_acc: 0.9935 - val_mean_iou: 0.7211
+ - 543s - loss: 0.4138 - acc: 0.9959 - mean_iou: 0.8534 - val_loss: 0.4095 - val_acc: 0.9969 - val_mean_iou: 0.8770
 
-Epoch 00071: val_loss improved from 0.66140 to 0.65546, saving model to saved_models/model_and_weights.hdf5
+Epoch 00071: val_loss improved from 0.41051 to 0.40950, saving model to saved_models/model_and_weights.hdf5
 Epoch 72/130
- - 534s - loss: 0.6786 - acc: 0.9880 - mean_iou: 0.6895 - val_loss: 0.6499 - val_acc: 0.9936 - val_mean_iou: 0.7237
+ - 539s - loss: 0.4128 - acc: 0.9959 - mean_iou: 0.8534 - val_loss: 0.4086 - val_acc: 0.9969 - val_mean_iou: 0.8768
 
-Epoch 00072: val_loss improved from 0.65546 to 0.64990, saving model to saved_models/model_and_weights.hdf5
+Epoch 00072: val_loss improved from 0.40950 to 0.40858, saving model to saved_models/model_and_weights.hdf5
 Epoch 73/130
- - 534s - loss: 0.6721 - acc: 0.9884 - mean_iou: 0.6939 - val_loss: 0.6444 - val_acc: 0.9937 - val_mean_iou: 0.7263
+ - 542s - loss: 0.4118 - acc: 0.9960 - mean_iou: 0.8536 - val_loss: 0.4075 - val_acc: 0.9969 - val_mean_iou: 0.8773
 
-Epoch 00073: val_loss improved from 0.64990 to 0.64445, saving model to saved_models/model_and_weights.hdf5
+Epoch 00073: val_loss improved from 0.40858 to 0.40751, saving model to saved_models/model_and_weights.hdf5
 Epoch 74/130
- - 533s - loss: 0.6658 - acc: 0.9888 - mean_iou: 0.6982 - val_loss: 0.6391 - val_acc: 0.9938 - val_mean_iou: 0.7292
+ - 543s - loss: 0.4108 - acc: 0.9960 - mean_iou: 0.8537 - val_loss: 0.4066 - val_acc: 0.9969 - val_mean_iou: 0.8773
 
-Epoch 00074: val_loss improved from 0.64445 to 0.63913, saving model to saved_models/model_and_weights.hdf5
+Epoch 00074: val_loss improved from 0.40751 to 0.40657, saving model to saved_models/model_and_weights.hdf5
 Epoch 75/130
- - 536s - loss: 0.6597 - acc: 0.9891 - mean_iou: 0.7026 - val_loss: 0.6340 - val_acc: 0.9939 - val_mean_iou: 0.7318
+ - 542s - loss: 0.4097 - acc: 0.9960 - mean_iou: 0.8540 - val_loss: 0.4055 - val_acc: 0.9969 - val_mean_iou: 0.8777
 
-Epoch 00075: val_loss improved from 0.63913 to 0.63404, saving model to saved_models/model_and_weights.hdf5
+Epoch 00075: val_loss improved from 0.40657 to 0.40552, saving model to saved_models/model_and_weights.hdf5
 Epoch 76/130
- - 536s - loss: 0.6538 - acc: 0.9895 - mean_iou: 0.7073 - val_loss: 0.6291 - val_acc: 0.9940 - val_mean_iou: 0.7348
+ - 543s - loss: 0.4087 - acc: 0.9960 - mean_iou: 0.8543 - val_loss: 0.4046 - val_acc: 0.9969 - val_mean_iou: 0.8777
 
-Epoch 00076: val_loss improved from 0.63404 to 0.62905, saving model to saved_models/model_and_weights.hdf5
+Epoch 00076: val_loss improved from 0.40552 to 0.40457, saving model to saved_models/model_and_weights.hdf5
 Epoch 77/130
- - 535s - loss: 0.6482 - acc: 0.9898 - mean_iou: 0.7116 - val_loss: 0.6242 - val_acc: 0.9941 - val_mean_iou: 0.7380
+ - 540s - loss: 0.4077 - acc: 0.9960 - mean_iou: 0.8551 - val_loss: 0.4036 - val_acc: 0.9969 - val_mean_iou: 0.8779
 
-Epoch 00077: val_loss improved from 0.62905 to 0.62425, saving model to saved_models/model_and_weights.hdf5
+Epoch 00077: val_loss improved from 0.40457 to 0.40362, saving model to saved_models/model_and_weights.hdf5
 Epoch 78/130
- - 534s - loss: 0.6427 - acc: 0.9900 - mean_iou: 0.7163 - val_loss: 0.6196 - val_acc: 0.9941 - val_mean_iou: 0.7410
+ - 543s - loss: 0.4067 - acc: 0.9960 - mean_iou: 0.8555 - val_loss: 0.4026 - val_acc: 0.9969 - val_mean_iou: 0.8782
 
-Epoch 00078: val_loss improved from 0.62425 to 0.61958, saving model to saved_models/model_and_weights.hdf5
+Epoch 00078: val_loss improved from 0.40362 to 0.40259, saving model to saved_models/model_and_weights.hdf5
 Epoch 79/130
- - 533s - loss: 0.6374 - acc: 0.9903 - mean_iou: 0.7210 - val_loss: 0.6151 - val_acc: 0.9942 - val_mean_iou: 0.7445
+ - 540s - loss: 0.4057 - acc: 0.9960 - mean_iou: 0.8553 - val_loss: 0.4017 - val_acc: 0.9969 - val_mean_iou: 0.8783
 
-Epoch 00079: val_loss improved from 0.61958 to 0.61511, saving model to saved_models/model_and_weights.hdf5
+Epoch 00079: val_loss improved from 0.40259 to 0.40166, saving model to saved_models/model_and_weights.hdf5
 Epoch 80/130
- - 536s - loss: 0.6324 - acc: 0.9906 - mean_iou: 0.7256 - val_loss: 0.6108 - val_acc: 0.9943 - val_mean_iou: 0.7483
+ - 541s - loss: 0.4048 - acc: 0.9960 - mean_iou: 0.8554 - val_loss: 0.4008 - val_acc: 0.9969 - val_mean_iou: 0.8782
 
-Epoch 00080: val_loss improved from 0.61511 to 0.61078, saving model to saved_models/model_and_weights.hdf5
+Epoch 00080: val_loss improved from 0.40166 to 0.40077, saving model to saved_models/model_and_weights.hdf5
 Epoch 81/130
- - 535s - loss: 0.6275 - acc: 0.9908 - mean_iou: 0.7299 - val_loss: 0.6066 - val_acc: 0.9944 - val_mean_iou: 0.7522
+ - 541s - loss: 0.4037 - acc: 0.9960 - mean_iou: 0.8561 - val_loss: 0.3998 - val_acc: 0.9969 - val_mean_iou: 0.8785
 
-Epoch 00081: val_loss improved from 0.61078 to 0.60659, saving model to saved_models/model_and_weights.hdf5
+Epoch 00081: val_loss improved from 0.40077 to 0.39975, saving model to saved_models/model_and_weights.hdf5
 Epoch 82/130
- - 536s - loss: 0.6228 - acc: 0.9911 - mean_iou: 0.7345 - val_loss: 0.6025 - val_acc: 0.9945 - val_mean_iou: 0.7556
+ - 544s - loss: 0.4028 - acc: 0.9960 - mean_iou: 0.8560 - val_loss: 0.3988 - val_acc: 0.9969 - val_mean_iou: 0.8788
 
-Epoch 00082: val_loss improved from 0.60659 to 0.60252, saving model to saved_models/model_and_weights.hdf5
+Epoch 00082: val_loss improved from 0.39975 to 0.39878, saving model to saved_models/model_and_weights.hdf5
 Epoch 83/130
- - 536s - loss: 0.6183 - acc: 0.9913 - mean_iou: 0.7388 - val_loss: 0.5986 - val_acc: 0.9946 - val_mean_iou: 0.7601
+ - 544s - loss: 0.4018 - acc: 0.9961 - mean_iou: 0.8566 - val_loss: 0.3978 - val_acc: 0.9969 - val_mean_iou: 0.8790
 
-Epoch 00083: val_loss improved from 0.60252 to 0.59861, saving model to saved_models/model_and_weights.hdf5
+Epoch 00083: val_loss improved from 0.39878 to 0.39779, saving model to saved_models/model_and_weights.hdf5
 Epoch 84/130
- - 536s - loss: 0.6140 - acc: 0.9915 - mean_iou: 0.7428 - val_loss: 0.5948 - val_acc: 0.9947 - val_mean_iou: 0.7640
+ - 541s - loss: 0.4008 - acc: 0.9961 - mean_iou: 0.8566 - val_loss: 0.3968 - val_acc: 0.9969 - val_mean_iou: 0.8792
 
-Epoch 00084: val_loss improved from 0.59861 to 0.59483, saving model to saved_models/model_and_weights.hdf5
+Epoch 00084: val_loss improved from 0.39779 to 0.39684, saving model to saved_models/model_and_weights.hdf5
 Epoch 85/130
- - 536s - loss: 0.6098 - acc: 0.9917 - mean_iou: 0.7471 - val_loss: 0.5912 - val_acc: 0.9948 - val_mean_iou: 0.7674
+ - 544s - loss: 0.3999 - acc: 0.9961 - mean_iou: 0.8564 - val_loss: 0.3959 - val_acc: 0.9969 - val_mean_iou: 0.8793
 
-Epoch 00085: val_loss improved from 0.59483 to 0.59118, saving model to saved_models/model_and_weights.hdf5
+Epoch 00085: val_loss improved from 0.39684 to 0.39588, saving model to saved_models/model_and_weights.hdf5
 Epoch 86/130
- - 535s - loss: 0.6058 - acc: 0.9919 - mean_iou: 0.7509 - val_loss: 0.5876 - val_acc: 0.9948 - val_mean_iou: 0.7715
+ - 544s - loss: 0.3989 - acc: 0.9961 - mean_iou: 0.8570 - val_loss: 0.3949 - val_acc: 0.9970 - val_mean_iou: 0.8795
 
-Epoch 00086: val_loss improved from 0.59118 to 0.58765, saving model to saved_models/model_and_weights.hdf5
+Epoch 00086: val_loss improved from 0.39588 to 0.39493, saving model to saved_models/model_and_weights.hdf5
 Epoch 87/130
- - 533s - loss: 0.6018 - acc: 0.9921 - mean_iou: 0.7549 - val_loss: 0.5842 - val_acc: 0.9949 - val_mean_iou: 0.7755
+ - 542s - loss: 0.3979 - acc: 0.9961 - mean_iou: 0.8573 - val_loss: 0.3939 - val_acc: 0.9970 - val_mean_iou: 0.8798
 
-Epoch 00087: val_loss improved from 0.58765 to 0.58419, saving model to saved_models/model_and_weights.hdf5
+Epoch 00087: val_loss improved from 0.39493 to 0.39395, saving model to saved_models/model_and_weights.hdf5
 Epoch 88/130
- - 536s - loss: 0.5981 - acc: 0.9922 - mean_iou: 0.7583 - val_loss: 0.5809 - val_acc: 0.9950 - val_mean_iou: 0.7792
+ - 546s - loss: 0.3970 - acc: 0.9961 - mean_iou: 0.8570 - val_loss: 0.3931 - val_acc: 0.9970 - val_mean_iou: 0.8796
 
-Epoch 00088: val_loss improved from 0.58419 to 0.58089, saving model to saved_models/model_and_weights.hdf5
+Epoch 00088: val_loss improved from 0.39395 to 0.39311, saving model to saved_models/model_and_weights.hdf5
 Epoch 89/130
- - 536s - loss: 0.5945 - acc: 0.9924 - mean_iou: 0.7617 - val_loss: 0.5777 - val_acc: 0.9951 - val_mean_iou: 0.7830
+ - 544s - loss: 0.3961 - acc: 0.9961 - mean_iou: 0.8577 - val_loss: 0.3922 - val_acc: 0.9970 - val_mean_iou: 0.8799
 
-Epoch 00089: val_loss improved from 0.58089 to 0.57771, saving model to saved_models/model_and_weights.hdf5
+Epoch 00089: val_loss improved from 0.39311 to 0.39215, saving model to saved_models/model_and_weights.hdf5
 Epoch 90/130
- - 536s - loss: 0.5910 - acc: 0.9925 - mean_iou: 0.7647 - val_loss: 0.5747 - val_acc: 0.9951 - val_mean_iou: 0.7864
+ - 544s - loss: 0.3951 - acc: 0.9961 - mean_iou: 0.8577 - val_loss: 0.3912 - val_acc: 0.9970 - val_mean_iou: 0.8799
 
-Epoch 00090: val_loss improved from 0.57771 to 0.57466, saving model to saved_models/model_and_weights.hdf5
+Epoch 00090: val_loss improved from 0.39215 to 0.39124, saving model to saved_models/model_and_weights.hdf5
 Epoch 91/130
- - 536s - loss: 0.5876 - acc: 0.9926 - mean_iou: 0.7679 - val_loss: 0.5717 - val_acc: 0.9952 - val_mean_iou: 0.7894
+ - 545s - loss: 0.3942 - acc: 0.9961 - mean_iou: 0.8581 - val_loss: 0.3902 - val_acc: 0.9970 - val_mean_iou: 0.8803
 
-Epoch 00091: val_loss improved from 0.57466 to 0.57170, saving model to saved_models/model_and_weights.hdf5
+Epoch 00091: val_loss improved from 0.39124 to 0.39022, saving model to saved_models/model_and_weights.hdf5
 Epoch 92/130
- - 536s - loss: 0.5844 - acc: 0.9928 - mean_iou: 0.7707 - val_loss: 0.5688 - val_acc: 0.9953 - val_mean_iou: 0.7938
+ - 544s - loss: 0.3932 - acc: 0.9961 - mean_iou: 0.8583 - val_loss: 0.3893 - val_acc: 0.9970 - val_mean_iou: 0.8803
 
-Epoch 00092: val_loss improved from 0.57170 to 0.56880, saving model to saved_models/model_and_weights.hdf5
+Epoch 00092: val_loss improved from 0.39022 to 0.38934, saving model to saved_models/model_and_weights.hdf5
 Epoch 93/130
- - 536s - loss: 0.5812 - acc: 0.9929 - mean_iou: 0.7737 - val_loss: 0.5660 - val_acc: 0.9953 - val_mean_iou: 0.7969
+ - 544s - loss: 0.3923 - acc: 0.9962 - mean_iou: 0.8586 - val_loss: 0.3884 - val_acc: 0.9970 - val_mean_iou: 0.8805
 
-Epoch 00093: val_loss improved from 0.56880 to 0.56601, saving model to saved_models/model_and_weights.hdf5
+Epoch 00093: val_loss improved from 0.38934 to 0.38842, saving model to saved_models/model_and_weights.hdf5
 Epoch 94/130
- - 536s - loss: 0.5781 - acc: 0.9930 - mean_iou: 0.7764 - val_loss: 0.5632 - val_acc: 0.9954 - val_mean_iou: 0.8003
+ - 544s - loss: 0.3913 - acc: 0.9962 - mean_iou: 0.8589 - val_loss: 0.3875 - val_acc: 0.9970 - val_mean_iou: 0.8805
 
-Epoch 00094: val_loss improved from 0.56601 to 0.56325, saving model to saved_models/model_and_weights.hdf5
+Epoch 00094: val_loss improved from 0.38842 to 0.38752, saving model to saved_models/model_and_weights.hdf5
 Epoch 95/130
- - 536s - loss: 0.5751 - acc: 0.9931 - mean_iou: 0.7786 - val_loss: 0.5606 - val_acc: 0.9954 - val_mean_iou: 0.8037
+ - 544s - loss: 0.3904 - acc: 0.9962 - mean_iou: 0.8591 - val_loss: 0.3866 - val_acc: 0.9970 - val_mean_iou: 0.8807
 
-Epoch 00095: val_loss improved from 0.56325 to 0.56059, saving model to saved_models/model_and_weights.hdf5
+Epoch 00095: val_loss improved from 0.38752 to 0.38658, saving model to saved_models/model_and_weights.hdf5
 Epoch 96/130
- - 534s - loss: 0.5722 - acc: 0.9932 - mean_iou: 0.7809 - val_loss: 0.5580 - val_acc: 0.9955 - val_mean_iou: 0.8073
+ - 544s - loss: 0.3895 - acc: 0.9962 - mean_iou: 0.8589 - val_loss: 0.3857 - val_acc: 0.9970 - val_mean_iou: 0.8809
 
-Epoch 00096: val_loss improved from 0.56059 to 0.55799, saving model to saved_models/model_and_weights.hdf5
+Epoch 00096: val_loss improved from 0.38658 to 0.38568, saving model to saved_models/model_and_weights.hdf5
 Epoch 97/130
- - 538s - loss: 0.5694 - acc: 0.9933 - mean_iou: 0.7831 - val_loss: 0.5555 - val_acc: 0.9955 - val_mean_iou: 0.8095
+ - 541s - loss: 0.3885 - acc: 0.9962 - mean_iou: 0.8594 - val_loss: 0.3847 - val_acc: 0.9970 - val_mean_iou: 0.8811
 
-Epoch 00097: val_loss improved from 0.55799 to 0.55549, saving model to saved_models/model_and_weights.hdf5
+Epoch 00097: val_loss improved from 0.38568 to 0.38474, saving model to saved_models/model_and_weights.hdf5
 Epoch 98/130
- - 535s - loss: 0.5666 - acc: 0.9934 - mean_iou: 0.7855 - val_loss: 0.5530 - val_acc: 0.9956 - val_mean_iou: 0.8127
+ - 544s - loss: 0.3876 - acc: 0.9962 - mean_iou: 0.8594 - val_loss: 0.3840 - val_acc: 0.9970 - val_mean_iou: 0.8808
 
-Epoch 00098: val_loss improved from 0.55549 to 0.55303, saving model to saved_models/model_and_weights.hdf5
+Epoch 00098: val_loss improved from 0.38474 to 0.38398, saving model to saved_models/model_and_weights.hdf5
 Epoch 99/130
- - 538s - loss: 0.5640 - acc: 0.9934 - mean_iou: 0.7873 - val_loss: 0.5506 - val_acc: 0.9956 - val_mean_iou: 0.8146
+ - 544s - loss: 0.3867 - acc: 0.9962 - mean_iou: 0.8601 - val_loss: 0.3830 - val_acc: 0.9970 - val_mean_iou: 0.8811
 
-Epoch 00099: val_loss improved from 0.55303 to 0.55063, saving model to saved_models/model_and_weights.hdf5
+Epoch 00099: val_loss improved from 0.38398 to 0.38301, saving model to saved_models/model_and_weights.hdf5
 Epoch 100/130
- - 537s - loss: 0.5613 - acc: 0.9935 - mean_iou: 0.7893 - val_loss: 0.5483 - val_acc: 0.9956 - val_mean_iou: 0.8173
+ - 544s - loss: 0.3858 - acc: 0.9962 - mean_iou: 0.8601 - val_loss: 0.3820 - val_acc: 0.9970 - val_mean_iou: 0.8815
 
-Epoch 00100: val_loss improved from 0.55063 to 0.54831, saving model to saved_models/model_and_weights.hdf5
+Epoch 00100: val_loss improved from 0.38301 to 0.38203, saving model to saved_models/model_and_weights.hdf5
 Epoch 101/130
- - 537s - loss: 0.5587 - acc: 0.9936 - mean_iou: 0.7909 - val_loss: 0.5460 - val_acc: 0.9957 - val_mean_iou: 0.8203
+ - 544s - loss: 0.3849 - acc: 0.9962 - mean_iou: 0.8602 - val_loss: 0.3812 - val_acc: 0.9970 - val_mean_iou: 0.8815
 
-Epoch 00101: val_loss improved from 0.54831 to 0.54601, saving model to saved_models/model_and_weights.hdf5
+Epoch 00101: val_loss improved from 0.38203 to 0.38118, saving model to saved_models/model_and_weights.hdf5
 Epoch 102/130
- - 534s - loss: 0.5563 - acc: 0.9937 - mean_iou: 0.7925 - val_loss: 0.5438 - val_acc: 0.9957 - val_mean_iou: 0.8217
+ - 543s - loss: 0.3840 - acc: 0.9962 - mean_iou: 0.8605 - val_loss: 0.3803 - val_acc: 0.9970 - val_mean_iou: 0.8816
 
-Epoch 00102: val_loss improved from 0.54601 to 0.54379, saving model to saved_models/model_and_weights.hdf5
+Epoch 00102: val_loss improved from 0.38118 to 0.38031, saving model to saved_models/model_and_weights.hdf5
 Epoch 103/130
- - 537s - loss: 0.5538 - acc: 0.9937 - mean_iou: 0.7947 - val_loss: 0.5416 - val_acc: 0.9957 - val_mean_iou: 0.8237
+ - 544s - loss: 0.3831 - acc: 0.9962 - mean_iou: 0.8608 - val_loss: 0.3794 - val_acc: 0.9970 - val_mean_iou: 0.8820
 
-Epoch 00103: val_loss improved from 0.54379 to 0.54161, saving model to saved_models/model_and_weights.hdf5
+Epoch 00103: val_loss improved from 0.38031 to 0.37937, saving model to saved_models/model_and_weights.hdf5
 Epoch 104/130
- - 538s - loss: 0.5514 - acc: 0.9938 - mean_iou: 0.7961 - val_loss: 0.5395 - val_acc: 0.9958 - val_mean_iou: 0.8262
+ - 544s - loss: 0.3822 - acc: 0.9962 - mean_iou: 0.8607 - val_loss: 0.3784 - val_acc: 0.9970 - val_mean_iou: 0.8823
 
-Epoch 00104: val_loss improved from 0.54161 to 0.53948, saving model to saved_models/model_and_weights.hdf5
+Epoch 00104: val_loss improved from 0.37937 to 0.37845, saving model to saved_models/model_and_weights.hdf5
 Epoch 105/130
- - 537s - loss: 0.5492 - acc: 0.9939 - mean_iou: 0.7978 - val_loss: 0.5374 - val_acc: 0.9958 - val_mean_iou: 0.8273
+ - 541s - loss: 0.3813 - acc: 0.9962 - mean_iou: 0.8609 - val_loss: 0.3776 - val_acc: 0.9970 - val_mean_iou: 0.8821
 
-Epoch 00105: val_loss improved from 0.53948 to 0.53741, saving model to saved_models/model_and_weights.hdf5
+Epoch 00105: val_loss improved from 0.37845 to 0.37764, saving model to saved_models/model_and_weights.hdf5
 Epoch 106/130
- - 537s - loss: 0.5468 - acc: 0.9939 - mean_iou: 0.7993 - val_loss: 0.5353 - val_acc: 0.9958 - val_mean_iou: 0.8291
+ - 544s - loss: 0.3804 - acc: 0.9963 - mean_iou: 0.8615 - val_loss: 0.3767 - val_acc: 0.9971 - val_mean_iou: 0.8825
 
-Epoch 00106: val_loss improved from 0.53741 to 0.53534, saving model to saved_models/model_and_weights.hdf5
+Epoch 00106: val_loss improved from 0.37764 to 0.37671, saving model to saved_models/model_and_weights.hdf5
 Epoch 107/130
- - 534s - loss: 0.5446 - acc: 0.9940 - mean_iou: 0.8013 - val_loss: 0.5333 - val_acc: 0.9958 - val_mean_iou: 0.8306
+ - 544s - loss: 0.3795 - acc: 0.9963 - mean_iou: 0.8615 - val_loss: 0.3759 - val_acc: 0.9970 - val_mean_iou: 0.8823
 
-Epoch 00107: val_loss improved from 0.53534 to 0.53334, saving model to saved_models/model_and_weights.hdf5
+Epoch 00107: val_loss improved from 0.37671 to 0.37590, saving model to saved_models/model_and_weights.hdf5
 Epoch 108/130
- - 535s - loss: 0.5424 - acc: 0.9940 - mean_iou: 0.8025 - val_loss: 0.5314 - val_acc: 0.9959 - val_mean_iou: 0.8322
+ - 544s - loss: 0.3786 - acc: 0.9963 - mean_iou: 0.8615 - val_loss: 0.3750 - val_acc: 0.9970 - val_mean_iou: 0.8826
 
-Epoch 00108: val_loss improved from 0.53334 to 0.53135, saving model to saved_models/model_and_weights.hdf5
+Epoch 00108: val_loss improved from 0.37590 to 0.37499, saving model to saved_models/model_and_weights.hdf5
 Epoch 109/130
- - 538s - loss: 0.5403 - acc: 0.9941 - mean_iou: 0.8037 - val_loss: 0.5294 - val_acc: 0.9959 - val_mean_iou: 0.8339
+ - 544s - loss: 0.3777 - acc: 0.9963 - mean_iou: 0.8620 - val_loss: 0.3741 - val_acc: 0.9971 - val_mean_iou: 0.8826
 
-Epoch 00109: val_loss improved from 0.53135 to 0.52939, saving model to saved_models/model_and_weights.hdf5
+Epoch 00109: val_loss improved from 0.37499 to 0.37412, saving model to saved_models/model_and_weights.hdf5
 Epoch 110/130
- - 537s - loss: 0.5381 - acc: 0.9941 - mean_iou: 0.8052 - val_loss: 0.5275 - val_acc: 0.9959 - val_mean_iou: 0.8348
+ - 544s - loss: 0.3768 - acc: 0.9963 - mean_iou: 0.8623 - val_loss: 0.3732 - val_acc: 0.9971 - val_mean_iou: 0.8831
 
-Epoch 00110: val_loss improved from 0.52939 to 0.52748, saving model to saved_models/model_and_weights.hdf5
+Epoch 00110: val_loss improved from 0.37412 to 0.37316, saving model to saved_models/model_and_weights.hdf5
 Epoch 111/130
- - 537s - loss: 0.5361 - acc: 0.9942 - mean_iou: 0.8061 - val_loss: 0.5256 - val_acc: 0.9959 - val_mean_iou: 0.8363
+ - 544s - loss: 0.3759 - acc: 0.9963 - mean_iou: 0.8621 - val_loss: 0.3723 - val_acc: 0.9971 - val_mean_iou: 0.8831
 
-Epoch 00111: val_loss improved from 0.52748 to 0.52559, saving model to saved_models/model_and_weights.hdf5
+Epoch 00111: val_loss improved from 0.37316 to 0.37232, saving model to saved_models/model_and_weights.hdf5
 Epoch 112/130
- - 535s - loss: 0.5340 - acc: 0.9942 - mean_iou: 0.8074 - val_loss: 0.5237 - val_acc: 0.9959 - val_mean_iou: 0.8368
+ - 544s - loss: 0.3751 - acc: 0.9963 - mean_iou: 0.8626 - val_loss: 0.3715 - val_acc: 0.9971 - val_mean_iou: 0.8831
 
-Epoch 00112: val_loss improved from 0.52559 to 0.52374, saving model to saved_models/model_and_weights.hdf5
+Epoch 00112: val_loss improved from 0.37232 to 0.37149, saving model to saved_models/model_and_weights.hdf5
 Epoch 113/130
- - 534s - loss: 0.5320 - acc: 0.9943 - mean_iou: 0.8088 - val_loss: 0.5219 - val_acc: 0.9960 - val_mean_iou: 0.8391
+ - 544s - loss: 0.3742 - acc: 0.9963 - mean_iou: 0.8627 - val_loss: 0.3706 - val_acc: 0.9971 - val_mean_iou: 0.8834
 
-Epoch 00113: val_loss improved from 0.52374 to 0.52188, saving model to saved_models/model_and_weights.hdf5
+Epoch 00113: val_loss improved from 0.37149 to 0.37061, saving model to saved_models/model_and_weights.hdf5
 Epoch 114/130
- - 534s - loss: 0.5301 - acc: 0.9943 - mean_iou: 0.8096 - val_loss: 0.5201 - val_acc: 0.9960 - val_mean_iou: 0.8405
+ - 540s - loss: 0.3733 - acc: 0.9963 - mean_iou: 0.8628 - val_loss: 0.3697 - val_acc: 0.9971 - val_mean_iou: 0.8836
 
-Epoch 00114: val_loss improved from 0.52188 to 0.52008, saving model to saved_models/model_and_weights.hdf5
+Epoch 00114: val_loss improved from 0.37061 to 0.36973, saving model to saved_models/model_and_weights.hdf5
 Epoch 115/130
- - 536s - loss: 0.5281 - acc: 0.9943 - mean_iou: 0.8110 - val_loss: 0.5183 - val_acc: 0.9960 - val_mean_iou: 0.8417
+ - 544s - loss: 0.3724 - acc: 0.9963 - mean_iou: 0.8629 - val_loss: 0.3689 - val_acc: 0.9971 - val_mean_iou: 0.8837
 
-Epoch 00115: val_loss improved from 0.52008 to 0.51831, saving model to saved_models/model_and_weights.hdf5
+Epoch 00115: val_loss improved from 0.36973 to 0.36889, saving model to saved_models/model_and_weights.hdf5
 Epoch 116/130
- - 535s - loss: 0.5262 - acc: 0.9944 - mean_iou: 0.8117 - val_loss: 0.5165 - val_acc: 0.9960 - val_mean_iou: 0.8425
+ - 544s - loss: 0.3716 - acc: 0.9963 - mean_iou: 0.8633 - val_loss: 0.3680 - val_acc: 0.9971 - val_mean_iou: 0.8839
 
-Epoch 00116: val_loss improved from 0.51831 to 0.51655, saving model to saved_models/model_and_weights.hdf5
+Epoch 00116: val_loss improved from 0.36889 to 0.36800, saving model to saved_models/model_and_weights.hdf5
 Epoch 117/130
- - 532s - loss: 0.5243 - acc: 0.9944 - mean_iou: 0.8128 - val_loss: 0.5148 - val_acc: 0.9961 - val_mean_iou: 0.8434
+ - 544s - loss: 0.3707 - acc: 0.9963 - mean_iou: 0.8635 - val_loss: 0.3672 - val_acc: 0.9971 - val_mean_iou: 0.8839
 
-Epoch 00117: val_loss improved from 0.51655 to 0.51480, saving model to saved_models/model_and_weights.hdf5
+Epoch 00117: val_loss improved from 0.36800 to 0.36719, saving model to saved_models/model_and_weights.hdf5
 Epoch 118/130
- - 536s - loss: 0.5225 - acc: 0.9945 - mean_iou: 0.8137 - val_loss: 0.5131 - val_acc: 0.9961 - val_mean_iou: 0.8448
+ - 543s - loss: 0.3698 - acc: 0.9964 - mean_iou: 0.8638 - val_loss: 0.3664 - val_acc: 0.9971 - val_mean_iou: 0.8839
 
-Epoch 00118: val_loss improved from 0.51480 to 0.51311, saving model to saved_models/model_and_weights.hdf5
+Epoch 00118: val_loss improved from 0.36719 to 0.36638, saving model to saved_models/model_and_weights.hdf5
 Epoch 119/130
- - 536s - loss: 0.5206 - acc: 0.9945 - mean_iou: 0.8151 - val_loss: 0.5114 - val_acc: 0.9961 - val_mean_iou: 0.8459
+ - 543s - loss: 0.3690 - acc: 0.9964 - mean_iou: 0.8640 - val_loss: 0.3655 - val_acc: 0.9971 - val_mean_iou: 0.8841
 
-Epoch 00119: val_loss improved from 0.51311 to 0.51143, saving model to saved_models/model_and_weights.hdf5
+Epoch 00119: val_loss improved from 0.36638 to 0.36553, saving model to saved_models/model_and_weights.hdf5
 Epoch 120/130
- - 536s - loss: 0.5188 - acc: 0.9945 - mean_iou: 0.8158 - val_loss: 0.5098 - val_acc: 0.9961 - val_mean_iou: 0.8468
+ - 542s - loss: 0.3681 - acc: 0.9964 - mean_iou: 0.8639 - val_loss: 0.3646 - val_acc: 0.9971 - val_mean_iou: 0.8844
 
-Epoch 00120: val_loss improved from 0.51143 to 0.50978, saving model to saved_models/model_and_weights.hdf5
+Epoch 00120: val_loss improved from 0.36553 to 0.36463, saving model to saved_models/model_and_weights.hdf5
 Epoch 121/130
- - 536s - loss: 0.5171 - acc: 0.9946 - mean_iou: 0.8165 - val_loss: 0.5081 - val_acc: 0.9961 - val_mean_iou: 0.8474
+ - 542s - loss: 0.3673 - acc: 0.9964 - mean_iou: 0.8643 - val_loss: 0.3638 - val_acc: 0.9971 - val_mean_iou: 0.8844
 
-Epoch 00121: val_loss improved from 0.50978 to 0.50813, saving model to saved_models/model_and_weights.hdf5
+Epoch 00121: val_loss improved from 0.36463 to 0.36383, saving model to saved_models/model_and_weights.hdf5
 Epoch 122/130
- - 537s - loss: 0.5153 - acc: 0.9946 - mean_iou: 0.8179 - val_loss: 0.5065 - val_acc: 0.9961 - val_mean_iou: 0.8482
+ - 544s - loss: 0.3665 - acc: 0.9964 - mean_iou: 0.8641 - val_loss: 0.3630 - val_acc: 0.9971 - val_mean_iou: 0.8845
 
-Epoch 00122: val_loss improved from 0.50813 to 0.50650, saving model to saved_models/model_and_weights.hdf5
+Epoch 00122: val_loss improved from 0.36383 to 0.36300, saving model to saved_models/model_and_weights.hdf5
 Epoch 123/130
- - 537s - loss: 0.5136 - acc: 0.9946 - mean_iou: 0.8180 - val_loss: 0.5049 - val_acc: 0.9961 - val_mean_iou: 0.8489
+ - 543s - loss: 0.3656 - acc: 0.9964 - mean_iou: 0.8646 - val_loss: 0.3622 - val_acc: 0.9971 - val_mean_iou: 0.8845
 
-Epoch 00123: val_loss improved from 0.50650 to 0.50490, saving model to saved_models/model_and_weights.hdf5
+Epoch 00123: val_loss improved from 0.36300 to 0.36221, saving model to saved_models/model_and_weights.hdf5
 Epoch 124/130
- - 537s - loss: 0.5118 - acc: 0.9947 - mean_iou: 0.8193 - val_loss: 0.5033 - val_acc: 0.9962 - val_mean_iou: 0.8502
+ - 543s - loss: 0.3647 - acc: 0.9964 - mean_iou: 0.8646 - val_loss: 0.3613 - val_acc: 0.9971 - val_mean_iou: 0.8848
 
-Epoch 00124: val_loss improved from 0.50490 to 0.50332, saving model to saved_models/model_and_weights.hdf5
+Epoch 00124: val_loss improved from 0.36221 to 0.36135, saving model to saved_models/model_and_weights.hdf5
 Epoch 125/130
- - 536s - loss: 0.5101 - acc: 0.9947 - mean_iou: 0.8198 - val_loss: 0.5018 - val_acc: 0.9962 - val_mean_iou: 0.8509
+ - 541s - loss: 0.3639 - acc: 0.9964 - mean_iou: 0.8650 - val_loss: 0.3605 - val_acc: 0.9971 - val_mean_iou: 0.8850
 
-Epoch 00125: val_loss improved from 0.50332 to 0.50175, saving model to saved_models/model_and_weights.hdf5
+Epoch 00125: val_loss improved from 0.36135 to 0.36049, saving model to saved_models/model_and_weights.hdf5
 Epoch 126/130
- - 537s - loss: 0.5085 - acc: 0.9947 - mean_iou: 0.8209 - val_loss: 0.5002 - val_acc: 0.9962 - val_mean_iou: 0.8518
+ - 544s - loss: 0.3631 - acc: 0.9964 - mean_iou: 0.8651 - val_loss: 0.3596 - val_acc: 0.9971 - val_mean_iou: 0.8852
 
-Epoch 00126: val_loss improved from 0.50175 to 0.50020, saving model to saved_models/model_and_weights.hdf5
+Epoch 00126: val_loss improved from 0.36049 to 0.35965, saving model to saved_models/model_and_weights.hdf5
 Epoch 127/130
- - 537s - loss: 0.5068 - acc: 0.9947 - mean_iou: 0.8218 - val_loss: 0.4986 - val_acc: 0.9962 - val_mean_iou: 0.8521
+ - 543s - loss: 0.3622 - acc: 0.9964 - mean_iou: 0.8655 - val_loss: 0.3589 - val_acc: 0.9971 - val_mean_iou: 0.8852
 
-Epoch 00127: val_loss improved from 0.50020 to 0.49864, saving model to saved_models/model_and_weights.hdf5
+Epoch 00127: val_loss improved from 0.35965 to 0.35887, saving model to saved_models/model_and_weights.hdf5
 Epoch 128/130
- - 537s - loss: 0.5051 - acc: 0.9948 - mean_iou: 0.8226 - val_loss: 0.4971 - val_acc: 0.9962 - val_mean_iou: 0.8533
+ - 543s - loss: 0.3614 - acc: 0.9964 - mean_iou: 0.8658 - val_loss: 0.3580 - val_acc: 0.9972 - val_mean_iou: 0.8854
 
-Epoch 00128: val_loss improved from 0.49864 to 0.49709, saving model to saved_models/model_and_weights.hdf5
+Epoch 00128: val_loss improved from 0.35887 to 0.35801, saving model to saved_models/model_and_weights.hdf5
 Epoch 129/130
- - 537s - loss: 0.5036 - acc: 0.9948 - mean_iou: 0.8229 - val_loss: 0.4956 - val_acc: 0.9962 - val_mean_iou: 0.8541
+ - 542s - loss: 0.3606 - acc: 0.9964 - mean_iou: 0.8656 - val_loss: 0.3572 - val_acc: 0.9972 - val_mean_iou: 0.8853
 
-Epoch 00129: val_loss improved from 0.49709 to 0.49555, saving model to saved_models/model_and_weights.hdf5
+Epoch 00129: val_loss improved from 0.35801 to 0.35725, saving model to saved_models/model_and_weights.hdf5
 Epoch 130/130
- - 537s - loss: 0.5019 - acc: 0.9948 - mean_iou: 0.8239 - val_loss: 0.4941 - val_acc: 0.9962 - val_mean_iou: 0.8549
+ - 544s - loss: 0.3597 - acc: 0.9964 - mean_iou: 0.8660 - val_loss: 0.3564 - val_acc: 0.9972 - val_mean_iou: 0.8855
 
-Epoch 00130: val_loss improved from 0.49555 to 0.49405, saving model to saved_models/model_and_weights.hdf5
+Epoch 00130: val_loss improved from 0.35725 to 0.35642, saving model to saved_models/model_and_weights.hdf5
 *********************************************************
 Running python analyze_model.py
-JOB 69708 is running on gpu4 
+JOB 69767 is running on gpu4 
 *********************************************************
 
 
@@ -570,13 +572,13 @@ WEIGHTS: [1. 1. 1.]
 
 Number of validation samples IoU evaulated on: 10
 
-IoU for Background is: 99.81%
-IoU for Beam is: 71.79%
-IoU for Not-Beam is: 95.46%
+IoU for Background is: 99.88%
+IoU for Beam is: 78.92%
+IoU for Not-Beam is: 96.66%
 
-Mean IoU is: 89.02%
+Mean IoU is: 91.82%
 
-Test accuracy of the model is: 99.69%
+Test accuracy of the model is: 99.78%
 
 Done!
 

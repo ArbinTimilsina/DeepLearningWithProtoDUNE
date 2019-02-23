@@ -1,25 +1,26 @@
+[33mWARNING:[0m skipping mount of /lfstev: permission denied
 [33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (454) bind mounts
-2019-02-21 19:33:33.296074: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2019-02-21 19:33:34.197246: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+2019-02-22 15:30:11.440220: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-22 15:30:12.322119: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
 name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
 pciBusID: 0000:06:00.0
 totalMemory: 15.90GiB freeMemory: 15.61GiB
-2019-02-21 19:33:34.197307: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
-2019-02-21 19:33:36.578936: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
-2019-02-21 19:33:36.579000: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
-2019-02-21 19:33:36.579014: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
-2019-02-21 19:33:36.579555: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2019-02-22 15:30:12.322179: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-02-22 15:30:14.691738: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-02-22 15:30:14.691798: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-02-22 15:30:14.691811: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-02-22 15:30:14.692359: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
 Using TensorFlow backend.
 [33mWARNING:[0m skipping mount of /lfstev: permission denied
 [33mWARNING:[0m underlay of /usr/bin/nvidia-smi required more than 50 (454) bind mounts
-2019-02-22 15:18:40.589469: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2019-02-22 15:18:41.464266: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+2019-02-23 11:29:52.190325: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-23 11:29:53.091858: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
 name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
 pciBusID: 0000:06:00.0
 totalMemory: 15.90GiB freeMemory: 15.61GiB
-2019-02-22 15:18:41.464325: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
-2019-02-22 15:18:43.839070: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
-2019-02-22 15:18:43.839134: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
-2019-02-22 15:18:43.839149: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
-2019-02-22 15:18:43.839697: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
+2019-02-23 11:29:53.091917: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-02-23 11:29:55.478527: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-02-23 11:29:55.478585: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-02-23 11:29:55.478599: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-02-23 11:29:55.479141: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15133 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:06:00.0, compute capability: 6.0)
 Using TensorFlow backend.
