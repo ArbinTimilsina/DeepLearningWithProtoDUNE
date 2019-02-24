@@ -23,6 +23,9 @@
 #include "larcorealg/Geometry/GeometryCore.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
 
+// For beam trigger information
+#include "lardataobj/RawData/RDTimeStamp.h"
+
 // DeepLearning includes
 #include "dune/Protodune/DeepLearning/Tools/ImageInformation.h"
 
@@ -360,10 +363,10 @@ namespace ProtoDuneDL
 			    }
 
 			auto origin = particleInventory->TrackIdToMCTruth_P(bestTrackId)->Origin();
-                    if((origin == simb::kSingleParticle) && (particleInventory->TrackIdToParticle_P(bestTrackId)->Process() == "primary"))
-                        {
-                            hitOrigin = ProtoDuneDL::Labels::Beam;
-                        }
+			if((origin == simb::kSingleParticle) && (particleInventory->TrackIdToParticle_P(bestTrackId)->Process() == "primary"))
+			    {
+				hitOrigin = ProtoDuneDL::Labels::Beam;
+			    }
                     else
                         {
                             hitOrigin = ProtoDuneDL::Labels::NotBeam;
@@ -409,12 +412,27 @@ namespace ProtoDuneDL
                     pAllHitsStruct->push_back(tempAllHits);
                 }
 
-            // Keep the hit only if it can be matched to the primary
-            bool keepHit = true;
+            // Keep the hit only if it can be matched to the primary in MC or event has beam trigger
+            bool keepHit = false;
             if(isMC)
                 {
                     keepHit = (mapPrimaryToHits.find(bestTrackId) != mapPrimaryToHits.end()) && (mapPrimaryToHits[bestTrackId] == hitOrigin);
                 }
+            else
+                {
+                    // Require beam trigger
+                    art::Handle<std::vector<raw::RDTimeStamp>> timeStamps;
+                    event.getByLabel("timingrawdecoder:daq", timeStamps);
+
+                    // Require time stamp and one RDTimeStamp
+                    if(timeStamps.isValid() && timeStamps->size() == 1)
+                        {
+                            // Access the trigger information. Beam trigger flag = 0xc
+                            const raw::RDTimeStamp& timeStamp = timeStamps->at(0);
+                            keepHit = (timeStamp.GetFlags() == 0xc);
+                        }
+                }
+
             if(keepHit)
                 {
                     ProtoDuneDL::HitsStruct tempHits;
