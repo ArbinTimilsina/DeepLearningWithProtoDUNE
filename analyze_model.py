@@ -31,7 +31,9 @@ def mean_intersection_over_union(y_true, y_pred, class_names):
         print('IoU for {} is: {:.2f}%'.format(class_names[c], iou*100))
         total_iou += iou
 
-    print('\nMean IoU is: {:.2f}%'.format(100*total_iou/len(class_names)))
+    mIOU = 100*total_iou/len(class_names)
+    print('\nMean IoU is: {:.2f}%'.format(mIOU))
+    return mIOU
 
 def main():
     args = argument_parser()
@@ -96,13 +98,16 @@ def main():
         prediction = model.predict_on_batch(X_preprocessed)
         prediction_max = np.argmax(prediction, axis=-1)
 
+        this_m_iou = mean_intersection_over_union(y_preprocessed, prediction, CLASS_NAMES)
+
         feature_image = X_preprocessed.reshape(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH)
         label_image = y_preprocessed_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)
         prediction_image = prediction_max.reshape(IMAGE_WIDTH, IMAGE_HEIGHT)
 
         plot_feature_label_prediction_path = os.path.join("plots",  "predictions", "prediction_event_{}.pdf".format(count))
         plot_feature_label_prediction(feature_image, label_image,  prediction_image,
-                                      'Feature', 'Label', 'Model prediction', CLASS_NAMES, plot_feature_label_prediction_path)
+                                      'Feature', 'Label', 'Prediction (mIOU: {:.1f})'.format(this_m_iou),
+                                      CLASS_NAMES, plot_feature_label_prediction_path)
 
     # Calculate Statistics
     samples = np.zeros((NUM_TESTING, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_DEPTH))
@@ -118,7 +123,7 @@ def main():
         count += 1
 
     predictions = model.predict_on_batch(samples)
-    mean_intersection_over_union(targets, predictions, CLASS_NAMES)
+    mIOU = mean_intersection_over_union(targets, predictions, CLASS_NAMES)
 
     # Print the test accuracy
     score = model.evaluate(samples, targets, verbose=0)
