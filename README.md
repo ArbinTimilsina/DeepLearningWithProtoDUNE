@@ -1,5 +1,8 @@
-# Goal
-Develop semantic segmentation (pixel-wise classification) network to perform cosmic ray and beam particle separation in prototype DUNE detector.
+#### Semantic segmentation (pixel-wise classification) network to perform cosmic ray and beam particle separation in prototype DUNE detector.
+
+
+![alt text](plots/History.gif "Training")
+
 
 ## Instructions
 
