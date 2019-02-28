@@ -133,8 +133,8 @@ def main():
     #model.summary()
 
     # Plot the model architecture
-    model_path = os.path.join("plots", "model.pdf")
-    plot_model(model, to_file=model_path, show_shapes=True)
+    #model_path = os.path.join("plots", "model.pdf")
+    #plot_model(model, to_file=model_path, show_shapes=True)
 
     # Traing the model
     # Stop training when a monitored quantity has stopped improving after certain epochs
