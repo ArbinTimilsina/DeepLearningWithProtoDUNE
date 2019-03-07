@@ -62,7 +62,7 @@ singularity exec --nv DeepLearningWithProtoDUNE.img python train_model.py -o Dev
 KERAS_BACKEND=tensorflow python -c "from keras import backend"
 ```
 
-### To change the weights
+### To calculate the weights
 ```
 python calculate_weights.py
 ```
