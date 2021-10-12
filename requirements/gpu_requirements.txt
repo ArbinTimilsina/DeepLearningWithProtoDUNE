@@ -1,4 +1,4 @@
-opencv-python==3.4.3.18
+opencv-python==3.4.7.28
 h5py==2.8.0
 matplotlib==2.2.3
 numpy==1.14.5
